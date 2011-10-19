@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>luc-mac</Machine>
+    <WindowsUser>Swoogie</WindowsUser>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <Modified>2011-10-14T00:23:02.015</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\css\collectionPage.css">
+      <PackagePath>css\collectionPage.css</PackagePath>
+      <Modified>2011-10-13T23:11:57.639</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2011-10-13T23:11:57.667</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\css\detailPage.css">
+      <PackagePath>css\detailPage.css</PackagePath>
+      <Modified>2011-10-13T23:11:57.685</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\css\landingPage.css">
+      <PackagePath>css\landingPage.css</PackagePath>
+      <Modified>2011-10-13T23:11:57.726</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\Debug\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <Modified>2011-10-14T00:24:57.075</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\default.html">
+      <PackagePath>default.html</PackagePath>
+      <Modified>2011-10-13T23:39:22.464</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\html\collectionPage.html">
+      <PackagePath>html\collectionPage.html</PackagePath>
+      <Modified>2011-10-13T23:11:57.747</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\html\detailPage.html">
+      <PackagePath>html\detailPage.html</PackagePath>
+      <Modified>2011-10-14T00:15:43.877</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\html\landingPage.html">
+      <PackagePath>html\landingPage.html</PackagePath>
+      <Modified>2011-10-14T00:13:44.570</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\images\logo.png">
+      <PackagePath>images\logo.png</PackagePath>
+      <Modified>2011-10-13T23:42:21.757</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\images\metalnew.jpg">
+      <PackagePath>images\metalnew.jpg</PackagePath>
+      <Modified>2011-10-14T00:07:32.825</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\images\smalllogo.png">
+      <PackagePath>images\smalllogo.png</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\images\splashscreen.png">
+      <PackagePath>images\splashscreen.png</PackagePath>
+      <Modified>2011-10-14T00:24:42.345</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\images\storelogo.png">
+      <PackagePath>images\storelogo.png</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\images\woodu.jpg">
+      <PackagePath>images\woodu.jpg</PackagePath>
+      <Modified>2011-10-13T16:46:12.766</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\js\collectionPage.js">
+      <PackagePath>js\collectionPage.js</PackagePath>
+      <Modified>2011-10-14T00:09:26.903</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\js\default.js">
+      <PackagePath>js\default.js</PackagePath>
+      <Modified>2011-10-13T23:11:57.921</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\js\detailPage.js">
+      <PackagePath>js\detailPage.js</PackagePath>
+      <Modified>2011-10-13T23:11:57.965</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\js\landingPage.js">
+      <PackagePath>js\landingPage.js</PackagePath>
+      <Modified>2011-10-14T00:16:47.267</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\Css\ui-dark.css">
+      <PackagePath>winjs\Css\ui-dark.css</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\Css\ui-light.css">
+      <PackagePath>winjs\Css\ui-light.css</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\animations.js">
+      <PackagePath>winjs\js\animations.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\base.js">
+      <PackagePath>winjs\js\base.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\binding.js">
+      <PackagePath>winjs\js\binding.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\controls.js">
+      <PackagePath>winjs\js\controls.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\res.js">
+      <PackagePath>winjs\js\res.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\ui.js">
+      <PackagePath>winjs\js\ui.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\uicollections.js">
+      <PackagePath>winjs\js\uicollections.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+    <AppXPackagedFile Include="C:\Users\Swoogie\Documents\Visual Studio 11\Projects\WinWebApp1\WinWebApp1\winjs\js\wwaapp.js">
+      <PackagePath>winjs\js\wwaapp.js</PackagePath>
+      <Modified>2011-08-22T09:28:52.000</Modified>
+    </AppXPackagedFile>
+  </ItemGroup>
+</Project>
