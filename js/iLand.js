@@ -12,11 +12,14 @@ $.post("ajax/login.php",{
 		password : ""+password+"",
 		username : ""+username+""
 		},function(data){
-	
+	$("#password").val("");
 	if(data =="1"){
+		
 		$("#login").fadeOut(300);	
 	}else{
 	window.alert("Invalid Username/password. Please try again");
+	
+	$("#username").val(""); 
 	}	
 		});
 		
