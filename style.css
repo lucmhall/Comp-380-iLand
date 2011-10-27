@@ -18,38 +18,18 @@ ol, ul {list-style: none;}
 
 div {display:block;}
 
-
-
-
-Alert{
-color:pink;
-}
-
-
 body{
-background-color:#545454;
-align:center;
-}
+background-color:#545454; 
 
-div#container{
-background-image: url(images/iLand.png);
-width:1280px;
-height:720px;
-margin: 2px auto;
 background-repeat:no-repeat;
 }
 
 div#login{
 color:white;
-padding-top:10px;
-padding-left:15px;
-margin-top:230px;
-margin-left:550px;
-width:200px;
-height:110px;
+opacity:.8;
+height:310px;
 position:absolute;
--webkit-border-radius:10px;
-background-color:#545454;
+background-color:#040404;
 align:center;
 }
 
