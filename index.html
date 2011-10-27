@@ -7,12 +7,16 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
 <script type="text/javascript" src="js/iLand.js"></script>
+
 <script>
 </script>
 </head>
-<body>
-<img src="images/iLand.png" width="100%" height="100%" style="position:absolute"/>
+<body onload="init()">
+<img src="images/iLand.png" width="100%" height="100%" style="position:absolute;"/>
+	
+	
 	<div id="container">
 		<div id="login">
 			<form action="javascript:;" method="post" id="loginForm" >
@@ -21,7 +25,14 @@
 			<input id="submit"type="submit" value="Login"/>
 			</form>
 		</div>
-	</div>
-
+	<div id="chat">
+		<div id="chatPane"></div>
+<!--The outgoing chat form-->
+<div id="outGoing">
+  <input type="text" id="outgoing" style="width:340px" onkeydown="if (event.keyCode == 13) sendMessage()"/>
+  <input type="submit" value="Send" style="width:60px" onclick="sendMessage()"/>
+</div><!-- OutGoing -->
+	</div><!-- Chat -->
+	</div><!-- Container-->
 </body>
 </html>
