@@ -205,7 +205,9 @@ $("#createAccount").click(function(){
 		});
 	$("#createAcct").submit(function(){
 	
-		if(($("#un").val().length!=0) && ($("#confirm").val().length!=0) && ($("#conf").val().length!=0)){
+		if(($("#un").val()!=0) &&
+		 ($("#confirm").val()!=0) &&
+		 ($("#conf").val()!=0)){
 		un = $("#un").val();
 		pass = $("#pass").val();
 		conf = $("#confirm").val();
@@ -218,7 +220,6 @@ $("#createAccount").click(function(){
 		un : ""+un+""
 			},function(data){
 			if(data==1){
-			window.alert("Account Created");
 			init();
 			$("#login").fadeOut(300);	
 			}else if(data==2){
