@@ -28,7 +28,8 @@ color:black;
 opacity:.9;
 height:310px;
 position:absolute;
-background-color:#ff9639;
+//background-color:#ff9639;
+background-color:white;
 align:center;
 z-index:2;
 }
@@ -37,6 +38,8 @@ opacity:1;
 }
 div#login input{
 display:block;
+background-color:#545454;
+color:#ff6600;
 }
 
 div#login input#submit{
@@ -51,8 +54,8 @@ position:absolute
 margin-left:5px;
 }
 #chatPane {
-background-color:black;
-color:white;
+background-color:white;
+color:#ff6600;
 -webkit-border-radius:5px;
 opacity:.7;
   height: 150px;
@@ -64,7 +67,7 @@ opacity:.7;
   }
  #createAccount{
  text-decoration:none;
- color:white;
+ color:#ff6600;
 margin-left:35px;
  text-transform:Capitalize;
 

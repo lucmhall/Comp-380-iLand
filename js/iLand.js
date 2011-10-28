@@ -139,6 +139,8 @@ function displayChatMessage (message) {
 
 /***********Javascript Functions*****************************/
 
+
+
 //All javascript that will be run when the page loads goes here.
 function pageLoad(){
 sizeW = (window.innerWidth/2)-100;
@@ -153,11 +155,19 @@ sizeW = (window.innerWidth/2)-100;
 	$("#login").css({"height":window.innerHeight});
 	$("#username").focus(); 
 }
+window.onresize = resize;
+
+function resize()
+{
+ pageLoad();
+}
 
 /************Jquery**************************************/
 //All JQuery goes here.
 $(document).ready(function(){
 	pageLoad();
+	
+	
 //When a user attempts to log in
 $("#loginForm").submit(function(){
 
@@ -194,6 +204,8 @@ $("#createAccount").click(function(){
 		$("#createAccountForm").fadeIn();
 		});
 	$("#createAcct").submit(function(){
+	
+		if(($("#un").val().length!=0) && ($("#confirm").val().length!=0) && ($("#conf").val().length!=0)){
 		un = $("#un").val();
 		pass = $("#pass").val();
 		conf = $("#confirm").val();
@@ -217,6 +229,9 @@ $("#createAccount").click(function(){
 			
 			
 			});
+		}
+		}else{
+			window.alert("One of the fields are left blank");
 		}
 		});	
 	});
