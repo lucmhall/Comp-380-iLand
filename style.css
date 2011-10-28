@@ -20,20 +20,21 @@ div {display:block;}
 
 body{
 background-color:#545454; 
-
 background-repeat:no-repeat;
 }
 
 div#login{
-color:white;
-opacity:.8;
+color:black;
+opacity:.9;
 height:310px;
 position:absolute;
-background-color:#040404;
+background-color:#ff9639;
 align:center;
 z-index:2;
 }
-
+#loginForm{
+opacity:1;
+}
 div#login input{
 display:block;
 }
@@ -54,10 +55,26 @@ background-color:black;
 color:white;
 -webkit-border-radius:5px;
 opacity:.7;
-  height: 100px;
+  height: 150px;
   width: 400px;
   overflow: auto;
   padding: 5px;
   margin:0 0  5px 5px;
   z-index:1;
   }
+ #createAccount{
+ text-decoration:none;
+ color:white;
+margin-left:35px;
+ text-transform:Capitalize;
+
+ } 
+ #createAccount:hover{
+
+ text-shadow: 0.1em 0.1em 0.1em #002266;
+  
+  }
+#createAccountForm{
+  display:none;
+  
+  } 

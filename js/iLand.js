@@ -30,7 +30,7 @@ function closeListener (e) {
 var orbiter;
 var msgManager;
 var UPC = net.user1.orbiter.UPC;
-var roomID = "chatRoom";
+var roomID = "iLand";
 //==============================================================================
 // INITIALIZATION
 //==============================================================================
@@ -72,7 +72,7 @@ function init () {
 // Triggered when the connection is ready
 function readyListener (e) {
   displayChatMessage("Connected.");
-  displayChatMessage("Joining chat room...");
+  displayChatMessage("Waiting for login...");
   // Create the chat room
   msgManager.sendUPC(UPC.CREATE_ROOM, roomID);
   // Join the chat room
@@ -147,6 +147,8 @@ sizeW = (window.innerWidth/2)-100;
 	sizeH = sizeH+"px";
 	$("#loginForm").css({"margin-left":sizeW});
 	$("#loginForm").css({"margin-top":sizeH});
+	$("#createAccountForm").css({"margin-left":sizeW});
+	$("#createAccountForm").css({"margin-top":sizeH});
 	$("#login").css({"width":window.innerWidth});
 	$("#login").css({"height":window.innerHeight});
 	$("#username").focus(); 
@@ -173,7 +175,7 @@ $.post("ajax/login.php",{
 	$("#password").val("");
 	//If login was correct 1 should be returned
 	if(data =="1"){
-		
+		init();
 		$("#login").fadeOut(300);	
 	}else{
 	window.alert("Invalid Username/password. Please try again");
@@ -184,6 +186,41 @@ $.post("ajax/login.php",{
 		});
 		
 	});
+//User Account Creation
+
+$("#createAccount").click(function(){
+	$("#loginForm").fadeOut(300,function(){
+	
+		$("#createAccountForm").fadeIn();
+		});
+	$("#createAcct").submit(function(){
+		un = $("#un").val();
+		pass = $("#pass").val();
+		conf = $("#confirm").val();
+		if(pass != conf){
+		window.alert("Passwords do not match");
+		}else{
+		
+		$.post("ajax/createAccount.php",{
+		pass : ""+pass+"",
+		un : ""+un+""
+			},function(data){
+			if(data==1){
+			window.alert("Account Created");
+			init();
+			$("#login").fadeOut(300);	
+			}else if(data==2){
+			window.alert("Username is in use try again");
+			$("#un,#pass,#confirm").val('');
+			$("#un").focus();
+			}
+			
+			
+			});
+		}
+		});	
+	});
+	
 	
 });
 /********************************************************/
