@@ -53,10 +53,10 @@ if(isset($_SESSION['username'])){
 	</div><!-- Chat -->
 		<div id="bottomNav" style="">
 			<ul>
-				<li>Luc</li>
-				<li>Moe</li>
-				<li>Alex</li>
-				<li>Michael</li>
+				<li>Account</li>
+				<li>Stats</li>
+				<li>Holder</li>
+				<li>Holder</li>
 			</ul>
 		</div><!--bottom_nav-->
 	</div><!-- Container-->

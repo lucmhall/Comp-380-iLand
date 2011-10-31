@@ -170,7 +170,15 @@ sizeW = sizeW+"px";
 $(document).ready(function(){
 	pageLoad();
 	
-	
+//Hover over a nav item
+$("#bottomNav ul li").mouseover(function(){
+		//$(this).css({"padding-bottom":"22px"});
+		$(this).css({"padding-top":"12px"});
+		});
+$("#bottomNav ul li").mouseout(function(){
+		//$(this).css({"padding-bottom":"0px"});
+		$(this).css({"padding-top":"5px"});
+		});
 //When a user attempts to log in
 $("#loginForm").submit(function(){
 
