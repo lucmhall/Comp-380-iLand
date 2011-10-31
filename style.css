@@ -80,4 +80,18 @@ margin-left:35px;
 #createAccountForm{
   display:none;
   
-  } 
+} 
+#bottomNav{
+  height:40px;
+  background-color:red;
+  bottom:0;
+  position:absolute;
+  width:25%;
+  right:0;
+  min-width:400px;
+}
+  
+#bottomNav ul li{
+   display:inline;
+   margin-right:60px;
+   }

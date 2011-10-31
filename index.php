@@ -1,7 +1,11 @@
 <?php
 session_start();
 if(isset($_SESSION['username'])){
-echo "you are logged in";}
+?>
+<script>var loggedIn= true; </script>
+<?php
+}
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -14,9 +18,7 @@ echo "you are logged in";}
 <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
 <script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
 <script type="text/javascript" src="js/iLand.js"></script>
-
-<script>
-</script>
+<link rel="SHORTCUT ICON" href="http://tsar190.grid.csun.edu/iLand/favicon.ico">
 </head>
 <body >
 <img src="images/iLand.png" width="100%" height="100%" style="position:absolute;"/>
@@ -49,6 +51,14 @@ echo "you are logged in";}
   <input type="submit" value="Send" style="width:60px" onclick="sendMessage()"/>
 </div><!-- OutGoing -->
 	</div><!-- Chat -->
+		<div id="bottomNav" style="">
+			<ul>
+				<li>Luc</li>
+				<li>Moe</li>
+				<li>Alex</li>
+				<li>Michael</li>
+			</ul>
+		</div><!--bottom_nav-->
 	</div><!-- Container-->
 </body>
 </html>

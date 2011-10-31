@@ -1,26 +1,3 @@
-/***********Orbiter Micro*****************************/
-
-// Create Orbiter object
-var orbiter = new net.user1.orbiter.Orbiter();
- 
-// Register for connection events
-orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
-orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this);
- 
-// Connect to Union
-orbiter.connect("tryunion.com", 80);
- 
-// Connection event listeners
-function readyListener (e) {
-  alert("OrbiterMicro connected to Union!");
-}
- 
-function closeListener (e) {
-  alert("OrbiterMicro connection closed.");
-}
-
-
-
 
 //==============================================================================
 
@@ -58,7 +35,7 @@ function init () {
   msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
   msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
   msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
-
+  msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   // Connect to Union
   orbiter.connect("tryunion.com", 80);
   displayChatMessage("Connecting to Union...");
@@ -96,10 +73,15 @@ function joinedRoomListener () {
 // Triggered when another client joins the chat room
 function clientAddedListener (roomID, clientID) {
   displayChatMessage("User" + clientID + " joined the chat.");
+  window.alert(clientID);
 }
 // Triggered when another client leaves the chat room
 function clientRemovedListener (roomID, clientID) {
   displayChatMessage("User" + clientID + " left the chat.");
+}
+
+function clientSnapshotMessageListener(requestID, clients){
+	window.alert(clients);
 }
 //==============================================================================
 // CHAT SENDING AND RECEIVING
@@ -139,7 +121,9 @@ function displayChatMessage (message) {
 
 /***********Javascript Functions*****************************/
 
-
+// Used to make user confirm before refresh. 
+// Should remove this comment after development
+//window.onbeforeunload = function() { return "If you refresh, your data will be lost."; }
 
 //All javascript that will be run when the page loads goes here.
 function pageLoad(){
@@ -154,13 +138,32 @@ sizeW = (window.innerWidth/2)-100;
 	$("#login").css({"width":window.innerWidth});
 	$("#login").css({"height":window.innerHeight});
 	$("#username").focus(); 
+	
+	// Check if user is logged in
+	if(!(typeof loggedIn === 'undefined') && loggedIn){
+	init();
+	$("#login").hide();	
+	}
 }
-window.onresize = resize;
 
+
+//Window the window is resized, run these functions to keep ratios right.
+window.onresize = resize;
 function resize()
 {
- pageLoad();
+sizeW = sizeW+"px";
+	sizeH = (window.innerHeight/2)-100;
+	sizeH = sizeH+"px";
+	$("#loginForm").css({"margin-left":sizeW});
+	$("#loginForm").css({"margin-top":sizeH});
+	$("#createAccountForm").css({"margin-left":sizeW});
+	$("#createAccountForm").css({"margin-top":sizeH});
+	$("#login").css({"width":window.innerWidth});
+	$("#login").css({"height":window.innerHeight});
+	$("#username").focus(); 
+	
 }
+
 
 /************Jquery**************************************/
 //All JQuery goes here.
@@ -240,3 +243,6 @@ $("#createAccount").click(function(){
 	
 });
 /********************************************************/
+
+
+
