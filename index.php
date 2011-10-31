@@ -51,6 +51,9 @@ if(isset($_SESSION['username'])){
   <input type="submit" value="Send" style="width:60px" onclick="sendMessage()"/>
 </div><!-- OutGoing -->
 	</div><!-- Chat -->
+		<div id="navContent">
+		  &nbsp; &nbsp;Info will be here depending on what is clicked below.
+		</div>
 		<div id="bottomNav" style="">
 			<ul>
 				<li>Account</li>

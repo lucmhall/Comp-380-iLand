@@ -170,15 +170,33 @@ sizeW = sizeW+"px";
 $(document).ready(function(){
 	pageLoad();
 	
-//Hover over a nav item
-$("#bottomNav ul li").mouseover(function(){
-		//$(this).css({"padding-bottom":"22px"});
-		$(this).css({"padding-top":"12px"});
+//Click a nav item, run this function
+
+$("#bottomNav ul li").click(function(){
+	if($('#navContent').is(':visible')){
+	 $("#navContent").animate({
+			"height":"0px"
+				},300,function(){
+				
+				$("#navContent").show();
+     $("#navContent").css({"opacity":"0"});
+     $("#navContent").animate({
+			"height":"300px",
+			"opacity":"1"
+				},300);
+				
+				});
+	}else{
+	
+     $("#navContent").show();
+     $("#navContent").css({"opacity":"0"});
+     $("#navContent").animate({
+			"height":"300px",
+			"opacity":"1"
+				},300);
+		}		
 		});
-$("#bottomNav ul li").mouseout(function(){
-		//$(this).css({"padding-bottom":"0px"});
-		$(this).css({"padding-top":"5px"});
-		});
+
 //When a user attempts to log in
 $("#loginForm").submit(function(){
 
