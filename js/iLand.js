@@ -37,8 +37,8 @@ function init () {
   msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   // Connect to Union
-  orbiter.connect("tryunion.com", 80);
-  displayChatMessage("Connecting to Union...");
+  orbiter.connect("tsar190.grid.csun.edu", 9100);
+  displayChatMessage("Connecting to chat server...");
 
 }
 //==============================================================================
@@ -68,16 +68,16 @@ function closeListener (e) {
 //==============================================================================
 // Triggered when a JOINED_ROOM message is received
 function joinedRoomListener () {
-  displayChatMessage("Chat ready!");
+  displayChatMessage("Welcome to iLand!");
 }
 // Triggered when another client joins the chat room
 function clientAddedListener (roomID, clientID) {
-  displayChatMessage("User" + clientID + " joined the chat.");
+  displayChatMessage("User" + clientID + " joined the lobby.");
   window.alert(clientID);
 }
 // Triggered when another client leaves the chat room
 function clientRemovedListener (roomID, clientID) {
-  displayChatMessage("User" + clientID + " left the chat.");
+  displayChatMessage("User" + clientID + " left the lobby.");
 }
 
 function clientSnapshotMessageListener(requestID, clients){
@@ -143,6 +143,8 @@ sizeW = (window.innerWidth/2)-100;
 	if(!(typeof loggedIn === 'undefined') && loggedIn){
 	init();
 	$("#login").hide();	
+	}else{
+	$("#login").fadeIn(300);
 	}
 }
 
@@ -169,7 +171,10 @@ sizeW = sizeW+"px";
 //All JQuery goes here.
 $(document).ready(function(){
 	pageLoad();
-	
+	$("#chatPane").resizable();
+	//$("#chatPane").draggable();
+	$("#chat").draggable();
+//	$("#chat").draggable();
 //Click a nav item, run this function
 
 $("#bottomNav ul li").click(function(){

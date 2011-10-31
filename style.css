@@ -22,6 +22,39 @@ body{
 background-color:#545454; 
 background-repeat:no-repeat;
 }
+#game1{
+position:absolute;
+margin-left:750px;
+margin-top:175px;
+width: 300px;
+height:300px;
+background-color:pink;
+}
+#game2{
+position:absolute;
+margin-left:1100px;
+margin-top:175px;
+width: 300px;
+height:300px;
+background-color:red;
+}
+#game3{
+position:absolute;
+margin-left:750px;
+margin-top:525px;
+width: 300px;
+height:300px;
+background-color:blue;
+color:white;
+}
+#game4{
+position:absolute;
+margin-left:1100px;
+margin-top:525px;
+width: 300px;
+height:300px;
+background-color:white;
+}
 
 div#login{
 color:black;
@@ -32,6 +65,7 @@ position:absolute;
 background-color:white;
 align:center;
 z-index:2;
+display:none;
 }
 #loginForm{
 opacity:1;
@@ -47,10 +81,14 @@ margin-left:65px;
 margin-top:7px;
 }
 #chat{
-bottom:0;
-position:absolute
+-webkit-border-radius:4px;
+min-width: 415px;
+min-height:150px;
+
+position:absolute;
 }
 #outGoing{
+position:relative;
 margin-left:5px;
 }
 #chatPane {
@@ -127,7 +165,7 @@ display:none;
 background: -webkit-gradient(linear, 
 			left top, right bottom, color-stop(0%,#3b679e), 
 			color-stop(28%,#2b88d9), color-stop(67%,#207cca), 
-			color-stop(100%,#7db9e8));				
+			color-stop(100%,#7db9e8));
 bottom:0;
 right:0;
 margin-bottom:60px;

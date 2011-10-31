@@ -12,10 +12,13 @@ if(isset($_SESSION['username'])){
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>iLand</title>
-
+<!-- Stylesheet for JQueryUI -->
+<link type="text/css" href="js/css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
+<!-- Main Stylesheet -->
 <link href="style.css" rel="stylesheet" type="text/css" />
 
 <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
+<script type="text/javascript" src="js/jQueryUI/jQueryUI.js"></script>
 <script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
 <script type="text/javascript" src="js/iLand.js"></script>
 <link rel="SHORTCUT ICON" href="http://tsar190.grid.csun.edu/iLand/favicon.ico">
@@ -25,6 +28,12 @@ if(isset($_SESSION['username'])){
 	
 	
 	<div id="container">
+	
+	
+		<div id="game1">Game 1</div>
+		<div id="game2">Game 2</div>
+		<div id="game3">Game 3</div>
+		<div id="game4">Game 4</div>
 		<div id="login">
 		
 			<form action="javascript:;" method="post" id="loginForm" >
@@ -43,8 +52,11 @@ if(isset($_SESSION['username'])){
 			</form>
 			</div><!--createAccountForm-->
 		</div><!--login-->
+	
 	<div id="chat">
-		<div id="chatPane"></div>
+		<div id="chatPane" class="ui-widget-content">
+		<div class="ui-resizable-handle ui-resizable-ne ui-icon ui-icon-gripsmall-diagonal-ne" style="z-index: 1001; "></div>
+		</div>
 
 <div id="outGoing">
   <input type="text" id="outgoing" style="width:340px" onkeydown="if (event.keyCode == 13) sendMessage()"/>
@@ -52,7 +64,7 @@ if(isset($_SESSION['username'])){
 </div><!-- OutGoing -->
 	</div><!-- Chat -->
 		<div id="navContent">
-		  &nbsp; &nbsp;Info will be here depending on what is clicked below.
+		  &nbsp; &nbsp;Info will be here depending on what is clicked below. We will use AJAX to query our Database.
 		</div>
 		<div id="bottomNav" style="">
 			<ul>
