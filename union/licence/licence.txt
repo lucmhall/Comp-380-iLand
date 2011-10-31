@@ -1,0 +1,49 @@
+Union Server Licence
+
+==============================================
+Your Agreement to this Licence
+==============================================
+
+You should carefully read the following terms and conditions before using, installing or distributing this software. Your use, distribution, or installation of Union Server indicates your acceptance of this agreement ("Licence").
+
+The terms and conditions of this Licence describe the permitted use of the Union Server.
+
+==============================================
+Scope of Licence
+==============================================
+
+Union and Union Member Licence
+
+While the licensee is in compliance with this agreement, the "Union" and "Union Member" licence grant the licensee the right to install and run one or more copies of Union Server software, provided that the total number of simultaneous client connections to Union Server per top-level domain (for public projects) or per site (for private projects) does not exceed 1000. A "site" is a building or location with a single physical mailing address.
+
+Union Enterprise Licence
+
+While the licensee is in compliance with this agreement, the "Union Enterprise" licence grants the licensee the right to install and run Union Server software on one physical machine or virtual machine instance. The Union Enterprise Licence does not impose a restriction on the number of simultaneous client connections to Union Server per machine, per top-level domain, or per site.
+
+All rights of any kind in Union Server which are not expressly granted in this Licence are entirely and exclusively reserved to and by USER1 Subsystems Corporation. You acknowledge that no title to the intellectual property in the software is transferred to you. You further acknowledge that title and full ownership rights to the software will remain the exclusive property of USER1 Subsystems Corporation and you will not acquire any rights to the software except as expressly set forth in this Licence. You may not rent, lease, modify, translate, reverse engineer, decompile, disassemble, or create derivative works based on Union Server nor permit anyone else to do so. Without an explicit hosting partnership agreement with USER1 Subsystems Corporation, you may not make access to Union Server available to others in connection with a service bureau, application service provider, or similar business, nor permit anyone else to do so.
+
+==============================================
+Warranty Disclaimers and Liability Limitations
+==============================================
+
+Union Server, and any and all accompanying software, files, data and materials, are distributed and provided "AS IS" and with no warranties of any kind, whether express or implied. You hereby assume the entire risk of all use of the copies of Union Server, and any and all accompanying software, covered by this Licence. IN NO EVENT SHALL USER1 SUBSYSTEMS CORPORATION BE PERSONALLY LIABLE TO YOU FOR ANY CONSEQUENTIAL, SPECIAL, INCIDENTAL, OR INDIRECT DAMAGES OF ANY KIND ARISING OUT OF THE DELIVERY, PERFORMANCE, OR USE OF THE SOFTWARE, EVEN IF THE POSSIBILITY OF SUCH DAMAGES ARE KNOWN. NO WARRANTY IS MADE THAT THE FUNCTIONS CONTAINED IN THE SOFTWARE WILL MEET YOUR REQUIREMENTS, OR THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT DEFECTS IN THE SOFTWARE WILL BE CORRECTED. FURTHERMORE, NO WARRANTY IS MADE THAT THE RELATED DOCUMENTATION IS CORRECT, ACCURATE, RELIABILE, OR OTHERWISE. NO ORAL OR WRITTEN INFORMATION OR ADVICE GIVEN BY USER1 SUBSYSTEMS CORPORATION SHALL CREATE A WARRANTY OR IN ANY WAY INCREASE THE SCOPE OF THIS WARRANTY. SHOULD THE SOFTWARE PROVE DEFECTIVE, YOU ASSUME THE ENTIRE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION. 
+
+==============================================
+Support
+==============================================
+
+USER1 Subsystems Corporation does not provide technical support for Union Server. Installation, configuration, extension, and execution of Union Server are all the sole responsibility of the licensee. At its own discretion, USER1 Subsystems Corporation may choose to provide free technical support on a case-by-case basis via online message forums and email. Consulting services are not implied nor covered by this Licence.
+
+==============================================
+Termination
+==============================================
+
+Your rights under this Licence will terminate automatically without notice from USER1 Subsystems Corporation if you fail to comply with any term(s) of this Licence. In such event you must destroy all copies of the software and any related materials. 
+
+==============================================
+General
+==============================================
+
+This Licence is the complete statement of the agreement between the parties on the subject matter, and merges and supersedes all other or prior understandings, purchase orders, agreements and arrangements. This Licence shall be governed by the laws of the Province of Ontario, Canada. Exclusive jurisdiction and venue for all matters relating to this Licence shall be in courts and fora located in the Province of Ontario, Canada, and you consent to such jurisdiction and venue.
+
+Union Server, and any and all accompanying software, files, data, materials, and code are Copyright (c) 2001-2011 USER1 Subsystems Corporation. All rights reserved.

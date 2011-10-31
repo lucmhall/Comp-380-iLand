@@ -1,0 +1,245 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Orbiter Communicator</title>
+
+<script type="text/javascript">
+// Version: 2.1.1
+//==============================================================================
+// INITIALIZATION
+//==============================================================================
+function init () {
+  // OrbiterComm.html can run in a child iframe only, so abort if this script 
+  // is loaded directly into a top level window.
+  if (window.parent == window) {
+    alert("FATAL ERROR: No IFRAME found for OrbiterComm.html.")
+    return;
+  }
+  
+  outgoingRequestID = 0;
+  incomingRequestID = 0;
+  
+  lastOutgoingPostData = null;
+  lastIncomingPostData = null;
+  lastHelloPostData    = null;
+  
+  pendingRequests = [];
+  
+  sessionID = "";
+  
+  // Listen for window messages
+  if (typeof window.addEventListener != "undefined") {
+    // ...the standard way 
+    window.addEventListener("message", postMessageListener, false);
+  } else if (typeof window.attachEvent != 'undefined') { 
+    // ...the IE-specific way 
+    window.attachEvent('onmessage', postMessageListener); 
+  }
+  
+  postToParent("ready");
+}
+    
+//==============================================================================
+// PARENT WINDOW MESSAGING
+//==============================================================================
+// Publishes a message to the parent window
+function postToParent (cmd, data) {
+  data = data == undefined ? "" : data;
+  parent.postMessage(cmd + "," + data, "*");
+}
+
+// Listens for messages from parent window
+function postMessageListener (e) {
+  var delimiterIndex = e.data.indexOf(",");
+  var cmd  = e.data.substring(0, delimiterIndex);
+  var data = e.data.substring(delimiterIndex+1);
+  
+  switch (cmd) {
+    case "sessionid":
+      sessionID = data;
+      break;
+    case "dispose":
+      dispose();
+      break;
+    case "deactivate":
+      deactivateHTTPRequests();
+      break;
+    case "sendhello":
+      openNewHelloRequest(data);
+      break;
+    case "retryhello":
+      retryHello();
+      break;
+    case "sendoutgoing":
+      openNewOutgoingRequest(data);
+      break;
+    case "retryoutgoing":
+      retryOutgoing();
+      break;
+    case "sendincoming":
+      openNewIncomingRequest();
+      break;
+    case "retryincoming":
+      retryIncoming();
+      break;
+  }
+}
+
+//==============================================================================    
+// HELLO REQUEST MANAGEMENT
+//==============================================================================  
+
+function openNewHelloRequest (data) {
+  lastHelloPostData = createHelloPostData(encodeURIComponent(data));
+  transmitRequest(lastHelloPostData, 
+                  helloRequestReadystatechangeListener,
+                  helloRequestErrorListener);
+}
+
+function createHelloPostData (data) {
+  return "mode=d" + "&data=" + data;
+}
+
+function retryHello () {
+  transmitRequest(lastHelloPostData, 
+                  helloRequestReadystatechangeListener,
+                  helloRequestErrorListener);
+}
+
+function helloRequestReadystatechangeListener (state) {
+  if (this.readyState == 4) {
+    removePendingRequest(this);
+    if (this.status >= 200 && this.status <= 299) {
+      postToParent("hellocomplete", this.responseText);
+    } else {
+      postToParent("helloerror");
+    }
+  }
+}
+
+function helloRequestErrorListener (e) {
+  removePendingRequest(this);
+  postToParent("helloerror");
+}
+
+//==============================================================================    
+// OUTGOING REQUEST MANAGEMENT
+//==============================================================================  
+
+function openNewOutgoingRequest (data) {
+  lastOutgoingPostData = createOutgoingPostData(encodeURIComponent(data));
+  transmitRequest(lastOutgoingPostData, 
+                  outgoingRequestReadystatechangeListener,
+                  outgoingRequestErrorListener);
+}
+
+function createOutgoingPostData (data) {
+  outgoingRequestID++;
+  return "rid=" + outgoingRequestID + "&sid=" + sessionID + "&mode=s" + "&data=" + data;
+}
+
+function retryOutgoing () {
+  transmitRequest(lastOutgoingPostData, 
+                  outgoingRequestReadystatechangeListener,
+                  outgoingRequestErrorListener);
+}
+
+function outgoingRequestReadystatechangeListener (state) {
+  if (this.readyState == 4) {
+    removePendingRequest(this);
+    if (this.status >= 200 && this.status <= 299) {
+      postToParent("outgoingcomplete");
+    } else {
+      postToParent("outgoingerror");
+    }
+  }
+}
+
+function outgoingRequestErrorListener (e) {
+  removePendingRequest(this);
+  postToParent("outgoingerror");
+}
+
+//==============================================================================    
+// INCOMING REQUEST MANAGEMENT
+//==============================================================================  
+
+function openNewIncomingRequest () {
+  lastIncomingPostData = createIncomingPostData();
+  transmitRequest(lastIncomingPostData,
+                  incomingRequestReadystatechangeListener,
+                  incomingRequestErrorListener);
+}
+
+function createIncomingPostData () {
+  incomingRequestID++;
+  return "rid=" + incomingRequestID + "&sid=" + sessionID + "&mode=c";
+}
+
+function retryIncoming () {
+  transmitRequest(lastIncomingPostData,
+                  incomingRequestReadystatechangeListener,
+                  incomingRequestErrorListener);
+}
+
+function incomingRequestReadystatechangeListener (state) {
+  if (this.readyState == 4) {
+    removePendingRequest(this);
+    if (this.status >= 200 && this.status <= 299) {
+      postToParent("incomingcomplete", this.responseText);
+    } else {
+      postToParent("incomingerror");
+    }
+  }
+}
+
+function incomingRequestErrorListener (e) {
+  removePendingRequest(this);
+  postToParent("incomingerror");
+}
+  
+//==============================================================================
+// REQUEST MANAGEMENT
+//==============================================================================
+function transmitRequest (data, readystatechangeListener, errorListener) {
+  var request = new XMLHttpRequest();
+  pendingRequests.push(request);
+  request.onreadystatechange = readystatechangeListener;
+  request.onerror = errorListener;
+  // Call open before setting header
+  request.open("POST", "http://" + window.location.hostname + ":" + window.location.port);
+  request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+  request.send(data);
+}
+
+function removePendingRequest (request) {
+  for (var i = pendingRequests.length; --i >= 0; ) {
+    if (pendingRequests[i] === request) {
+      pendingRequests.splice(i, 1);
+    }
+  }
+}
+
+function deactivateHTTPRequests () {
+  for (var i = pendingRequests.length; --i >= 0;) {
+    try {
+      pendingRequests[i].abort();
+    } catch (e) {
+      // Do nothing
+    }
+  }
+  pendingRequests = [];
+}
+
+//==============================================================================
+// DISPOSAL
+//==============================================================================
+
+function dispose () {
+  deactivateHTTPRequests();
+}
+
+</script>
+</head>
+<body onload="init()"></body>
+</html>
