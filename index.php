@@ -28,15 +28,19 @@ if(isset($_SESSION['username'])){
 	
 	
 	<div id="container">
-	
+	<!--
 	
 		<div id="game1">Game 1</div>
 		<div id="game2">Game 2</div>
 		<div id="game3">Game 3</div>
 		<div id="game4">Game 4</div>
+		
+		
+	-->	
 		<div id="login">
+			<img id="gusta" src="images/gusta1.png"/>
 		<img src="images/logo.png" alt="logo_iLand" id="logo" style="margin-top:20px;margin-left:325px;position:absolute;" align="center"/>
-
+		
 			<div id="description">
 			On a deserted island in the middle of no where, the corpse of a plane 
 			can be seen just of the coast of the island. You and only a few others have
@@ -44,6 +48,7 @@ if(isset($_SESSION['username'])){
 			fight, build an empire, just survive by any means necessary. 
 			</div>
 			<form action="javascript:;" method="post" id="loginForm" >
+			
 			<div id="loginContainer">
 			Username<input type="text" name="username" size="30" id="username"/>
  			Password<input type="password" size="30" id="password"/>
