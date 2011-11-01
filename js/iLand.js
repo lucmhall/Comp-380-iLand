@@ -127,14 +127,18 @@ function displayChatMessage (message) {
 
 //All javascript that will be run when the page loads goes here.
 function pageLoad(){
+	ww = window.innerWidth-560;
 sizeW = (window.innerWidth/2)-100;
-	sizeW = sizeW+"px";
-	sizeH = (window.innerHeight/2)-100;
-	sizeH = sizeH+"px";
-	$("#loginForm").css({"margin-left":sizeW});
-	$("#loginForm").css({"margin-top":sizeH});
-	$("#createAccountForm").css({"margin-left":sizeW});
-	$("#createAccountForm").css({"margin-top":sizeH});
+
+hh = (window.innerHeight/2)-150;
+logo = (window.innerWidth/2 - 157)+"px";
+
+	$("#logo").css({"margin-left":logo});
+    $("#description").css({"margin-top":hh});
+	$("#loginForm").css({"margin-left":ww});
+	$("#loginForm").css({"margin-top":hh});
+	$("#createAccountForm").css({"margin-left":ww});
+	$("#createAccountForm").css({"margin-top":hh});
 	$("#login").css({"width":window.innerWidth});
 	$("#login").css({"height":window.innerHeight});
 	$("#username").focus(); 
@@ -144,7 +148,7 @@ sizeW = (window.innerWidth/2)-100;
 	init();
 	$("#login").hide();	
 	}else{
-	$("#login").fadeIn(300);
+	$("#login").show();
 	}
 }
 
@@ -154,16 +158,15 @@ window.onresize = resize;
 function resize()
 {
 sizeW = sizeW+"px";
-	sizeH = (window.innerHeight/2)-100;
-	sizeH = sizeH+"px";
-	$("#loginForm").css({"margin-left":sizeW});
-	$("#loginForm").css({"margin-top":sizeH});
-	$("#createAccountForm").css({"margin-left":sizeW});
-	$("#createAccountForm").css({"margin-top":sizeH});
+	ww = window.innerWidth-460;
+	hh = (window.innerHeight/2)-150;
+	$("#loginForm").css({"margin-left":ww});
+	$("#loginForm").css({"margin-top":hh});
+	$("#createAccountForm").css({"margin-left":ww});
+	$("#createAccountForm").css({"margin-top":hh});
 	$("#login").css({"width":window.innerWidth});
 	$("#login").css({"height":window.innerHeight});
 	$("#username").focus(); 
-	
 }
 
 

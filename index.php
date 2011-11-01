@@ -35,21 +35,33 @@ if(isset($_SESSION['username'])){
 		<div id="game3">Game 3</div>
 		<div id="game4">Game 4</div>
 		<div id="login">
-		
+		<img src="images/logo.png" alt="logo_iLand" id="logo" style="margin-top:20px;margin-left:325px;position:absolute;" align="center"/>
+
+			<div id="description">
+			On a deserted island in the middle of no where, the corpse of a plane 
+			can be seen just of the coast of the island. You and only a few others have
+			survived. You now must of the fend for yourself to survive. Trade, forge an alliance,
+			fight, build an empire, just survive by any means necessary. 
+			</div>
 			<form action="javascript:;" method="post" id="loginForm" >
-			Username:<input type="text" name="username" size="30" id="username"/>
- 			Password:<input type="password" size="30" id="password"/>
-			<input id="submit"type="submit" value="Login"/>
+			<div id="loginContainer">
+			Username<input type="text" name="username" size="30" id="username"/>
+ 			Password<input type="password" size="30" id="password"/>
+			<input id="submit" type="submit" value="Login"/>
 			<a href="javascript:;" id="createAccount"> Create an account</a>
+			</div>
 			</form>
 			
 			<div id="createAccountForm">
 			<form action="javascript:;" method="post" id="createAcct" >
-			Username:<input type="text" name="username" size="30" id="un"/>
- 			Password:<input type="password" size="30" id="pass"/>
- 			Confirm Password:<input type="password" size="30" id="confirm"/>
-			<input id="submit"type="submit" value="Create"/>
+			<div id="createContainer">
+			Username<input type="text" name="username" size="30" id="un"/>
+ 			Password<input type="password" size="30" id="pass"/>
+ 			Confirm Password<input type="password" size="30" id="confirm"/>
+			<input id="submit" type="submit" value="Create"/>
+			</div>
 			</form>
+			
 			</div><!--createAccountForm-->
 		</div><!--login-->
 	

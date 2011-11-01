@@ -1,6 +1,6 @@
 <?php
 
-include "../../../mysqli_connect.php";
+include "../../mysqli_connect.php";
 
 
 $un = $_POST['username'];

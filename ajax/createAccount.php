@@ -1,5 +1,5 @@
 <?php
-include "../../../mysqli_connect.php";
+include "../../mysqli_connect.php";
 $un  = $_POST['un'];
 $pass = $_POST['pass'];
 $pass = sha1($pass);
