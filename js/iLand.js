@@ -177,7 +177,7 @@ $(document).ready(function(){
 	$("#chatPane").resizable();
 	//$("#chatPane").draggable();
 	$("#chat").draggable();
-//	$("#chat").draggable();
+
 //Click a nav item, run this function
 
 $("#bottomNav ul li").click(function(){

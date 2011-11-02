@@ -21,7 +21,7 @@ if(isset($_SESSION['username'])){
 <script type="text/javascript" src="js/jQueryUI/jQueryUI.js"></script>
 <script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
 <script type="text/javascript" src="js/iLand.js"></script>
-<link rel="SHORTCUT ICON" href="http://tsar190.grid.csun.edu/iLand/favicon.ico">
+<link rel="SHORTCUT ICON" href="http://iland.grid.csun.edu/favicon.ico">
 </head>
 <body >
 <img src="images/iLand.png" width="100%" height="100%" style="position:absolute;"/>
@@ -71,7 +71,7 @@ if(isset($_SESSION['username'])){
 		</div><!--login-->
 	
 	<div id="chat">
-		<div id="chatPane" class="ui-widget-content">
+		<div id="chatPane" class="">
 		<div class="ui-resizable-handle ui-resizable-ne ui-icon ui-icon-gripsmall-diagonal-ne" style="z-index: 1001; "></div>
 		</div>
 
