@@ -27,7 +27,6 @@ function init () {
 
   orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
   orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.CLOSE, closeListener, this);
-
   // Register for incoming messages from Union
 
   msgManager = orbiter.getMessageManager();
@@ -180,22 +179,45 @@ $(document).ready(function(){
 
 //Click a nav item, run this function
 
+
+
+	
+	
 $("#bottomNav ul li").click(function(){
+
+$("#navContent").empty();
+var curr = $(this).attr('id');
+if(curr=="logOut"){
+$("#navContent").html("<p> Are you sure you want to log out ?</p> <form id='logMeOut' action='javascript:;' method='post'> <input type='submit' value='Yes'/> </form>");
+	$("#logMeOut").submit(function(){
+			$.post('ajax/logout.php',function(){
+			window.location = 'https://iland.grid.csun.edu';
+			});
+			
+			});
+	}else if(curr=="account"){
+		$("#navContent").html("<p>Account info will be here</p>");
+		}else if(curr=="stats"){
+				$("#navContent").html("<p>Stats will be here</p>");
+			}else{
+				$("#navContent").html("<p>Something will be here</p>");
+			}
+			
 	if($('#navContent').is(':visible')){
 	 $("#navContent").animate({
 			"height":"0px"
 				},300,function(){
-				
+
 				$("#navContent").show();
      $("#navContent").css({"opacity":"0"});
      $("#navContent").animate({
 			"height":"300px",
 			"opacity":"1"
 				},300);
-				
+
 				});
 	}else{
-	
+
      $("#navContent").show();
      $("#navContent").css({"opacity":"0"});
      $("#navContent").animate({
