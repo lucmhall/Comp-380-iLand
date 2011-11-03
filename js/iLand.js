@@ -255,7 +255,7 @@ $.post("ajax/login.php",{
 $("#createAccount").click(function(){
 	$("#loginForm").fadeOut(300,function(){
 	
-		$("#createAccountForm").fadeIn();
+		$("#cre ateAccountForm").fadeIn();
 		});
 	$("#createAcct").submit(function(){
 	
