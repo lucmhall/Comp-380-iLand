@@ -24,6 +24,14 @@ if(isset($_SESSION['username'])){
 <link rel="SHORTCUT ICON" href="http://iland.grid.csun.edu/favicon.ico">
 </head>
 <body >
+
+<!--Added by Michael Version Number Div -->
+
+<div>
+Version 2.0
+</div>
+
+
 <img src="images/iLand.png" width="100%" height="100%" style="position:absolute;"/>
 	
 	
@@ -81,14 +89,14 @@ if(isset($_SESSION['username'])){
 </div><!-- OutGoing -->
 	</div><!-- Chat -->
 		<div id="navContent">
-		 
+		  &nbsp; &nbsp;Info will be here depending on what is clicked below. We will use AJAX to query our Database.
 		</div>
 		<div id="bottomNav" style="">
 			<ul>
-				<li id="account">Account</li>
-				<li id="stats">Stats</li>
-				<li id="holder">Holder</li>
-				<li id="logOut">Log Out</li>
+				<li>Account</li>
+				<li>Stats</li>
+				<li>Holder</li>
+				<li>Holder</li>
 			</ul>
 		</div><!--bottom_nav-->
 	</div><!-- Container-->
