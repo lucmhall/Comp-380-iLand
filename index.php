@@ -81,7 +81,7 @@ if(isset($_SESSION['username'])){
 </div><!-- OutGoing -->
 	</div><!-- Chat -->
 		<div id="navContent">
-		  &nbsp; &nbsp;Info will be here depending on what is clicked below. We will use AJAX to query our Database.
+		 
 		</div>
 		<div id="bottomNav" style="">
 			<ul>

@@ -220,6 +220,20 @@ bottom:0;
 left:0;
 position:absolute;
 margin-top:-337px;
+}
 
-
+#confirmLogOut{
+margin-top:7px;
+width:80px;
+height:30px;
+border:0;
+background-color:#ff6633;
+-webkit-border-radius:2px;
+margin-left:110px;
+}
+#youSure{
+margin-left:5px;
+margin-top:50px;
+font-size:20px;
+font:  arial, helvetica, sans-serif;
 }

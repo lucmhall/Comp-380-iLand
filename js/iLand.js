@@ -178,17 +178,12 @@ $(document).ready(function(){
 	$("#chat").draggable();
 
 //Click a nav item, run this function
-
-
-
-	
-	
 $("#bottomNav ul li").click(function(){
 
 $("#navContent").empty();
 var curr = $(this).attr('id');
 if(curr=="logOut"){
-$("#navContent").html("<p> Are you sure you want to log out ?</p> <form id='logMeOut' action='javascript:;' method='post'> <input type='submit' value='Yes'/> </form>");
+$("#navContent").html("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
 	$("#logMeOut").submit(function(){
 			$.post('ajax/logout.php',function(){
 			window.location = 'https://iland.grid.csun.edu';
