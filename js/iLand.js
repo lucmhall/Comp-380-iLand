@@ -186,7 +186,7 @@ if(curr=="logOut"){
 $("#navContent").html("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
 	$("#logMeOut").submit(function(){
 			$.post('ajax/logout.php',function(){
-			window.location = 'http://localhost';
+			window.location = '../';
 			});
 			
 			});
