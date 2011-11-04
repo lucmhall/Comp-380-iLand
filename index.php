@@ -25,11 +25,13 @@ if(isset($_SESSION['username'])){
 </head>
 <body >
 
-<!--Added by Michael Version Number Div -->
+<!--Added by Michael Version Number Div
 
 <div>
 Version 2.0
 </div>
+
+-->
 
 
 <img src="images/iLand.png" width="100%" height="100%" style="position:absolute;"/>
