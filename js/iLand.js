@@ -172,159 +172,192 @@ sizeW = sizeW+"px";
 
 /************Jquery**************************************/
 //All JQuery goes here.
-$(document).ready(function(){
-	pageLoad();
-	$("#chatPane").resizable();
-	//$("#chatPane").draggable();
-	$("#chat").draggable();
+$(document).ready(function () {
+    pageLoad();
+    $("#chatPane").resizable();
+    //$("#chatPane").draggable();
+    $("#chat").draggable();
 
-//Click a nav item, run this function
-$("#bottomNav ul li").click(function(){
+    //Click a nav item, run this function
+    $("#bottomNav ul li").click(function () {
 
-$("#navContent").empty();
-var curr = $(this).attr('id');
-if(curr=="logOut"){
-$("#navContent").html("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
-	$("#logMeOut").submit(function(){
-			$.post('ajax/logout.php',function(){
-			window.location = '../';
-			});
-			
-			});
-	}else if(curr=="account"){
-		$("#navContent").html("<p>Account info will be here</p>");
-		}else if(curr=="stats"){
-				$("#navContent").html("<p>Stats will be here</p>");
-			}else{
-				$("#navContent").html("<p>Something will be here</p>");
-			}
-			
-	if($('#navContent').is(':visible')){
-	 $("#navContent").animate({
-			"height":"0px"
-				},300,function(){
+        $("#navContent").empty();
+        var curr = $(this).attr('id');
+        if (curr == "logOut") {
+            $("#navContent").html("<div id='exit_nav'>X</div><p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
+            $("#logMeOut").submit(function () {
+                $.post('ajax/logout.php', function () {
+                    window.location = '../';
+                });
 
-				$("#navContent").show();
-     $("#navContent").css({"opacity":"0"});
-     $("#navContent").animate({
-			"height":"300px",
-			"opacity":"1"
-				},300);
+            });
+        } else if (curr == "account") {
+            $("#navContent").html("<p>Account info will be here</p>");
+        } else if (curr == "stats") {
+            $("#navContent").html("<p>Stats will be here</p>");
+        } else {
+            $("#navContent").html("<p>Something will be here</p>");
+        }
 
-				});
-	}else{
+        if ($('#navContent').is(':visible')) {
+            $("#navContent").animate({
+                "height": "0px"
+            }, 300, function () {
 
-     $("#navContent").show();
-     $("#navContent").css({"opacity":"0"});
-     $("#navContent").animate({
-			"height":"300px",
-			"opacity":"1"
-				},300);
-		}		
-		});
+                $("#navContent").show();
+                $("#navContent").css({ "opacity": "0" });
+                $("#navContent").animate({
+                    "height": "300px",
+                    "opacity": "1"
+                }, 300);
 
-//When a user attempts to log in
-$("#loginForm").submit(function(){
+            });
+        } else {
 
-//Get input username and password.
-username = $("#username").val();
-password = $("#password").val();
+            $("#navContent").show();
+            $("#navContent").css({ "opacity": "0" });
+            $("#navContent").animate({
+                "height": "300px",
+                "opacity": "1"
+            }, 300);
+        }
+    });
 
-//AJAX call for login script
-$.post("ajax/login.php",{
-//password/unsername passed to php script
-		password : ""+password+"",
-		username : ""+username+""
-		},function(data){
-	//Remove password from page
-	$("#password").val("");
-	//If login was correct 1 should be returned
-	if(data =="1"){
-		init();
-		$("#login").fadeOut(300);	
-	}else{
-	window.alert("Invalid Username/password. Please try again");
-	
-	$("#username").val("");
-	$("#username").focus(); 
-	}	
-		});
-		
-	});
-//User Account Creation
+    //Exit Navigation Menu
+    //Mike 04 Nov 11
+    
+    $('#exit_nav').click(function () {
+        window.alert("hello");
+        $("#navContent").empty();
+    });
+    
+    
 
-$("#createAccount").click(function(){
-	$("#loginForm").fadeOut(300,function(){
-	
-		$("#createAccountForm").fadeIn();
-		});
-	$("#createAcct").submit(function(){
-	
-		if(($("#un").val()!=0) &&
-		 ($("#confirm").val()!=0) &&
-		 ($("#conf").val()!=0)){
-		un = $("#un").val();
-		pass = $("#pass").val();
-		conf = $("#confirm").val();
-		if(pass != conf){
-		window.alert("Passwords do not match");
-		}else{
-		
-		$.post("ajax/createAccount.php",{
-		pass : ""+pass+"",
-		un : ""+un+""
-			},function(data){
-			if(data==1){
-			init();
-			$("#login").fadeOut(300);	
-			}else if(data==2){
-			window.alert("Username is in use try again");
-			$("#un,#pass,#confirm").val('');
-			$("#un").focus();
-			}
-			
-			
-			});
-		}
-		}else{
-			window.alert("One of the fields are left blank");
-		}
-		});	
-	});
+    //When a user attempts to log in
+    $("#loginForm").submit(function () {
 
-	/************************************************/
-	//Test Code Mike
-	//Game 1 Animation
-	
-	var old_height = ($('#game1').css("height"));
+        //Get input username and password.
+        username = $("#username").val();
+        password = $("#password").val();
 
-	//$('#game1').hover(function(){
-	//	window.alert($(this).attr("height"));
-	//
-	//	$(this).animate({
-	//		"width":"500px", 
-	//		"height":"300px",
-	//		"left":"40%",
-	//		"top":"100px"
-	//	},1000);
-	//	
-	//	$(this).css("left","50px");
-	//});
+        //AJAX call for login script
+        $.post("ajax/login.php", {
+            //password/unsername passed to php script
+            password: "" + password + "",
+            username: "" + username + ""
+        }, function (data) {
+            //Remove password from page
+            $("#password").val("");
+            //If login was correct 1 should be returned
+            if (data == "1") {
+                init();
+                $("#login").fadeOut(300);
+            } else {
+                window.alert("Invalid Username/password. Please try again");
 
-	$('#game1').click(function(){
-	//	window.alert($(this).css("height"));
-		
-		$(this).animate({
-			"width":"500px", 
-			"height":"300px",
-			"left":"40%",
-			"top":"100px"
-		},1000);
+                $("#username").val("");
+                $("#username").focus();
+            }
+        });
 
-	});
+    });
+    //User Account Creation
 
-	
-	
+    $("#createAccount").click(function () {
+        $("#loginForm").fadeOut(300, function () {
+
+            $("#createAccountForm").fadeIn();
+        });
+        $("#createAcct").submit(function () {
+
+            if (($("#un").val() != 0) &&
+		 ($("#confirm").val() != 0) &&
+		 ($("#conf").val() != 0)) {
+                un = $("#un").val();
+                pass = $("#pass").val();
+                conf = $("#confirm").val();
+                if (pass != conf) {
+                    window.alert("Passwords do not match");
+                } else {
+
+                    $.post("ajax/createAccount.php", {
+                        pass: "" + pass + "",
+                        un: "" + un + ""
+                    }, function (data) {
+                        if (data == 1) {
+                            init();
+                            $("#login").fadeOut(300);
+                        } else if (data == 2) {
+                            window.alert("Username is in use try again");
+                            $("#un,#pass,#confirm").val('');
+                            $("#un").focus();
+                        }
+
+
+                    });
+                }
+            } else {
+                window.alert("One of the fields are left blank");
+            }
+        });
+    });
+
+    /************************************************/
+    //Test Code Mike
+    
+    
+    //Lobby Animation
+
+    //$('#game1').hover(function(){
+    //	window.alert($(this).attr("height"));
+    //
+    //	$(this).animate({
+    //		"width":"500px", 
+    //		"height":"300px",
+    //		"left":"40%",
+    //		"top":"100px"
+    //	},1000);
+    //	
+    //	$(this).css("left","50px");
+    //});
+
+    var old_height = ($('#game1').css("height"));
+    var old_width = ($('#game1').css("width"));
+
+    //Lobby Open Animation
+    $('#open_lobby').click(function () {
+        //window.alert($(this).css("height"));
+        //Change Visibility
+        $('#open_lobby').css('visibility', 'hidden');
+        $('#exit_lobby').css('visibility', 'visible');
+
+        //Animate
+        $('#game1').animate({
+        'width': '500px',
+        'height': '300px',
+        'left': '40%',
+        'top': '100px'
+        }, 1000);
+    });
+
+
+    //Exit Lobby Animation and Function
+    $('#exit_lobby').click(function () {
+        //window.alert(old_height);
+        //Change Visibility 
+        $('#open_lobby').css('visibility', 'visible');
+        $('#exit_lobby').css('visibility', 'hidden');
+        
+        //Animate
+        $('#game1').animate({
+            "height": old_height,
+            "width": old_width,
+            "left": "50%",
+            "top": "50%"
+        }, 1000);
+    });
+
+
 });
 /********************************************************/
 

@@ -40,7 +40,11 @@ if(isset($_SESSION['username'])){
 	    <div id="container">
 	
 	
-		    <div id="game1">Click to Enter Lobby</div>
+		    <div id="game1">
+                <p id="open_lobby">Click to Enter Lobby</p>
+                <div id='exit_lobby'>Exit Lobby</div>
+            </div>
+            
 	    <!--
 		    <div id="game2">Game 2</div>
 		    <div id="game3">Game 3</div>
@@ -91,7 +95,9 @@ if(isset($_SESSION['username'])){
 	    </div><!-- Chat -->
 		    <div id="navContent">
 		      &nbsp; &nbsp;Info will be here depending on what is clicked below. We will use AJAX to query our Database.
-		    </div>
+		        <!-- Added by Mike. Exit Button for navContent-->
+                <div id="exit_nav">Test Text</div>
+            </div>
 		    <div id="bottomNav" style="">
 			    <ul>
 				    <li id="account">Account</li>

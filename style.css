@@ -34,9 +34,11 @@ body{
     position:absolute;
     left:50%;
     top:50%;
+    text-align:center;
     margin:-75px 0 0 -135px;
-    border-radius:15px;
     border:1px solid #DEDEDE;
+    border-radius:15px;
+    
 
     /*BACKGROUND STYLES*/
     /*background gradient 1st-Firefox, 2nd-Chrome, 3rd-IE */
@@ -47,9 +49,50 @@ body{
     /*SHADOW*/
     -webkit-box-shadow: 5px 5px 5px #999;
     -moz-box-shadow: 5px 5px 5px #999;
-    padding: 5px 5px 5px 15px;
+    padding: 5px 5px 5px 5px;
 
 }
+
+#open_lobby
+{
+    cursor:pointer;
+    text-align:center;
+    line-height:70px;
+    height:100%;
+    width:100%;
+    position:absolute;
+      
+}
+
+#exit_lobby
+{
+    /*VISIBILITY*/
+    visibility:hidden;
+    
+    width:100px;
+    height:20px;
+    position:absolute;
+    bottom:10px;
+    right:10px;
+    text-align:center;
+    border:1px solid;
+    border-radius:5px;
+    
+    /*BACKGROUND STYLES*/
+    background-color:red;
+    
+    /*SHADOW*/
+    -webkit-box-shadow: 2px 2px 2px #999;
+    -moz-box-shadow: 2px 2px 2px #999;
+    padding: 1px 1px 1px 1px;
+}
+
+#exit_lobby:hover
+{
+    cursor:pointer;
+    padding: 0px 0px 0px 0px;
+}
+    
 
 /*****************************************************************************/
 /*These divs do not exists....
@@ -244,14 +287,39 @@ div#login input#submit:hover{
     display:none;
     bottom:0;
     right:0;
-    margin-bottom:60px;
+    margin-bottom:40px;
     margin-right:30px;
+    border-radius:5px;
 
     /*BACKGROUND STYLES*/
     /*background gradient 1st-Firefox(not here?), 2nd-Chrome, 3rd-IE */
     background: -webkit-gradient(linear, left top, right bottom, color-stop(0%,#3b679e), color-stop(28%,#2b88d9), color-stop(67%,#207cca), color-stop(100%,#7db9e8));
     background-color:orange;
-}   
+}
+
+#exit_nav{
+    height:30px;
+    width:30px;
+    position:absolute;
+    top:-10px;
+    right:5px;
+    border:1px solid;
+    border-radius:15px;
+    text-align:center;
+    line-height:30px;
+    background-color:white;
+    /*SHADOW*/
+    -webkit-box-shadow: 2px 2px 2px #999;
+    -moz-box-shadow: 2px 2px 2px #999;
+    
+}
+
+#exit_nav:hover
+{
+    cursor:pointer;
+    height:29px;
+    width:29px;
+}
 
 #gusta{
     width:447px;
