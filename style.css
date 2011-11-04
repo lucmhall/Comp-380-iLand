@@ -31,12 +31,12 @@ left:50%;
 top:50%;
 margin:-75px 0 0 -135px;
 border-radius:15px;
-background-color:orange;
 
-/*background gradient first is Firefox and 2nd is Chrome */
+//BACKGROUND STYLES;
+/*background gradient 1st-Firefox, 2nd-Chrome, 3rd-IE */
 background: -moz-linear-gradient(top, #fceabb 0%, #fccd4d 28%, #f4a300 62%, #ffb096 100%);
-					
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(28%,#fccd4d), color-stop(62%,#f4a300), color-stop(100%,#ffb096));
+background-color:orange;
 
 //SHADOW;
 border:1px solid #DEDEDE;
