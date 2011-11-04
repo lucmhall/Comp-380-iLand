@@ -93,10 +93,10 @@ Version 2.0
 		</div>
 		<div id="bottomNav" style="">
 			<ul>
-				<li>Account</li>
-				<li>Stats</li>
-				<li>Holder</li>
-				<li>Holder</li>
+				<li id="account">Account</li>
+				<li id="stats">Stats</li>
+				<li id="hold">Holder</li>
+				<li id="logOut">Log Out</li>
 			</ul>
 		</div><!--bottom_nav-->
 	</div><!-- Container-->
