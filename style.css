@@ -30,15 +30,16 @@ position:absolute;
 left:50%;
 top:50%;
 margin:-75px 0 0 -135px;
-//background-color:pink;
+border-radius:15px;
+background-color:orange;
 
 /*background gradient first is Firefox and 2nd is Chrome */
 background: -moz-linear-gradient(top, #fceabb 0%, #fccd4d 28%, #f4a300 62%, #ffb096 100%);
 					
 background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(28%,#fccd4d), color-stop(62%,#f4a300), color-stop(100%,#ffb096));
 
-//SHADOW
-//border:10px solid #DEDEDE;
+//SHADOW;
+border:1px solid #DEDEDE;
 -webkit-box-shadow: 5px 5px 5px #999;
 -moz-box-shadow: 5px 5px 5px #999;
 padding: 5px 5px 5px 15px;
@@ -220,10 +221,15 @@ width:300px;
 height:0px;
 position:absolute;
 display:none;
+
+//chrome;
 background: -webkit-gradient(linear, 
 			left top, right bottom, color-stop(0%,#3b679e), 
 			color-stop(28%,#2b88d9), color-stop(67%,#207cca), 
 			color-stop(100%,#7db9e8));
+//Internet Explorer;
+background-color:orange;
+
 bottom:0;
 right:0;
 margin-bottom:60px;

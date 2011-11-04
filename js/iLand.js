@@ -71,7 +71,9 @@ function joinedRoomListener () {
 // Triggered when another client joins the chat room
 function clientAddedListener (roomID, clientID) {
   displayChatMessage("User" + clientID + " joined the lobby.");
-  window.alert(clientID);
+  
+  //****************************************************Michael stopped message
+  //window.alert(clientID);
 }
 // Triggered when another client leaves the chat room
 function clientRemovedListener (roomID, clientID) {
