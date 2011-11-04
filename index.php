@@ -74,7 +74,6 @@ Version 2.0
 			<input id="submit" type="submit" value="Create"/>
 			</div>
 			</form>
-			
 			</div><!--createAccountForm-->
 		</div><!--login-->
 	
