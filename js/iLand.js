@@ -1,4 +1,3 @@
-
 //==============================================================================
 
 // VARIABLES
@@ -290,6 +289,38 @@ $("#createAccount").click(function(){
 		}
 		});	
 	});
+
+	/************************************************/
+	//Test Code Mike
+	//Game 1 Animation
+	
+	var old_height = ($('#game1').css("height"));
+
+	//$('#game1').hover(function(){
+	//	window.alert($(this).attr("height"));
+	//
+	//	$(this).animate({
+	//		"width":"500px", 
+	//		"height":"300px",
+	//		"left":"40%",
+	//		"top":"100px"
+	//	},1000);
+	//	
+	//	$(this).css("left","50px");
+	//});
+
+	$('#game1').click(function(){
+	//	window.alert($(this).css("height"));
+		
+		$(this).animate({
+			"width":"500px", 
+			"height":"300px",
+			"left":"40%",
+			"top":"100px"
+		},1000);
+
+	});
+
 	
 	
 });

@@ -38,15 +38,15 @@ Version 2.0
 	
 	
 	<div id="container">
-	<!--
 	
-		<div id="game1">Game 1</div>
+	
+		<div id="game1">Click to Enter Lobby</div>
+	<!--
 		<div id="game2">Game 2</div>
 		<div id="game3">Game 3</div>
-		<div id="game4">Game 4</div>
-		
-		
+		<div id="game4">Game 4</div>	
 	-->	
+		
 		<div id="login">
 			<img id="gusta" src="images/gusta1.png"/>
 		<img src="images/logo.png" alt="logo_iLand" id="logo" style="margin-top:20px;margin-left:325px;position:absolute;" align="center"/>

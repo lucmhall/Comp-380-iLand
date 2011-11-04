@@ -22,14 +22,31 @@ body{
 background-color:#545454; 
 background-repeat:no-repeat;
 }
+
 #game1{
+width:200px;
+height:75px;
 position:absolute;
-margin-left:750px;
-margin-top:175px;
-width: 300px;
-height:300px;
-background-color:pink;
+left:50%;
+top:50%;
+margin:-75px 0 0 -135px;
+//background-color:pink;
+
+/*background gradient first is Firefox and 2nd is Chrome */
+background: -moz-linear-gradient(top, #fceabb 0%, #fccd4d 28%, #f4a300 62%, #ffb096 100%);
+					
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceabb), color-stop(28%,#fccd4d), color-stop(62%,#f4a300), color-stop(100%,#ffb096));
+
+//SHADOW
+//border:10px solid #DEDEDE;
+-webkit-box-shadow: 5px 5px 5px #999;
+-moz-box-shadow: 5px 5px 5px #999;
+padding: 5px 5px 5px 15px;
+
 }
+
+
+
 #game2{
 position:absolute;
 margin-left:1100px;
@@ -193,11 +210,11 @@ background: -webkit-gradient(linear, left top, left bottom,
  padding-top:5px;
  padding-left:22px;
    }
-  #bottomNav ul li:hover{
-     padding-top:12px;
-	
-  
- } 
+
+#bottomNav ul li:hover{
+	padding-top:12px;
+} 
+
 #navContent{
 width:300px;
 height:0px;
