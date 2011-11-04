@@ -31,6 +31,7 @@ left:50%;
 top:50%;
 margin:-75px 0 0 -135px;
 border-radius:15px;
+border:1px solid #DEDEDE;
 
 //BACKGROUND STYLES;
 /*background gradient 1st-Firefox, 2nd-Chrome, 3rd-IE */
@@ -39,7 +40,6 @@ background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fceab
 background-color:orange;
 
 //SHADOW;
-border:1px solid #DEDEDE;
 -webkit-box-shadow: 5px 5px 5px #999;
 -moz-box-shadow: 5px 5px 5px #999;
 padding: 5px 5px 5px 15px;
