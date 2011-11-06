@@ -182,9 +182,17 @@ $(document).ready(function () {
     $("#bottomNav ul li").click(function () {
 
         $("#navContent").empty();
+	$("#navContent").append("<div id='exit_nav'>X</div>");
+	
+	$("#exit_nav").click(function(){
+	$("#navContent").fadeOut(400,function(){
+         $("#navContent").css({"height":"0px" });
+});
+	});
+
         var curr = $(this).attr('id');
         if (curr == "logOut") {
-            $("#navContent").html("<div id='exit_nav'>X</div><p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
+            $("#navContent").append("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
             $("#logMeOut").submit(function () {
                 $.post('ajax/logout.php', function () {
                     window.location = '../';
@@ -192,13 +200,13 @@ $(document).ready(function () {
 
             });
         } else if (curr == "account") {
-            $("#navContent").html("<p>Account info will be here</p>");
+            $("#navContent").append("<p>Account info will be here</p>");
         } else if (curr == "stats") {
-            $("#navContent").html("<p>Stats will be here</p>");
+            $("#navContent").append("<p>Stats will be here</p>");
         } else {
-            $("#navContent").html("<p>Something will be here</p>");
+            $("#navContent").append("<p>Something will be here</p>");
         }
-
+	
         if ($('#navContent').is(':visible')) {
             $("#navContent").animate({
                 "height": "0px"
@@ -223,13 +231,7 @@ $(document).ready(function () {
         }
     });
 
-    //Exit Navigation Menu
-    //Mike 04 Nov 11
     
-    $('#exit_nav').click(function () {
-        window.alert("hello");
-        $("#navContent").empty();
-    });
     
     
 
