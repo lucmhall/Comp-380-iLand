@@ -93,8 +93,8 @@ if(isset($_SESSION['username'])){
 	    </div><!-- Chat -->
 		    <div id="navContent">
 		      &nbsp; &nbsp;Info will be here depending on what is clicked below. We will use AJAX to query our Database.
-		        <!-- Added by Mike,Changed by Luc. Exit Button for navContent-->
-			<div id='exit_nav'>X</div>
+		        <!-- Added by Mike. Exit Button for navContent-->
+                <div id="exit_nav">Test Text</div>
             </div>
 		    <div id="bottomNav" style="">
 			    <ul>

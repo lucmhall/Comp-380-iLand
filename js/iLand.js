@@ -193,16 +193,12 @@ $(document).ready(function () {
     $("#bottomNav ul li").click(function () {
 
         $("#navContent").empty();
-
-	$("#navContent").append("<div id='exit_nav'>X</div>");
-	
-	$("#exit_nav").click(function(){
-	$("#navContent").fadeOut(400,function(){
-         $("#navContent").css({"height":"0px" });
-});
-	});
-
-
+		$("#navContent").append("<div id='exit_nav'>X</div>");	
+		$("#exit_nav").click(function(){
+			$("#navContent").fadeOut(400,function(){
+				$("#navContent").css({"height":"0px" });
+			});
+		});
         var curr = $(this).attr('id');
         if (curr == "logOut") {
             $("#navContent").append("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
@@ -213,15 +209,18 @@ $(document).ready(function () {
 
             });
         } else if (curr == "account") {
-
-            $("#navContent").append("<p>Account info will be here</p>");
+            $("#navContent").append("<p id='youSure'>Username</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
+			/*$("#changePassword").submit(function () {
+				$.post('ajax/changePassword.php', function () {
+				//.....
+				};
+			};*/
         } else if (curr == "stats") {
-            $("#navContent").append("<p>Stats will be here</p>");
+            $("#navContent").append("<p>Number of Games Played</p> <p> x </p> <p>\n</p> <p>Win/Loss Ratio</p> <p>y / z</p> <p>\n</p>");
         } else {
-            $("#navContent").append("<p>Something will be here</p>");
-
+            $("#navContent").append("<p>Friends List...or something</p>");
         }
-	
+
         if ($('#navContent').is(':visible')) {
             $("#navContent").animate({
                 "height": "0px"
@@ -244,12 +243,7 @@ $(document).ready(function () {
                 "opacity": "1"
             }, 300);
         }
-
-    });
-
-    
-    
-
+    });    
 
     //When a user attempts to log in
     $("#loginForm").submit(function () {
