@@ -42,14 +42,11 @@ if(isset($_SESSION['username'])){
 	
 		    <div id="game1">
                 <p id="open_lobby">Click to Enter Lobby</p>
-                <div id='exit_lobby'>Exit Lobby</div>
+				<div id="lobby_shown">
+					<div id='exit_lobby'>Exit Lobby</div>
+					<div id="start_game">Start the Match</div>
+				</div>
             </div>
-            
-	    <!--
-		    <div id="game2">Game 2</div>
-		    <div id="game3">Game 3</div>
-		    <div id="game4">Game 4</div>	
-	    -->	
 		
 		    <div id="login">
 			    <img id="gusta" src="images/gusta1.png"/>
@@ -78,6 +75,7 @@ if(isset($_SESSION['username'])){
  			    Password<input type="password" size="30" id="pass"/>
  			    Confirm Password<input type="password" size="30" id="confirm"/>
 			    <input id="submit" type="submit" value="Create"/>
+				<a href="javascript: ;" id="returnLogin"> Back</a>
 			    </div>
 			    </form>
 			    </div><!--createAccountForm-->

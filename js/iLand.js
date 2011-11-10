@@ -7,6 +7,7 @@ var orbiter;
 var msgManager;
 var UPC = net.user1.orbiter.UPC;
 var roomID = "iLand";
+
 //==============================================================================
 // INITIALIZATION
 //==============================================================================
@@ -33,12 +34,13 @@ function init () {
   msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
   msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
   msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
+  
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   // Connect to Union
   orbiter.connect("tsar190.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
 
-}
+  }
 //==============================================================================
 
 // ORBITER EVENT LISTENERS
@@ -98,7 +100,17 @@ function sendMessage () {
 }
 // Triggered when a chat message is received
 function chatMessageListener (fromClientID, message) {
-  displayChatMessage("User" + fromClientID + ": " + message);
+	if(message == "/help")
+	{
+		displayHelp();
+	}
+	else if(message == "/whisper" || message == "/w")
+	{
+		//Need to pase who it is to first, second you need to pass who it is from
+		whisper(message, fromClientID,len)
+	}
+	else
+		displayChatMessage("User" + userMap[fromClientID] + ": " + message);
 }
 // Displays a single chat message
 function displayChatMessage (message) {
@@ -152,7 +164,6 @@ logo = (window.innerWidth/2 - 157)+"px";
 	}
 }
 
-
 //Window the window is resized, run these functions to keep ratios right.
 window.onresize = resize;
 function resize()
@@ -182,9 +193,15 @@ $(document).ready(function () {
     $("#bottomNav ul li").click(function () {
 
         $("#navContent").empty();
+		$("#navContent").append("<div id='exit_nav'>X</div>");	
+		$("#exit_nav").click(function(){
+			$("#navContent").fadeOut(400,function(){
+				$("#navContent").css({"height":"0px" });
+			});
+		});
         var curr = $(this).attr('id');
         if (curr == "logOut") {
-            $("#navContent").html("<div id='exit_nav'>X</div><p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
+            $("#navContent").append("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
             $("#logMeOut").submit(function () {
                 $.post('ajax/logout.php', function () {
                     window.location = '../';
@@ -192,11 +209,16 @@ $(document).ready(function () {
 
             });
         } else if (curr == "account") {
-            $("#navContent").html("<p>Account info will be here</p>");
+            $("#navContent").append("<p id='youSure'>Username</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
+			/*$("#changePassword").submit(function () {
+				$.post('ajax/changePassword.php', function () {
+				//.....
+				};
+			};*/
         } else if (curr == "stats") {
-            $("#navContent").html("<p>Stats will be here</p>");
+            $("#navContent").append("<p>Number of Games Played</p> <p> x </p> <p>\n</p> <p>Win/Loss Ratio</p> <p>y / z</p> <p>\n</p>");
         } else {
-            $("#navContent").html("<p>Something will be here</p>");
+            $("#navContent").append("<p>Friends List...or something</p>");
         }
 
         if ($('#navContent').is(':visible')) {
@@ -221,17 +243,7 @@ $(document).ready(function () {
                 "opacity": "1"
             }, 300);
         }
-    });
-
-    //Exit Navigation Menu
-    //Mike 04 Nov 11
-    
-    $('#exit_nav').click(function () {
-        window.alert("hello");
-        $("#navContent").empty();
-    });
-    
-    
+    });    
 
     //When a user attempts to log in
     $("#loginForm").submit(function () {
@@ -301,7 +313,14 @@ $(document).ready(function () {
             }
         });
     });
+	//Back to Login Button
 
+    $("#returnLogin").click(function () {
+        $("#createAccount").fadeOut(300, function () {
+
+            $("#loginForm").fadeIn();
+        });
+		});
     /************************************************/
     //Test Code Mike
     
@@ -328,8 +347,8 @@ $(document).ready(function () {
     $('#open_lobby').click(function () {
         //window.alert($(this).css("height"));
         //Change Visibility
-        $('#open_lobby').css('visibility', 'hidden');
-        $('#exit_lobby').css('visibility', 'visible');
+        $('#open_lobby').hide();
+        $('#lobby_shown').show();
 
         //Animate
         $('#game1').animate({
@@ -345,8 +364,8 @@ $(document).ready(function () {
     $('#exit_lobby').click(function () {
         //window.alert(old_height);
         //Change Visibility 
-        $('#open_lobby').css('visibility', 'visible');
-        $('#exit_lobby').css('visibility', 'hidden');
+        $('#open_lobby').show();
+        $('#lobby_shown').hide();
         
         //Animate
         $('#game1').animate({

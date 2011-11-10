@@ -63,11 +63,33 @@ body{
     position:absolute;
       
 }
+#lobby_shown{
+display:none;
+}
+#start_game
+{
+	
+    width:150px;
+    height:20px;
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    text-align:center;
+    border:1px green solid;
+    border-radius:5px;
+    
+    /*BACKGROUND STYLES*/
+    background-color:red;`
+}
 
+#start_game:hover
+{
+    cursor:pointer;
+    padding: 0px 0px 0px 0px;
+}
 #exit_lobby
 {
-    /*VISIBILITY*/
-    visibility:hidden;
+   
     
     width:100px;
     height:20px;
@@ -346,3 +368,10 @@ div#login input#submit:hover{
     font-size:20px;
     font:  arial, helvetica, sans-serif;
 }
+
+#userName{
+	margin-left:5px;
+    margin-top:50px;
+    font-size:15px;
+    font:  arial, helvetica, sans-serif;
+}	
