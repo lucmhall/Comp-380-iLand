@@ -73,7 +73,7 @@ function joinedRoomListener () {
 // Triggered when another client joins the chat room
 function clientAddedListener (roomID, clientID) {
   displayChatMessage("User" + clientID + " joined the lobby.");
-  
+
   //****************************************************Michael stopped message
   //window.alert(clientID);
 }
@@ -313,14 +313,12 @@ $(document).ready(function () {
             }
         });
     });
-	//Back to Login Button
+	/*Back to Login Button
 
     $("#returnLogin").click(function () {
-        $("#createAccount").fadeOut(300, function () {
-
-            $("#loginForm").fadeIn();
-        });
-		});
+        $("#createAccount").hide();
+        $("#loginForm").fadeIn(400);
+        });*/
     /************************************************/
     //Test Code Mike
     
@@ -358,6 +356,17 @@ $(document).ready(function () {
         'top': '100px'
         }, 1000);
     });
+	
+	//Start Game Button
+	//<?php include("filename.php"); ?>
+	$('#start_game').click(function () {
+		//window.alert($(this).css("height"));
+		//Change Pages
+		$('#container').hide();
+		//<? php <A href=mapOne.php> </A> ?>
+
+		
+	});
 
 
     //Exit Lobby Animation and Function

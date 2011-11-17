@@ -16,19 +16,49 @@ if(isset($_SESSION['username'])){
         <link type="text/css" href="js/css/custom-theme/jquery-ui-1.8.16.custom.css" rel="stylesheet" />	
         <!-- Main Stylesheet -->
         <link href="style.css" rel="stylesheet" type="text/css" />
+		<!-- styles needed by jScrollPane -->
+		<link type="text/css" href="js/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
+		<style type="text/css" id="page-css">
+			/* Styles specific to this particular page */
+			.scroll-pane
+			{
+				width: 100%;
+				height: 200px;
+				overflow: auto;
+			}
+
+			img
+			{
+				margin: 1em 0;
+			}
+		</style>
 
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/jQueryUI/jQueryUI.js"></script>
         <script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
         <script type="text/javascript" src="js/iLand.js"></script>
         <link rel="SHORTCUT ICON" href="http://iland.grid.csun.edu/favicon.ico"/>
+		<!-- the mousewheel plugin -->
+		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
+		<!-- the jScrollPane script -->
+		<script type="text/javascript" src="js/jquery.jscrollpane.min.js"></script>
+		<script type="text/javascript" id="sourcecode">
+			$(function()
+			{
+				$('.scroll-pane').jScrollPane(
+					{
+						autoReinitialise: true
+					}
+				);
+			});
+		</script>
     </head>
     <body >
 
     <!--Added by Michael Version Number Div
 
     <div>
-    Version 2.0
+    Version 5.0
     </div>
 
     -->
@@ -44,7 +74,8 @@ if(isset($_SESSION['username'])){
                 <p id="open_lobby">Click to Enter Lobby</p>
 				<div id="lobby_shown">
 					<div id='exit_lobby'>Exit Lobby</div>
-					<div id="start_game">Start the Match</div>
+					<!-- <div id="start_game">Start the Match</div> -->
+					<A href=mapOne.php>Start the Match </A>
 				</div>
             </div>
 		
@@ -74,8 +105,19 @@ if(isset($_SESSION['username'])){
 			    Username<input type="text" name="username" size="30" id="un"/>
  			    Password<input type="password" size="30" id="pass"/>
  			    Confirm Password<input type="password" size="30" id="confirm"/>
+				<div class="scroll-pane">
+					<img src="images/Players/M1.png" alt="Male" />
+					<img src="images/Players/M2.png" alt="Male" />
+					<img src="images/Players/M3.png" alt="Male" />
+					<img src="images/Players/M4.png" alt="Male" />
+					<img src="images/Players/F1.png" alt="Female" />
+					<img src="images/Players/F2.png" alt="Female" />
+					<img src="images/Players/F3.png" alt="Female" />
+					<img src="images/Players/F4.png" alt="Female" />
+				</div>
 			    <input id="submit" type="submit" value="Create"/>
-				<a href="javascript: ;" id="returnLogin"> Back</a>
+				<!--<div  id="returnLogin">Back</div>-->
+				<li><a href="index.php">Back</a></li>
 			    </div>
 			    </form>
 			    </div><!--createAccountForm-->
