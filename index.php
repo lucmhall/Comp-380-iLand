@@ -75,7 +75,7 @@ if(isset($_SESSION['username'])){
 				<div id="lobby_shown">
 					<div id='exit_lobby'>Exit Lobby</div>
 					<!-- <div id="start_game">Start the Match</div> -->
-					<A href=mapOne.php>Start the Match </A>
+					<A href=./game/>Start the Match </A>
 				</div>
             </div>
 		

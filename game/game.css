@@ -1,0 +1,512 @@
+body{
+	background-color:#343434;
+}
+#statusMessage{
+	color:white;
+	font-family: Arial, Helvetica, sans-serif;
+	position:absolute;
+}
+#gameMap{
+	-webkit-border-radius:20px;
+	width:1000px;
+	height:700px;
+	background-size: 1000px 700px;
+	border:0;
+	background-image:url('images/gamemap.png');
+	
+}
+#columns{
+	position:absolute;
+	top: 125px;
+	right:0;
+}
+#columns div {
+ margin-left:10px;
+ color:white;
+ text-align:left;
+}
+
+#columns footer {
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    text-align: center;
+}
+
+
+ div#myResources{
+	right:10px;
+	position:absolute;
+ }
+div#myResources ul{
+	font-family: Helvetica;
+	right:0;
+	text-decoration:none;
+	list-style-type: none;
+	
+}
+div#myResources ul li{
+	display: inline;
+	color: white;
+	border-style:solid;
+border-width: 0 2px 0 0;
+	border-color: #74F254;
+	padding-right: 3px;
+
+}
+#resourceInfo{
+	font-family: Helvetica;
+	background-color:white;
+	height:25px;
+	width:300px;
+	-webkit-border-radius:3px;
+	padding-left:50px;
+	display:none;
+}
+
+/* ********************** */
+/* Game Map Resources */ 
+.resource{
+	width:100px;
+	height:100px;
+	background-color:pink;
+	position:absolute;
+}
+
+#res1{
+	margin-top:100px;
+	margin-left:107px;
+	background-image:url("images/metal.png");
+	background-size: 100px 100px;
+}
+#res2{
+	margin-top:100px;
+	margin-left:237px;
+	background-image:url("images/wood.png");
+	background-size: 100px 100px;
+}
+#res3{
+	margin-top:100px;
+	margin-left:367px;
+	background-image:url("images/meat.png");
+	background-size: 100px 100px;
+}
+#res4{
+	margin-top:100px;
+	margin-left:497px;
+	background-image:url("images/farm.png");
+	background-size: 100px 100px;
+}
+#res5{
+	margin-top:100px;
+	margin-left:627px;
+	background-image:url("images/fur.png");
+	background-size: 100px 100px;
+}
+#res6{
+	margin-top:100px;
+	margin-left:757px;
+	background-image:url("images/metal.png");
+	background-size: 100px 100px;
+}
+
+#res7{
+	margin-top:230px;
+	margin-left:107px;
+	background-image:url("images/farm.png");
+	background-size: 100px 100px;
+}
+#res8{
+	margin-top:230px;
+	margin-left:237px;
+	background-image:url("images/metal.png");
+	background-size: 100px 100px;
+}
+#res9{
+	margin-top:230px;
+	margin-left:367px;
+	background-image:url("images/stone.png");
+	background-size: 100px 100px;
+}
+#res10{
+	margin-top:230px;
+	margin-left:497px;
+	background-image:url("images/fur.png");
+	background-size: 100px 100px;
+}
+#res11{
+	margin-top:230px;
+	margin-left:627px;
+	background-image:url("images/wood.png");
+	background-size: 100px 100px;
+}
+#res12{
+	margin-top:230px;
+	margin-left:757px;
+	background-image:url("images/stone.png");
+	background-size: 100px 100px;
+}
+
+
+#res13{
+	margin-top:360px;
+	margin-left:107px;
+	background-image:url("images/fur.png");
+	background-size: 100px 100px;
+}
+#res14{
+	margin-top:360px;
+	margin-left:237px;
+	background-image:url("images/stone.png");
+	background-size: 100px 100px;
+}
+#res15{
+	margin-top:360px;
+	margin-left:367px;
+	background-image:url("images/wood.png");
+	background-size: 100px 100px;
+}
+#res16{
+	margin-top:360px;
+	margin-left:497px;
+	background-image:url("images/metal.png");
+	background-size: 100px 100px;
+}
+#res17{
+	margin-top:360px;
+	margin-left:627px;
+	background-image:url("images/meat.png");
+	background-size: 100px 100px;
+}
+#res18{
+	margin-top:360px;
+	margin-left:757px;
+	background-image:url("images/farm.png");
+	background-size: 100px 100px;
+}
+
+#res19{
+	margin-top:490px;
+	margin-left:107px;
+	background-image:url("images/stone.png");
+	background-size: 100px 100px;
+}
+#res20{
+	margin-top:490px;
+	margin-left:237px;
+	background-image:url("images/meat.png");
+	background-size: 100px 100px;
+}
+#res21{
+	margin-top:490px;
+	margin-left:367px;
+	background-image:url("images/fur.png");
+	background-size: 100px 100px;
+}
+#res22{
+	margin-top:490px;
+	margin-left:497px;
+	background-image:url("images/farm.png");
+	background-size: 100px 100px;
+}
+#res23{
+	margin-top:490px;
+	margin-left:627px;
+	background-image:url("images/wood.png");
+	background-size: 100px 100px;
+}
+#res24{
+	margin-top:490px;
+	margin-left:757px;
+	background-image:url("images/meat.png");
+	background-size: 100px 100px;
+}
+
+/* Outpost */
+.outpost{
+	width:30px;
+	height:30px;
+	background-color:black;
+	position:absolute;
+	background-image:url("images/DropZone.png");
+	background-size:30px 30px;
+	display:none;
+}
+#out1{
+	margin-top:200px;
+	margin-left:207px;	
+}
+#out2{
+	margin-top:200px;
+	margin-left:337px;	
+}
+#out3{
+	margin-top:200px;
+	margin-left:467px;	
+}
+#out4{
+	margin-top:200px;
+	margin-left:597px;	
+}
+#out5{
+	margin-top:200px;
+	margin-left:727px;	
+}
+#out6{
+	margin-top:330px;
+	margin-left:207px;	
+}
+#out7{
+	margin-top:330px;
+	margin-left:337px;	
+}
+#out8{
+	margin-top:330px;
+	margin-left:467px;	
+}
+#out9{
+	margin-top:330px;
+	margin-left:597px;	
+}
+#out10{
+	margin-top:330px;
+	margin-left:727px;	
+}
+
+#out11{
+	margin-top:460px;
+	margin-left:207px;	
+}
+#out12{
+	margin-top:460px;
+	margin-left:337px;	
+}
+#out13{
+	margin-top:460px;
+	margin-left:467px;	
+}
+#out14{
+	margin-top:460px;
+	margin-left:597px;	
+}
+#out15{
+	margin-top:460px;
+	margin-left:727px;	
+	
+}
+
+/* Road H */
+.roadV{
+	width:30px;
+	height:100px;
+	background-color:black;
+	position:absolute;
+	background-image:url("images/DropZone.png");
+	background-size:30px 100px;
+	display:none;
+}
+#roadV1{
+	margin-top:100px;
+	margin-left:207px;	
+}
+#roadV2{
+	margin-top:100px;
+	margin-left:337px;	
+}
+#roadV3{
+	margin-top:100px;
+	margin-left:467px;	
+}
+
+#roadV4{
+	margin-top:100px;
+	margin-left:597px;	
+}
+#roadV5{
+	margin-top:100px;
+	margin-left:727px;	
+}
+#roadV6{
+	margin-top:230px;
+	margin-left:207px;	
+}
+#roadV7{
+	margin-top:230px;
+	margin-left:337px;	
+}
+#roadV8{
+	margin-top:230px;
+	margin-left:467px;	
+}
+
+#roadV9{
+	margin-top:230px;
+	margin-left:597px;	
+}
+#roadV10{
+	margin-top:230px;
+	margin-left:727px;	
+}
+#roadV11{
+	margin-top:360px;
+	margin-left:207px;	
+}
+#roadV12{
+	margin-top:360px;
+	margin-left:337px;	
+}
+#roadV13{
+	margin-top:360px;
+	margin-left:467px;	
+}
+
+#roadV14{
+	margin-top:360px;
+	margin-left:597px;	
+}
+#roadV15{
+	margin-top:360px;
+	margin-left:727px;	
+}
+#roadV16{
+	margin-top:490px;
+	margin-left:207px;	
+}
+#roadV17{
+	margin-top:490px;
+	margin-left:337px;	
+}
+#roadV18{
+	margin-top:490px;
+	margin-left:467px;	
+}
+
+#roadV19{
+	margin-top:490px;
+	margin-left:597px;	
+}
+#roadV20{
+	margin-top:490px;
+	margin-left:727px;	
+}
+
+/* Horizontal Roads */
+.roadH{
+	width:100px;
+	height:30px;
+	background-color:black;
+	position:absolute;
+	background-image:url("images/DropZone.png");
+	background-size:100px 30px;
+	display:none;
+}
+#roadH1{
+	margin-top:200px;
+	margin-left:107px;	
+}
+#roadH2{
+	margin-top:200px;
+	margin-left:237px;	
+}
+#roadH3{
+	margin-top:200px;
+	margin-left:367px;	
+}
+#roadH4{
+	margin-top:200px;
+	margin-left:497px;	
+}
+#roadH5{
+	margin-top:200px;
+	margin-left:627px;	
+}
+#roadH6{
+	margin-top:200px;
+	margin-left:757px;	
+}
+#roadH7{
+	margin-top:330px;
+	margin-left:107px;	
+}
+#roadH8{
+	margin-top:330px;
+	margin-left:237px;	
+}
+#roadH9{
+	margin-top:330px;
+	margin-left:367px;	
+}
+#roadH10{
+	margin-top:330px;
+	margin-left:497px;	
+}
+
+#roadH11{
+	margin-top:330px;
+	margin-left:627px;	
+}
+#roadH12{
+	margin-top:330px;
+	margin-left:757px;	
+}
+#roadH13{
+	margin-top:460px;
+	margin-left:107px;	
+}
+#roadH14{
+	margin-top:460px;
+	margin-left:237px;	
+}
+#roadH15{
+	margin-top:460px;
+	margin-left:367px;	
+}	
+#roadH16{
+	margin-top:460px;
+	margin-left:497px;	
+}
+#roadH17{
+	margin-top:460px;
+	margin-left:627px;	
+}
+#roadH18{
+	margin-top:460px;
+	margin-left:757px;	
+	
+}
+
+/* transitions */
+div {
+  -webkit-transition: -webkit-transform 0.2s ease-out;
+  -moz-transition: -moz-transform 0.2s ease-out;
+  -o-transition: -o-transform 0.2s ease-out;
+  transition: transform 0.2s ease-out;
+}
+div.moving {
+  opacity: 0.25;
+  -webkit-transform: scale(0.8);
+  -moz-transform: scale(0.8);
+  -o-transform: scale(0.8);
+  transform: scale(0.8);
+}
+
+/* Chat */
+#chat{
+	position:absolute;
+	right:0;
+	
+	}
+#chatPane {
+    background-color:white;
+    color:#ff6600;
+    -webkit-border-radius:5px;
+    opacity:.7;
+    height: 150px;
+    width: 400px;
+    overflow: auto;
+    padding: 5px;
+    margin:0 0  5px 5px;
+    z-index:1;
+    min-width: 415px;
+    min-height:150px;
+  
+}

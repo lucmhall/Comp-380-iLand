@@ -110,7 +110,8 @@ function chatMessageListener (fromClientID, message) {
 		whisper(message, fromClientID,len)
 	}
 	else
-		displayChatMessage("User" + userMap[fromClientID] + ": " + message);
+	
+		displayChatMessage("User" + fromClientID + ": " + message);
 }
 // Displays a single chat message
 function displayChatMessage (message) {
@@ -388,6 +389,3 @@ $(document).ready(function () {
 
 });
 /********************************************************/
-
-
-
