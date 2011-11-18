@@ -13,7 +13,7 @@ body{
 	background-size: 1000px 700px;
 	border:0;
 	background-image:url('images/gamemap.png');
-	
+
 }
 #columns{
 	position:absolute;
@@ -42,7 +42,7 @@ div#myResources ul{
 	right:0;
 	text-decoration:none;
 	list-style-type: none;
-	
+
 }
 div#myResources ul li{
 	display: inline;
@@ -70,6 +70,7 @@ border-width: 0 2px 0 0;
 	height:100px;
 	background-color:pink;
 	position:absolute;
+
 }
 
 #res1{
@@ -225,11 +226,12 @@ border-width: 0 2px 0 0;
 .outpost{
 	width:30px;
 	height:30px;
-	background-color:black;
 	position:absolute;
 	background-image:url("images/DropZone.png");
 	background-size:30px 30px;
 	display:none;
+	background-repeat:no-repeat;
+	z-index:10;
 }
 #out1{
 	margin-top:200px;
@@ -291,7 +293,7 @@ border-width: 0 2px 0 0;
 #out15{
 	margin-top:460px;
 	margin-left:727px;	
-	
+
 }
 
 /* Road H */
@@ -303,6 +305,7 @@ border-width: 0 2px 0 0;
 	background-image:url("images/DropZone.png");
 	background-size:30px 100px;
 	display:none;
+	z-index:9;
 }
 #roadV1{
 	margin-top:100px;
@@ -398,6 +401,7 @@ border-width: 0 2px 0 0;
 	background-image:url("images/DropZone.png");
 	background-size:100px 30px;
 	display:none;
+	z-index:9;
 }
 #roadH1{
 	margin-top:200px;
@@ -471,7 +475,7 @@ border-width: 0 2px 0 0;
 #roadH18{
 	margin-top:460px;
 	margin-left:757px;	
-	
+
 }
 
 /* transitions */
@@ -493,7 +497,7 @@ div.moving {
 #chat{
 	position:absolute;
 	right:0;
-	
+
 	}
 #chatPane {
     background-color:white;

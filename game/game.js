@@ -169,7 +169,14 @@ function statusMessage(s) {
 		}
 
         function handleOutpostDrop(e) {
-          $(this).css("background-image","url(images/outpost.png)");
+         $(this).css("height","52px");
+         $(this).css("background-size","30px 52px");
+         $(this).css({
+      		"margin-top": function(index, value) {
+    		    return parseFloat(value) -20;
+    			  }});
+         
+          $(this).css("background-image","url(images/outposttmb.png)");
           statusMessage("Successfully purchased Outpost!");
         }
 
@@ -195,7 +202,7 @@ function statusMessage(s) {
 			for(var i = 0; i<21; i++){
 			var bgImg = $("#roadV"+i).css("background-image");
 			console.log(bgImg);
-			if( !(bgImg == "url(https://iland.grid.csun.edu/game/images/roadV.png)")){
+			if( !(bgImg == "url(https://iland.grid.csun.edu/game/images/roadVtmb.png)")){
         	$("#roadV"+i).css({"display":"none"});
 				}
 			}
@@ -204,7 +211,7 @@ function statusMessage(s) {
           }
 		}
 		function handleRoadVDrop(e){
-		$(this).css("background-image","url(images/roadV.png)");
+		$(this).css("background-image","url(images/roadVtmb.png)");
           statusMessage("Successfully purchased Road!");
 		}
 		
@@ -230,7 +237,7 @@ function statusMessage(s) {
 			for(var i = 0; i<19; i++){
 			var bgImg = $("#roadH"+i).css("background-image");
 			console.log(bgImg);
-			if( !(bgImg == "url(https://iland.grid.csun.edu/game/images/roadH.png)")){
+			if( !(bgImg == "url(https://iland.grid.csun.edu/game/images/roadHtmb.png)")){
         	$("#roadH"+i).css({"display":"none"});
 				}
 			}
@@ -239,7 +246,7 @@ function statusMessage(s) {
           }
 		}
 		function handleRoadHDrop(e){
-		$(this).css("background-image","url(images/roadH.png)");
+		$(this).css("background-image","url(images/roadHtmb.png)");
           statusMessage("Successfully purchased Road!");
 		}
 		
@@ -290,8 +297,8 @@ function statusMessage(s) {
   			// Connect to chat
   			orbiter.connect("tsar190.grid.csun.edu", 9100);
   			displayChatMessage("Connecting to chat server...");
-		}
-        window.onload = function() {
+		}   
+            window.onload = function() {
             init();
             $("#chat").css({"margin-top":(window.innerHeight-180)+"px"});
         }
