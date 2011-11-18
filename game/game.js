@@ -169,6 +169,7 @@ function statusMessage(s) {
 		}
 
         function handleOutpostDrop(e) {
+        if( $(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
          $(this).css("height","52px");
          $(this).css("background-size","30px 52px");
          $(this).css({
@@ -178,6 +179,7 @@ function statusMessage(s) {
          
           $(this).css("background-image","url(images/outposttmb.png)");
           statusMessage("Successfully purchased Outpost!");
+          }
         }
 
   
