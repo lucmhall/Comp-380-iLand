@@ -1,3 +1,6 @@
+
+
+
 /* Orbiter Micro Code */
 //==============================================================================
 
@@ -72,6 +75,12 @@ function sendMessage () {
     setTimeout(function () {outgoing.focus();}, 10);
   }
 }
+
+function sendGameMessage(message){
+		var action = message;
+	 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "GAME_ACTION", roomID, "true", "", action);
+}
+
 // Triggered when a chat message is received
 function chatMessageListener (fromClientID, message) {
 	if(message == "/help")
@@ -133,6 +142,7 @@ function statusMessage(s) {
         var draggingElement;
 
         function handleOutpostDragStart(e) {
+        e.dataTransfer.setDragImage(element('outpostPic'), 49, 48);
         	statusMessage("Place an Outpost in a Drop Zone to purchase");
         	for(var i = 0; i<16; i++){
         	$("#out"+i).css({"display":"block"});
@@ -169,6 +179,21 @@ function statusMessage(s) {
 		}
 
         function handleOutpostDrop(e) {
+        
+        if (typeof(e)=='string'){
+        var curr = element(e);
+        if( $(curr).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
+        $(curr).css("height","52px");
+         $(curr).css("background-size","30px 52px");
+         $(curr).css({
+      		"margin-top": function(index, value) {
+    		    return parseFloat(value) -20;
+    			  }});
+			$(curr).css("background-image","url(images/outposttmb.png)");
+			$(curr).fadeIn();
+			}	
+		}else{
+		sendGameMessage($(this).attr("id"));
         if( $(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
          $(this).css("height","52px");
          $(this).css("background-size","30px 52px");
@@ -179,11 +204,13 @@ function statusMessage(s) {
          
           $(this).css("background-image","url(images/outposttmb.png)");
           statusMessage("Successfully purchased Outpost!");
-          }
+        	  }
+        	}
         }
-
+		
   
 		function handleRoadVDragStart(e){
+		e.dataTransfer.setDragImage(element('roadVPic'), 49, 48);
 			statusMessage("Place a Road in a Drop Zone to purchase");
 			for(var i = 0; i<21; i++){
 				console.log("#roadV"+i);
@@ -196,6 +223,7 @@ function statusMessage(s) {
             
             draggingElement.style.opacity = '0.4';
 		}
+		
 		function handleRoadVDragEnd(e){
 			statusMessage("Drag Road Vertical Ended");
 			 this.style.opacity = '1.0';
@@ -213,12 +241,20 @@ function statusMessage(s) {
           }
 		}
 		function handleRoadVDrop(e){
-		$(this).css("background-image","url(images/roadVtmb.png)");
-          statusMessage("Successfully purchased Road!");
+		console.log($(this).attr("id")+"!!!!!");
+	if (typeof(e)=='string'){
+			$(element(e)).css("background-image","url(images/roadVtmb.png)");
+			$(element(e)).fadeIn();
+		}else{
+			sendGameMessage($(this).attr("id"));
+			$(this).css("background-image","url(images/roadVtmb.png)");
+          	statusMessage("Successfully purchased Road!");
+          }
 		}
 		
 		
 		function handleRoadHDragStart(e){
+		e.dataTransfer.setDragImage(element('roadHPic'), 49, 48);
 			statusMessage("Place a Road in a Drop Zone to purchase");
 			for(var i = 0; i<19; i++){
 				console.log("#roadH"+i);
@@ -248,10 +284,27 @@ function statusMessage(s) {
           }
 		}
 		function handleRoadHDrop(e){
+		if (typeof(e)=='string'){
+			$(element(e)).css("background-image","url(images/roadHtmb.png)");
+			$(element(e)).fadeIn();
+		}else{
+		sendGameMessage($(this).attr("id"));
 		$(this).css("background-image","url(images/roadHtmb.png)");
           statusMessage("Successfully purchased Road!");
+          }
 		}
-		
+		function gameActionListener(fromClientID, message){
+		console.log(message.substring(0,5));
+			if(message.substring(0,5) == "roadV"){
+			handleRoadVDrop(message);
+			}else if(message.substring(0,5) == "roadH"){
+			handleRoadHDrop(message);
+			}else if(message.substring(0,3) == "out"){
+			handleOutpostDrop(message);
+			}
+			
+		}
+
         function init() {
   				//Handlers for dropping in Outpost
                 element('outpost').addEventListener('dragstart', handleOutpostDragStart, false);
@@ -294,8 +347,8 @@ function statusMessage(s) {
   			msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
   			msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
   			msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
-  
   			msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
+  			msgManager.addMessageListener("GAME_ACTION", gameActionListener, this, [roomID]);
   			// Connect to chat
   			orbiter.connect("tsar190.grid.csun.edu", 9100);
   			displayChatMessage("Connecting to chat server...");
