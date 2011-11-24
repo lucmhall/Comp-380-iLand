@@ -19,24 +19,25 @@ if(isset($_SESSION['username'])){
 		<!-- styles needed by jScrollPane -->
 		<link type="text/css" href="js/css/jquery.jscrollpane.css" rel="stylesheet" media="all" />
 		<style type="text/css" id="page-css">
-			/* Styles specific to this particular page */
-			.scroll-pane
-			{
-				width: 100%;
-				height: 200px;
-				overflow: auto;
-			}
+		/* Styles specific to this particular page */
+		.scroll-pane
+		{
+			width: 100%;
+			height: 200px;
+			overflow: auto;
+		}
 
-			img
-			{
-				margin: 1em 0;
-			}
+		img
+		{
+			margin: 1em 0;
+		}
 		</style>
 
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/jQueryUI/jQueryUI.js"></script>
         <script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
         <script type="text/javascript" src="js/iLand.js"></script>
+		<script type="text/javascript" src="js/chatCommands.js"></script>
         <link rel="SHORTCUT ICON" href="http://iland.grid.csun.edu/favicon.ico"/>
 		<!-- the mousewheel plugin -->
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
@@ -105,15 +106,16 @@ if(isset($_SESSION['username'])){
 			    Username<input type="text" name="username" size="30" id="un"/>
  			    Password<input type="password" size="30" id="pass"/>
  			    Confirm Password<input type="password" size="30" id="confirm"/>
+				Select User Picture<type="picture" id="pic"/>
 				<div class="scroll-pane">
-					<img src="images/Players/M1.png" alt="Male" />
-					<img src="images/Players/M2.png" alt="Male" />
-					<img src="images/Players/M3.png" alt="Male" />
-					<img src="images/Players/M4.png" alt="Male" />
-					<img src="images/Players/F1.png" alt="Female" />
-					<img src="images/Players/F2.png" alt="Female" />
-					<img src="images/Players/F3.png" alt="Female" />
-					<img src="images/Players/F4.png" alt="Female" />
+					<img src="images/Players/5.png" alt="pic5" id="pic5"/>
+					<img src="images/Players/6.png" alt="pic6" id="pic6"/>
+					<img src="images/Players/7.png" alt="pic7" id="pic7"/>
+					<img src="images/Players/8.png" alt="pic8" id="pic8"/>
+					<img src="images/Players/1.png" alt="pic1" id="pic1"/>
+					<img src="images/Players/2.png" alt="pic2" id="pic2"/>
+					<img src="images/Players/3.png" alt="pic3" id="pic3"/>
+					<img src="images/Players/4.png" alt="pic4" id="pic4"/>
 				</div>
 			    <input id="submit" type="submit" value="Create"/>
 				<!--<div  id="returnLogin">Back</div>-->
