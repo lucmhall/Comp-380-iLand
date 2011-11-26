@@ -7,6 +7,7 @@ var orbiter;
 var msgManager;
 var UPC = net.user1.orbiter.UPC;
 var roomID = "iLand";
+var sPic = 0;
 
 //==============================================================================
 // INITIALIZATION
@@ -103,14 +104,17 @@ function chatMessageListener (fromClientID, message) {
 	if(message == "/help")
 	{
 		displayHelp();
+		helpCase(message)
 	}
 	else if(message == "/whisper" || message == "/w")
 	{
-		//Need to pase who it is to first, second you need to pass who it is from
 		whisper(message, fromClientID,len)
 	}
+	else if(message == "/exit")
+	{
+		displayChatMessage("Feature is Broken...jerk");
+	}
 	else
-	
 		displayChatMessage("User" + fromClientID + ": " + message);
 }
 // Displays a single chat message
@@ -211,6 +215,10 @@ $(document).ready(function () {
             });
         } else if (curr == "account") {
             $("#navContent").append("<p id='youSure'>Username</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
+			/*$("#userName").submit(function () {
+				$.post('ajax/userInfo.php', function(data)
+				};
+			$("#navContent").append(data)*/
 			/*$("#changePassword").submit(function () {
 				$.post('ajax/changePassword.php', function () {
 				//.....
@@ -274,41 +282,55 @@ $(document).ready(function () {
         });
 
     });
+	
+	//User Picture Selection
+	$("#pic1,#pic2,#pic3,#pic4,#pic5,#pic6,#pic7,#pic8").click(function() {
+	
+				 //window.alert("Invalid Username/password. Please try again");
+					
+					$("#pic1,#pic2,#pic3,#pic4,#pic5,#pic6,#pic7,#pic8").css({"border": ""});
+					$(this).css({"border":"2px solid red"});
+					sPic = $(this).attr("id");
+					sPic = sPic.substring(3);
+		});
+		
     //User Account Creation
-
+	
     $("#createAccount").click(function () {
         $("#loginForm").fadeOut(300, function () {
 
             $("#createAccountForm").fadeIn();
         });
         $("#createAcct").submit(function () {
-
             if (($("#un").val() != 0) &&
 		 ($("#confirm").val() != 0) &&
-		 ($("#conf").val() != 0)) {
+		 ($("#conf").val() != 0) &&	 
+		 ($("#sPic").val() != 0)){
                 un = $("#un").val();
                 pass = $("#pass").val();
                 conf = $("#confirm").val();
+				sPic = $("#sPic").val();
                 if (pass != conf) {
                     window.alert("Passwords do not match");
                 } else {
-
                     $.post("ajax/createAccount.php", {
                         pass: "" + pass + "",
-                        un: "" + un + ""
+                        un: "" + un + "",
+						sPic: "" + sPic + ""
                     }, function (data) {
                         if (data == 1) {
                             init();
                             $("#login").fadeOut(300);
                         } else if (data == 2) {
                             window.alert("Username is in use try again");
-                            $("#un,#pass,#confirm").val('');
+                            $("#un,#pass,#confirm","#sPic").val('');
                             $("#un").focus();
                         }
 
 
                     });
                 }
+				
             } else {
                 window.alert("One of the fields are left blank");
             }
@@ -389,3 +411,6 @@ $(document).ready(function () {
 
 });
 /********************************************************/
+
+
+
