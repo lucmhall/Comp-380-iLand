@@ -38,7 +38,7 @@ function init () {
   
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   // Connect to Union
-  orbiter.connect("tsar190.grid.csun.edu", 9100);
+  orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
 
   }
@@ -73,7 +73,9 @@ function joinedRoomListener () {
 }
 // Triggered when another client joins the chat room
 function clientAddedListener (roomID, clientID) {
-  displayChatMessage("User" + clientID + " joined the lobby.");
+//	joined = username+" I now in the lobby.";
+//	displayChatMessage(joined);
+  //displayChatMessage("User" + clientID + " joined the lobby.");
 
   //****************************************************Michael stopped message
   //window.alert(clientID);
@@ -93,7 +95,7 @@ function clientSnapshotMessageListener(requestID, clients){
 function sendMessage () {
   var outgoing = document.getElementById("outgoing");
   if (outgoing.value.length > 0) {
-    msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", outgoing.value);
+    msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+": "+outgoing.value);
     outgoing.value = "";
     // Focus text field again after submission (required for IE8 only)
     setTimeout(function () {outgoing.focus();}, 10);
@@ -115,7 +117,7 @@ function chatMessageListener (fromClientID, message) {
 		displayChatMessage("Feature is Broken...jerk");
 	}
 	else
-		displayChatMessage("User" + fromClientID + ": " + message);
+		displayChatMessage(message);
 }
 // Displays a single chat message
 function displayChatMessage (message) {
@@ -411,6 +413,5 @@ $(document).ready(function () {
 
 });
 /********************************************************/
-
 
 

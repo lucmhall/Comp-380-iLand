@@ -1,8 +1,12 @@
 <?php
 session_start();
 if(isset($_SESSION['username'])){
+
+	$username = $_SESSION['username'];
 ?>
-<script>var loggedIn= true; </script>
+<script>var loggedIn= true; 
+        var username ="<?php echo $username ?>";
+</script>
 <?php
 }
 
