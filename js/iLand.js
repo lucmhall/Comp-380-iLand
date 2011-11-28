@@ -32,15 +32,14 @@ function init () {
 
   msgManager = orbiter.getMessageManager();
   msgManager.addMessageListener(UPC.JOINED_ROOM, joinedRoomListener, this);
-  msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
-  msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
+  //msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
+  //msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
   msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
   
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
-
   }
 //==============================================================================
 
@@ -70,6 +69,7 @@ function closeListener (e) {
 // Triggered when a JOINED_ROOM message is received
 function joinedRoomListener () {
   displayChatMessage("Welcome to iLand!");
+  msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has joined.");
 }
 // Triggered when another client joins the chat room
 function clientAddedListener (roomID, clientID) {
@@ -80,6 +80,11 @@ function clientAddedListener (roomID, clientID) {
   //****************************************************Michael stopped message
   //window.alert(clientID);
 }
+// Page Refresh Listener
+
+window.onbeforeunload = function() {
+msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.");
+};
 // Triggered when another client leaves the chat room
 function clientRemovedListener (roomID, clientID) {
   displayChatMessage("User" + clientID + " left the lobby.");
