@@ -17,13 +17,11 @@ function init () {
   orbiter = new net.user1.orbiter.Orbiter();
   // If required JavaScript capabilities are missing, abort
 
-  if (!orbiter.getSystem().isJavaScriptCompatible()) {
-
-    displayChatMessage("Your browser is not supported.");
-
-    return;
-
-  }
+  if (!orbiter.getSystem().isJavaScriptCompatible()) 
+	{
+		displayChatMessage("Your browser is not supported.");
+		return;
+	}
   // Register for Orbiter's connection events
 
   orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
@@ -42,6 +40,11 @@ function init () {
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
+  
+  // Start Login Information
+  showInfoTop(username);
+  
+  
   }
 //==============================================================================
 
@@ -220,7 +223,7 @@ $(document).ready(function () {
 
             });
         } else if (curr == "account") {
-            $("#navContent").append("<p id='youSure'>Username</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
+            $("#navContent").append("<p id='youSure'>Username: "+username+"</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
 			/*$("#userName").submit(function () {
 				$.post('ajax/userInfo.php', function(data)
 				};
@@ -417,6 +420,8 @@ $(document).ready(function () {
     });
 
 
+	
+	
 });
 /********************************************************/
 
@@ -435,4 +440,17 @@ function lobbyEnterListener(fromClientID, usa){
 	$("#lobby_shown").append("<div id="+addUN+">"+usa+"</div>");
 	}
 }
+
+//*****************************//
+//* User information on top */
+
+
+function showInfoTop(user)
+{
+	
+	$("#userInfo").append("<div id="+user+"top"+">Logged in as: "+user+"</div>");
+}
+
+
+
 

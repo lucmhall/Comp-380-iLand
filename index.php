@@ -30,11 +30,13 @@ if(isset($_SESSION['username'])){
 			height: 200px;
 			overflow: auto;
 		}
-
+		
+		/*
 		img
 		{
 			margin: 1em 0;
 		}
+		*/
 		</style>
 
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
@@ -58,7 +60,7 @@ if(isset($_SESSION['username'])){
 			});
 		</script>
     </head>
-    <body >
+    <body>
 
     <!--Added by Michael Version Number Div
 
@@ -78,11 +80,14 @@ if(isset($_SESSION['username'])){
 		    <div id="game1">
                 <p id="open_lobby">Click to Enter Lobby</p>
 				<div id="lobby_shown">
+				
 					<div id='exit_lobby'>Exit Lobby</div>
 					<!-- <div id="start_game">Start the Match</div> -->
 					<A href=./game/>Start the Match </A>
 				</div>
             </div>
+			
+			<div id="userInfo"></div>
 		
 		    <div id="login">
 			    <img id="gusta" src="images/gusta1.png"/>
