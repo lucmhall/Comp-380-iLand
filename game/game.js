@@ -77,8 +77,7 @@ function sendMessage () {
 }
 
 function sendGameMessage(message){
-		var action = message;
-	 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "GAME_ACTION", roomID, "true", "", action);
+	 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "GAME_ACTION", roomID, "true", "", message);
 }
 
 // Triggered when a chat message is received

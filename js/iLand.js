@@ -35,8 +35,10 @@ function init () {
   //msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
   //msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
   msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
-  
+ 
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
+  msgManager.addMessageListener("Lobby_Enter", lobbyEnterListener, this, [roomID]);
+
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
@@ -84,6 +86,7 @@ function clientAddedListener (roomID, clientID) {
 
 window.onbeforeunload = function() {
 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.");
+msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
 };
 // Triggered when another client leaves the chat room
 function clientRemovedListener (roomID, clientID) {
@@ -108,19 +111,15 @@ function sendMessage () {
 }
 // Triggered when a chat message is received
 function chatMessageListener (fromClientID, message) {
-	if(message == "/help")
-	{
+	var help = new RegExp("/help");
+	if(message.match(help)){
 		displayHelp();
 		helpCase(message)
 	}
-	else if(message == "/whisper" || message == "/w")
-	{
-		whisper(message, fromClientID,len)
-	}
-	else if(message == "/exit")
-	{
-		displayChatMessage("Feature is Broken...jerk");
-	}
+	//else if(message == "/whisper" || message == "/w")
+//	{
+	//	whisper(message, fromClientID,len)
+//	}
 	else
 		displayChatMessage(message);
 }
@@ -385,6 +384,7 @@ $(document).ready(function () {
         'left': '40%',
         'top': '100px'
         }, 1000);
+      msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", username);
     });
 	
 	//Start Game Button
@@ -401,6 +401,7 @@ $(document).ready(function () {
 
     //Exit Lobby Animation and Function
     $('#exit_lobby').click(function () {
+    	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
         //window.alert(old_height);
         //Change Visibility 
         $('#open_lobby').show();
@@ -419,4 +420,19 @@ $(document).ready(function () {
 });
 /********************************************************/
 
+
+
+//*************************//
+//*      Lobby sh*t   */
+
+
+function lobbyEnterListener(fromClientID, usa){
+	if(usa.substring(0,4)=="left"){
+		var leftUN = "#lobbyEnter"+usa.substring(4);
+		$(leftUN).remove();
+	}else{
+		var addUN = "lobbyEnter"+usa;
+	$("#lobby_shown").append("<div id="+addUN+">"+usa+"</div>");
+	}
+}
 

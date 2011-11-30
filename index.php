@@ -40,8 +40,8 @@ if(isset($_SESSION['username'])){
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
         <script type="text/javascript" src="js/jQueryUI/jQueryUI.js"></script>
         <script type="text/javascript" src="js/OrbiterMicro_1.1.0.514_Release.js"></script>
+        <script type="text/javascript" src="js/chatCommands.js"></script>
         <script type="text/javascript" src="js/iLand.js"></script>
-		<script type="text/javascript" src="js/chatCommands.js"></script>
         <link rel="SHORTCUT ICON" href="http://iland.grid.csun.edu/favicon.ico"/>
 		<!-- the mousewheel plugin -->
 		<script type="text/javascript" src="js/jquery.mousewheel.js"></script>
