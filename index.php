@@ -3,9 +3,12 @@ session_start();
 if(isset($_SESSION['username'])){
 
 	$username = $_SESSION['username'];
+	$userpic = $_SESSION['pic'];
 ?>
 <script>var loggedIn= true; 
         var username ="<?php echo $username ?>";
+		var userpic ="<?php echo $userpic ?>";
+		window.alert(userpic);
 </script>
 <?php
 }
@@ -82,8 +85,8 @@ if(isset($_SESSION['username'])){
 				<div id="lobby_shown">
 				
 					<div id='exit_lobby'>Exit Lobby</div>
-					<!-- <div id="start_game">Start the Match</div> -->
-					<A href=./game/>Start the Match </A>
+					<div id="start_match">Start the Match</div>
+					<a id="got4" href="#">Got 4 PPL</a>
 				</div>
             </div>
 			

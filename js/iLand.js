@@ -43,8 +43,7 @@ function init () {
   
   // Start Login Information
   showInfoTop(username);
-  
-  
+    
   }
 //==============================================================================
 
@@ -88,7 +87,7 @@ function clientAddedListener (roomID, clientID) {
 // Page Refresh Listener
 
 window.onbeforeunload = function() {
-msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.");
+msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.", userpic);
 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
 };
 // Triggered when another client leaves the chat room
@@ -418,6 +417,23 @@ $(document).ready(function () {
             "top": "50%"
         }, 1000);
     });
+	
+	
+	//Start Match JS
+	document.getElementById("start_match").onclick = function()
+	{
+		window.location = "./game";
+	};
+	
+	//get 4 people
+	$('#got4').click(function () 
+	{
+    	//Change Visibility 
+        $('#start_match').css({"background-color":"green"});
+        
+    });
+	
+    
 
 
 	
@@ -431,13 +447,16 @@ $(document).ready(function () {
 //*      Lobby sh*t   */
 
 
-function lobbyEnterListener(fromClientID, usa){
+function lobbyEnterListener(fromClientID, usa)
+{
+	//var picture = "";
 	if(usa.substring(0,4)=="left"){
 		var leftUN = "#lobbyEnter"+usa.substring(4);
 		$(leftUN).remove();
 	}else{
 		var addUN = "lobbyEnter"+usa;
-	$("#lobby_shown").append("<div id="+addUN+">"+usa+"</div>");
+	
+	$("#lobby_shown").append("<div id="+addUN+"> <img src='images/players/"+userpic+".png'>  </img>"+usa+"</div>");
 	}
 }
 

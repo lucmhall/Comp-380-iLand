@@ -64,33 +64,11 @@ body{
       
 }
 #lobby_shown{
-display:none;
-}
-#start_game
-{
-	
-    width:150px;
-    height:20px;
-    position:absolute;
-    bottom:10px;
-    left:10px;
-    text-align:center;
-    border:1px green solid;
-    border-radius:5px;
-    
-    /*BACKGROUND STYLES*/
-    background-color:red;`
+	display:none;
 }
 
-#start_game:hover
-{
-    cursor:pointer;
-    padding: 0px 0px 0px 0px;
-}
 #exit_lobby
 {
-   
-    
     width:100px;
     height:20px;
     position:absolute;
@@ -110,6 +88,33 @@ display:none;
 }
 
 #exit_lobby:hover
+{
+    cursor:pointer;
+    padding: 0px 0px 0px 0px;
+}
+
+#start_match
+{
+    
+    width:100px;
+    height:20px;
+    position:absolute;
+    bottom:10px;
+    left:10px;
+    text-align:center;
+    border:1px solid;
+    border-radius:5px;
+    
+    /*BACKGROUND STYLES*/
+    background-color:grey;
+    
+    /*SHADOW*/
+    -webkit-box-shadow: 2px 2px 2px #999;
+    -moz-box-shadow: 2px 2px 2px #999;
+    padding: 1px 1px 1px 1px;
+}
+
+#start_match:hover
 {
     cursor:pointer;
     padding: 0px 0px 0px 0px;
@@ -342,6 +347,10 @@ div#login input#submit:hover{
     height:29px;
     width:29px;
 }
+
+
+
+
 
 #gusta{
     width:447px;
