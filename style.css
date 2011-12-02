@@ -266,8 +266,8 @@ div#login input#submit:hover{
 
 #bottomNav{
     height:42px;
-    bottom:0;
     position:absolute;
+	bottom:0;
     width:25%;
     right:0;
     min-width:500px;
