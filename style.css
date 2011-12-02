@@ -268,15 +268,15 @@ div#login input#submit:hover{
     height:42px;
     position:absolute;
 	bottom:0;
-    width:25%;
+    //width:25%;
     right:0;
-    min-width:500px;
+    min-width:410px;
 }
 
 #bottomNav ul{
     position:absolute;
-    height:42px;
-    margin-top:12px;
+    //height:42px;
+    margin-top:11px;
 }
 
 #bottomNav ul li{
