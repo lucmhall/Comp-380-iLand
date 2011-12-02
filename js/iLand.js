@@ -247,7 +247,7 @@ $(document).ready(function () {
                 $("#navContent").show();
                 $("#navContent").css({ "opacity": "0" });
                 $("#navContent").animate({
-                    "height": "300px",
+                    "height": "150px",
                     "opacity": "1"
                 }, 300);
 
@@ -257,7 +257,7 @@ $(document).ready(function () {
             $("#navContent").show();
             $("#navContent").css({ "opacity": "0" });
             $("#navContent").animate({
-                "height": "300px",
+                "height": "150px",
                 "opacity": "1"
             }, 300);
         }
