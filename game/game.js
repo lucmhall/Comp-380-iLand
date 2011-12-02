@@ -127,9 +127,44 @@ function statusMessage(s) {
 
 	statusMessage("Welcome to iLand");
 ///////////////////////////////////////////////////////
-	element('myResources').onclick = function() {
-		element('resourceInfo').style.display = "block";
-	};
+//Click a nav item, run this function
+	 $("#myResources ul li").click(function () {
+
+        $("#resourceInfo").empty();
+		$("#resourceInfo").css({"display":"block"});
+		$("#resourceInfo").append("<div id='exit_nav'>X</div>");	
+		$("#exit_nav").click(function()
+		{
+			$("#resourceInfo").fadeOut(400);
+		});
+        var curr = $(this).attr('id');
+		console.log(curr);
+        if (curr == "Farm") 
+		{
+            $("#resourceInfo").append("'a'");
+			console.log(curr);
+        }
+		else if (curr == "Fur")
+		{
+            $("#resourceInfo").append("'b'");
+        }
+		else if (curr == "Metal")
+		{
+            $("#resourceInfo").append("'c'");
+        }
+		else if (curr == "Wood")
+		{
+            $("#resourceInfo").append("'d'");
+        }
+		else if (curr == "Stone")
+		{
+            $("#resourceInfo").append("'e'");
+        }
+		else if (curr == "Meat")
+		{
+            $("#resourceInfo").append("'f'");
+        }
+	});
 	
 ///////////////////////////////////////////////////////	
 
