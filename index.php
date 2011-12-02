@@ -8,7 +8,7 @@ if(isset($_SESSION['username'])){
 <script>var loggedIn= true; 
         var username ="<?php echo $username ?>";
 		var userpic ="<?php echo $userpic ?>";
-		window.alert(userpic);
+		//window.alert(userpic);
 </script>
 <?php
 }
