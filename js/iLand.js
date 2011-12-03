@@ -8,7 +8,7 @@ var msgManager;
 var UPC = net.user1.orbiter.UPC;
 var roomID = "iLand";
 var sPic = 0;
-
+var element = function(id) { return document.getElementById(id); }
 //==============================================================================
 // INITIALIZATION
 //==============================================================================
@@ -38,6 +38,7 @@ function init () {
  
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   msgManager.addMessageListener("Lobby_Enter", lobbyEnterListener, this, [roomID]);
+  msgManager.addMessageListener("Return_Players", returnPlayersListener, this, [roomID]);
 
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
@@ -431,8 +432,45 @@ function lobbyEnterListener(fromClientID, usa){
 		var leftUN = "#lobbyEnter"+usa.substring(4);
 		$(leftUN).remove();
 	}else{
+		var lobby = element("lobby_Players");
+	var playersDivs = lobby.getElementsByTagName('div');
+	if(playerDivs.length==4){
+		window.alert("You cant enter the lobby, its full")
+	}else{
 		var addUN = "lobbyEnter"+usa;
-	$("#lobby_shown").append("<div id="+addUN+">"+usa+"</div>");
+	$("#lobby_Players").append("<div id="+addUN+">"+usa+"</div>");
+	
+		/*Update all users in the game*/
+	
+	
+	var players;
+	var i = 0;
+	while(playersDivs[i]){
+		players += playersDivs[i].id.substring(10)+";";
+		
+		i++;
+} 
+	 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Return_Players", roomID, "true", "", players);
 	}
-}
+	
+	}
+	
 
+}
+function returnPlayersListener(fromClientID, players){
+  	var players = players.split( ";" );
+  	var i = 0;
+  	var person;
+  	while(players[i]){
+  		person = players[i];
+  		if(person.substring(0,9) == "undefined"){ person = person.substring(9);}
+  		userID = "#lobbyEnter"+person;
+  		if( $(userID).length <= 0){
+  			addUN = "lobbyEnter"+person;
+  			$("#lobby_Players").append("<div id="+addUN+">"+person+"</div>");
+  			}
+  			i++;
+  		}
+  	}
+  	
+  	
