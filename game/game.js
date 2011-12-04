@@ -122,21 +122,16 @@ function closeListener (e) {
 // Triggered when a JOINED_ROOM message is received
 function joinedRoomListener () {
   displayChatMessage("Welcome to iLand!");
-}
-// Triggered when another client joins the chat room
-function clientAddedListener (roomID, clientID) {
-  displayChatMessage("User" + clientID + " joined the lobby.");
+  msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has joined.");
 
-  //****************************************************Michael stopped message
-  //window.alert(clientID);
 }
-// Triggered when another client leaves the chat room
-function clientRemovedListener (roomID, clientID) {
-  displayChatMessage("User" + clientID + " left the lobby.");
-}
+
 
 function clientSnapshotMessageListener(requestID, clients){
 	window.alert(clients);
+}
+window.onbeforeunload = function() {
+msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.");
 }
 //==============================================================================
 // CHAT SENDING AND RECEIVING
@@ -145,7 +140,7 @@ function clientSnapshotMessageListener(requestID, clients){
 function sendMessage () {
   var outgoing = document.getElementById("outgoing");
   if (outgoing.value.length > 0) {
-    msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", outgoing.value);
+  	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+": "+outgoing.value);
     outgoing.value = "";
     // Focus text field again after submission (required for IE8 only)
     setTimeout(function () {outgoing.focus();}, 10);
@@ -168,7 +163,7 @@ function chatMessageListener (fromClientID, message) {
 		whisper(message, fromClientID,len)
 	}
 	else
-		displayChatMessage("User" +fromClientID+ ": " + message);
+		displayChatMessage( message);
 }
 // Displays a single chat message
 function displayChatMessage (message) {
@@ -469,8 +464,8 @@ function statusMessage(s) {
 
   			msgManager = orbiter.getMessageManager();
   			msgManager.addMessageListener(UPC.JOINED_ROOM, joinedRoomListener, this);
-  			msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
-  			msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
+  			//msgManager.addMessageListener(UPC.CLIENT_ADDED_TO_ROOM, clientAddedListener, this);
+  			//msgManager.addMessageListener(UPC.CLIENT_REMOVED_FROM_ROOM, clientRemovedListener, this);
   			msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
   			msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   			msgManager.addMessageListener("GAME_ACTION", gameActionListener, this, [roomID]);
