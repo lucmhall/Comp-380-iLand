@@ -1,16 +1,31 @@
-
+var firstoutPost = 1;
 var resources = new Array("meat","farm","metal","fur","stone","wood");
-resources["meat"] = 20;
-resources["farm"] = 20;
-resources["metal"] = 20;
-resources["fur"] = 20;
-resources["stone"] = 20;
-resources["wood"] = 20;
+resources["meat"] = 100;
+resources["farm"] = 100;
+resources["metal"] = 100;
+resources["fur"] = 100;
+resources["stone"] = 100;
+resources["wood"] = 100;
 
+//Declare purchase state of each outpost
 var outPostsOwned = new Array();
 var i = 0;
 while(i<15){
 	outPostsOwned[i]= "n";
+	i++;
+}
+
+//Declare purchase state of each  roadH and roadV
+var roadHOwned = new Array();
+var roadVOwned = new Array();
+var i = 0;
+while(i<20){
+	roadVOwned[i]= "n";
+	i++;
+}
+ i = 0;
+while(i<18){
+	roadHOwned[i]= "n";
 	i++;
 }
 ////////////////////////////////////////////////////////////
@@ -56,7 +71,6 @@ setInterval(updateResources, 5000);
 			case 15: var owned = outPost15;break;
 			}
  			for(var j = 0;j<4;j++){
- 				console.log(owned[j]);
  				resources[owned[j]]++;
  			}
  		}
@@ -74,8 +88,49 @@ setInterval(updateResources, 5000);
  	$("#Meat div").empty(); $("#Meat div").append(resources["meat"]);
  	$("#Wood div").empty(); $("#Wood div").append(resources["wood"]);
  }
- 
- 	
+
+ function canPurchaseOutpost(s){
+ 	console.log("Attempting to purchase outpost: "+s);
+ 	var road1;
+ 	var road2;
+ 	var road3;
+ 	var road4;
+ 	var left, right;
+ 	s = parseInt(s);
+
+ 	console.log(roadHOwned[s]);
+ 	console.log(roadHOwned[s+1]);
+ 	console.log(roadVOwned[s]);
+ 	console.log(roadVOwned[s+5]);
+ 	if(s<6){
+ 		left = 0;
+ 		right = 1;
+ 	}else if(s<11){
+ 		left=1;
+ 		right=2;
+ 	}else{
+ 		left=2;
+ 		right=3;
+ 	}
+ 	road1 = roadHOwned[s+left];
+ 	(road1 == true) ? road1 : road1=false;
+ 	road2 = roadHOwned[s+right];
+ 	(road2 == true) ? road2 : road2=false;
+ 	road3 = roadVOwned[s];
+ 	(road3 == true) ? road3 : road3=false;
+ 	road4 = roadVOwned[s+5];
+ 	(road4 == true) ? road4 : road4=false;
+ 	console.log(road1);
+ 	console.log(road2);
+ 	console.log(road3);
+ 	console.log(road4);
+ 	if(road1 || road2 || road3 || road4){
+ 		console.log("Im returning true");
+ 	return true;
+ 	}
+ 	console.log("Im returning false");
+ 	return false;
+ }	
  
 ////////////////////////////////////////////////////////////
 /* Orbiter Micro Code */
@@ -270,9 +325,7 @@ function statusMessage(s) {
         	$("#out"+i).css({"display":"none"});
         }
         }
-          if(!(($('#statusMessage').text() === "Successfully purchased Outpost!") || ($('#statusMessage').text() === "You can't afford that!!!!"))){
-          	statusMessage("Welcome to iLand");
-          }
+          
         }
 
 
@@ -297,11 +350,18 @@ function statusMessage(s) {
 			}	
 		}else if((resources["metal"] >= 5) && (resources["stone"] >= 10) && (resources["meat"] >= 5) && (resources["wood"] >= 5) && (resources["farm"] >= 10)){
         if( $(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
-        	resources["metal"] = resources["metal"]-5;
-			resources["meat"] = resources["meat"]-5;
-			resources["wood"] = resources["wood"]-5;
-			resources["stone"] = resources["stone"]-10;
-			resources["farm"] = resources["farm"]-10;
+        	console.log("//////");
+        	//console.log("buying"+canPurchaseOutpost($(this).attr('id').substring(3)));
+        	if((firstoutPost==1) || canPurchaseOutpost($(this).attr('id').substring(3))){
+        		if(firstoutPost==1) { 
+        			firstoutPost--;
+        		}else{ 
+		        	resources["metal"] = resources["metal"]-5;
+					resources["meat"] = resources["meat"]-5;
+					resources["wood"] = resources["wood"]-5;
+					resources["stone"] = resources["stone"]-10;
+					resources["farm"] = resources["farm"]-10;
+			}
 			showResourceIncrement();
 			sendGameMessage($(this).attr("id"));
         	$(this).css("height","52px");
@@ -314,7 +374,10 @@ function statusMessage(s) {
           var outPostBought = $(this).attr('id').substring(3);
           outPostsOwned[outPostBought] = true;
           statusMessage("Successfully purchased Outpost!");
+        	  }else{
+        	  	statusMessage("You must own an adjacent road!");
         	  }
+        	 }
         	}
         	else{
         		 statusMessage("You can't afford that!!!!");
@@ -357,6 +420,8 @@ function statusMessage(s) {
 			$(element(e)).fadeIn();
 		}else if(resources["wood"]>=10 && resources["metal"]>=1 && resources["stone"]>=5){
 			if($(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
+				var roadVBought = $(this).attr('id').substring(5);
+          		roadVOwned[roadVBought] = true;
 				resources["metal"] = resources["metal"]-1;
 				resources["wood"] = resources["wood"]-10;
 				resources["stone"] = resources["stone"]-5;
@@ -402,6 +467,9 @@ function statusMessage(s) {
 			$(element(e)).fadeIn();
 		}else if(resources["wood"]>=10 && resources["metal"]>=1 && resources["stone"]>=5){
 			if($(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
+				var roadHBought = $(this).attr('id').substring(5);
+				roadHBought = parseInt(roadHBought);
+          		roadHOwned[roadHBought] = true;
 				resources["metal"] = resources["metal"]-1;
 				resources["wood"] = resources["wood"]-10;
 				resources["stone"] = resources["stone"]-5;
