@@ -1,5 +1,5 @@
 body{
-	background-color:#343434;
+	background-color:#959BA3;
 }
 #statusMessage{
 	color:white;
@@ -44,12 +44,16 @@ div#myResources ul{
 	list-style-type: none;
 
 }
+div#myResources ul li div{
+	display:inline;
+	color:#25292F;
+}
 div#myResources ul li{
 	display: inline;
-	color: white;
+	color: #18325B;
 	border-style:solid;
 border-width: 0 2px 0 0;
-	border-color: #74F254;
+	border-color: #0C1728;
 	padding-right: 3px;
 
 }
@@ -521,13 +525,13 @@ div.moving {
 /* Chat */
 #chat{
 	position:absolute;
-	right:10px;
+	right:5px;
 	bottom: 20px;
 
 	}
 #chatPane {
-    background-color:white;
-    color:#ff6600;
+    background-color:#25292F;
+    color:#8A611A;
     -webkit-border-radius:5px;
     opacity:.7;
     height: 150px;
@@ -539,4 +543,60 @@ div.moving {
     min-width: 415px;
     min-height:150px;
   
+}
+
+/*Upgrade and Buy panel */
+
+#upgradeBuy{
+	position:absolute;
+	width:260px;
+	height:350px;
+	top:125px;
+	right:140px;
+	background-color:#656B73;
+	
+}
+#UBColoring{
+	background-color:#25292F;
+	position:absolute;
+	height:30px;
+	width:260px;
+}
+#upgradeTab, #tradingTab{
+	border-radius:4px 4px 0 0 ;
+	background-color:#959BA3;
+	color:#8A611A;
+	display:inline;
+	position:absolute;
+	top:5px;
+	height:22px;
+	width: 80px;
+	padding-left: 30px;
+	padding-top:3px;
+}
+#upgradeTab{
+	left: 15px;	
+}
+#tradingTab{
+	right: 15px;
+}
+
+#upgradeTab:hover, #tradingTab:hover{
+background-color:#B5BBC3;	
+color:white;
+}
+#upgradeContent{
+	position:absolute;
+	top:30px;
+	width:260px;
+	height:320px;
+	background-color:red;
+	display:none;
+}
+#tradingContent{
+	position:absolute;
+	top:30px;
+	width:260px;
+	height:320px;
+	background-color:blue;
 }

@@ -139,7 +139,7 @@ if(isset($_SESSION['username'])){
 	
 	    <div id="chat">
 		    <div id="chatPane" class="">
-		    <div class="ui-resizable-handle ui-resizable-ne ui-icon ui-icon-gripsmall-diagonal-ne" style="z-index: 1001; "></div>
+		    	<div class="ui-resizable-handle ui-resizable-n"></div>
 		    </div>
 
     <div id="outGoing">
