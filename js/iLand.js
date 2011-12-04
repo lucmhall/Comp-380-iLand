@@ -17,13 +17,11 @@ function init () {
   orbiter = new net.user1.orbiter.Orbiter();
   // If required JavaScript capabilities are missing, abort
 
-  if (!orbiter.getSystem().isJavaScriptCompatible()) {
-
-    displayChatMessage("Your browser is not supported.");
-
-    return;
-
-  }
+  if (!orbiter.getSystem().isJavaScriptCompatible()) 
+	{
+		displayChatMessage("Your browser is not supported.");
+		return;
+	}
   // Register for Orbiter's connection events
 
   orbiter.addEventListener(net.user1.orbiter.OrbiterEvent.READY, readyListener, this);
@@ -43,6 +41,10 @@ function init () {
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
+  
+  // Start Login Information
+  showInfoTop(username);
+    
   }
 //==============================================================================
 
@@ -86,7 +88,7 @@ function clientAddedListener (roomID, clientID) {
 // Page Refresh Listener
 
 window.onbeforeunload = function() {
-msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.");
+msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.", userpic);
 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
 };
 // Triggered when another client leaves the chat room
@@ -152,11 +154,10 @@ function displayChatMessage (message) {
 //All javascript that will be run when the page loads goes here.
 function pageLoad(){
 	ww = window.innerWidth-560;
-sizeW = (window.innerWidth/2)-100;
-
-hh = (window.innerHeight/2)-150;
-logo = (window.innerWidth/2 - 157)+"px";
-
+	sizeW = (window.innerWidth/2)-100;
+	hh = (window.innerHeight/2)-150;
+	logo = (window.innerWidth/2 - 157)+"px";
+	
 	$("#logo").css({"margin-left":logo});
     $("#description").css({"margin-top":hh});
 	$("#loginForm").css({"margin-left":ww});
@@ -221,7 +222,7 @@ $(document).ready(function () {
 
             });
         } else if (curr == "account") {
-            $("#navContent").append("<p id='youSure'>Username</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
+            $("#navContent").append("<p id='youSure'>Username: "+username+"</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
 			/*$("#userName").submit(function () {
 				$.post('ajax/userInfo.php', function(data)
 				};
@@ -245,7 +246,7 @@ $(document).ready(function () {
                 $("#navContent").show();
                 $("#navContent").css({ "opacity": "0" });
                 $("#navContent").animate({
-                    "height": "300px",
+                    "height": "150px",
                     "opacity": "1"
                 }, 300);
 
@@ -255,7 +256,7 @@ $(document).ready(function () {
             $("#navContent").show();
             $("#navContent").css({ "opacity": "0" });
             $("#navContent").animate({
-                "height": "300px",
+                "height": "150px",
                 "opacity": "1"
             }, 300);
         }
@@ -370,23 +371,25 @@ $(document).ready(function () {
 
     var old_height = ($('#game1').css("height"));
     var old_width = ($('#game1').css("width"));
-
-    //Lobby Open Animation
-    $('#open_lobby').click(function () {
-        //window.alert($(this).css("height"));
-        //Change Visibility
-        $('#open_lobby').hide();
-        $('#lobby_shown').show();
-
-        //Animate
-        $('#game1').animate({
-        'width': '500px',
-        'height': '300px',
-        'left': '40%',
-        'top': '100px'
-        }, 1000);
-      msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", username);
-    });
+//Lobby Open Animation
+$('#open_lobby').click(function () {
+	var lobby = element("lobby_Players").getElementsByTagName('div');
+	if(lobby.length < 4){
+		//Change Visibility
+    	$('#open_lobby').hide();
+    	$('#lobby_shown').show();
+    	//Animate
+    	$('#game1').animate({
+    	'width': '500px',
+    	'height': '300px',
+    	'left': '40%',
+    	'top': '100px'
+    	}, 1000);
+  		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", username);
+	}else{
+		window.alert("The lobby is full. Sorry");
+	}
+});
 	
 	//Start Game Button
 	//<?php include("filename.php"); ?>
@@ -416,8 +419,27 @@ $(document).ready(function () {
             "top": "50%"
         }, 1000);
     });
+	
+	
+	//Start Match JS
+	document.getElementById("start_match").onclick = function()
+	{
+		window.location = "./game";
+	};
+	
+	//get 4 people
+	$('#got4').click(function () 
+	{
+    	//Change Visibility 
+        $('#start_match').css({"background-color":"green"});
+        
+    });
+	
+    
 
 
+	
+	
 });
 /********************************************************/
 
@@ -427,35 +449,24 @@ $(document).ready(function () {
 //*      Lobby sh*t   */
 
 
+	
 function lobbyEnterListener(fromClientID, usa){
 	if(usa.substring(0,4)=="left"){
 		var leftUN = "#lobbyEnter"+usa.substring(4);
 		$(leftUN).remove();
 	}else{
-		var lobby = element("lobby_Players");
-	var playersDivs = lobby.getElementsByTagName('div');
-	if(playerDivs.length==4){
-		window.alert("You cant enter the lobby, its full")
-	}else{
 		var addUN = "lobbyEnter"+usa;
-	$("#lobby_Players").append("<div id="+addUN+">"+usa+"</div>");
-	
+		$("#lobby_Players").append("<div id="+addUN+">"+usa+"</div>");
 		/*Update all users in the game*/
-	
-	
-	var players;
-	var i = 0;
-	while(playersDivs[i]){
-		players += playersDivs[i].id.substring(10)+";";
-		
-		i++;
-} 
-	 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Return_Players", roomID, "true", "", players);
+		var playersDivs = element("lobby_Players").getElementsByTagName('div');
+		var i = 0;
+		var players = "";
+		while(playersDivs[i]){
+			players += playersDivs[i].id.substring(10)+";";
+			i++;
+		}
+	 	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Return_Players", roomID, "true", "", players);
 	}
-	
-	}
-	
-
 }
 function returnPlayersListener(fromClientID, players){
   	var players = players.split( ";" );
@@ -474,3 +485,20 @@ function returnPlayersListener(fromClientID, players){
   	}
   	
   	
+//*****************************//
+//* User information on top */
+
+
+function showInfoTop(user)
+{
+	//This is cool. -Luc
+	$("#userInfo").append("<div id="+user+"top"+">Logged in as: "+user+"</div>");
+	$("#"+user+"top").css({
+		"color": "2B78E3",
+		"font-size" : "20px"
+	});
+}
+
+
+
+

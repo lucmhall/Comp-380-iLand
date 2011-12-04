@@ -56,11 +56,38 @@ border-width: 0 2px 0 0;
 #resourceInfo{
 	font-family: Helvetica;
 	background-color:white;
+    position:absolute;
+    top:50px;
+    right:5px;
 	height:25px;
 	width:300px;
 	-webkit-border-radius:3px;
 	padding-left:50px;
 	display:none;
+}
+
+#exit_nav{
+    height:30px;
+    width:30px;
+    position:absolute;
+    top:10px;
+    right:5px;
+    border:1px solid;
+    border-radius:15px;
+    text-align:center;
+    line-height:30px;
+    background-color:white;
+    /*SHADOW*/
+    -webkit-box-shadow: 2px 2px 2px #999;
+    -moz-box-shadow: 2px 2px 2px #999;
+    
+}
+
+#exit_nav:hover
+{
+    cursor:pointer;
+    height:29px;
+    width:29px;
 }
 
 /* ********************** */
@@ -494,7 +521,8 @@ div.moving {
 /* Chat */
 #chat{
 	position:absolute;
-	right:0;
+	right:10px;
+	bottom: 20px;
 
 	}
 #chatPane {

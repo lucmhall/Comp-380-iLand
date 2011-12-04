@@ -3,9 +3,12 @@ session_start();
 if(isset($_SESSION['username'])){
 
 	$username = $_SESSION['username'];
+	$userpic = $_SESSION['pic'];
 ?>
 <script>var loggedIn= true; 
         var username ="<?php echo $username ?>";
+		var userpic ="<?php echo $userpic ?>";
+		//window.alert(userpic);
 </script>
 <?php
 }
@@ -30,11 +33,13 @@ if(isset($_SESSION['username'])){
 			height: 200px;
 			overflow: auto;
 		}
-
+		
+		/*
 		img
 		{
 			margin: 1em 0;
 		}
+		*/
 		</style>
 
         <script type="text/javascript" src="js/jquery-1.6.1.min.js"></script>
@@ -58,7 +63,7 @@ if(isset($_SESSION['username'])){
 			});
 		</script>
     </head>
-    <body >
+    <body>
 
     <!--Added by Michael Version Number Div
 
@@ -80,10 +85,12 @@ if(isset($_SESSION['username'])){
 				<div id="lobby_shown">
 					<div id="lobby_Players"></div>
 					<div id='exit_lobby'>Exit Lobby</div>
-					<!-- <div id="start_game">Start the Match</div> -->
-					<a href=./game/>Start the Match </a>
+					<div id="start_match">Start the Match</div>
+					<a id="got4" href="#">Got 4 PPL</a>
 				</div>
             </div>
+			
+			<div id="userInfo"></div>
 		
 		    <div id="login">
 			    <img id="gusta" src="images/gusta1.png"/>
