@@ -132,6 +132,31 @@ setInterval(updateResources, 5000);
  	return false;
  }	
  
+ function canPurchaseHRoad(r){
+ 	console.log(r);
+ 	console.log("Horizontal road purchase check");
+ 	//check h road -1 and +1
+ 	console.log((roadHOwned[r-1]));
+ 	if((roadHOwned[r-1]==true) || (roadHOwned[r+1]==true)){ return true;}
+    //check v and outposts roads. 
+     if(r<7){
+     	console.log(outPostsOwned[r-1]);
+     	console.log(roadVOwned[r+4]);
+     	console.log(roadVOwned[r+5]);
+     	if((outPostsOwned[r-1]==true) || (outPostsOwned[r+1]==true)){ return true;}
+     	if((roadVOwned[r] == true) || (roadVOwned[r+6]== true)){ return true;}
+     	if(r==6 && ((roadVOwned[r+5]== true) || (roadVOwned[r+4]== true))){ return true;}
+     	// road is in first road
+     }else if(r < 13){
+     	if((outPostsOwned[r-1]==true) || (outPostsOwned[r-2]==true)){ return true;}
+     	if((roadVOwned[r-1] == true) || (roadVOwned[r+2]== true) || (roadVOwned[r+3]== true) || (roadVOwned[r+4]== true)){ return true;}
+     	// road is in the second row
+     }else{
+     		if((outPostsOwned[r-3]==true) || (outPostsOwned[r-2]==true)){ return true;}
+     		if((roadVOwned[r-3] == true) || (roadVOwned[r-2]== true) || (roadVOwned[r+3]== true) || (roadVOwned[r+2]== true)){ return true;}
+ 	// road is in the third row.
+ 	}
+ }
 ////////////////////////////////////////////////////////////
 /* Orbiter Micro Code */
 //==============================================================================
@@ -447,7 +472,6 @@ function statusMessage(s) {
             draggingElement.style.opacity = '0.4';
 		}
 		function handleRoadHDragEnd(e){
-			statusMessage("Drag Road Horizontal Ended");
 			 this.style.opacity = '1.0';
         	draggingElement.className = undefined;
             draggingElement = undefined;
@@ -457,9 +481,7 @@ function statusMessage(s) {
         	$("#roadH"+i).css({"display":"none"});
 				}
 			}
-			if(!($('#statusMessage').text() === "Successfully purchased Road!")){
-          	statusMessage("Welcome to iLand");
-          }
+			
 		}
 		function handleRoadHDrop(e){
 		if (typeof(e)=='string'){
@@ -469,6 +491,7 @@ function statusMessage(s) {
 			if($(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
 				var roadHBought = $(this).attr('id').substring(5);
 				roadHBought = parseInt(roadHBought);
+				if(canPurchaseHRoad(roadHBought)){
           		roadHOwned[roadHBought] = true;
 				resources["metal"] = resources["metal"]-1;
 				resources["wood"] = resources["wood"]-10;
@@ -477,6 +500,9 @@ function statusMessage(s) {
 				sendGameMessage($(this).attr("id"));
 				$(this).css("background-image","url(images/roadHtmb.png)");
         		statusMessage("Successfully purchased Road!");
+         	 }else{
+         	 	statusMessage("You can't purchase this road yet");
+         	 }
          	 }
           }else{
           	statusMessage("You can't afford that!!!!");
