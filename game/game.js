@@ -177,8 +177,14 @@ setInterval(updateResources, 5000);
  function canPurchaseVRoad(r){
  	console.log(r);
  	console.log("Vertical road purchase check");
+ 	r = parseInt(r);
      if(r<6){
        // road is in the first row
+       console.log("r < 6");
+        console.log(roadHOwned[r]);
+        console.log(outPostsOwned[r]);
+        console.log(roadVOwned[r+5]);
+        console.log(roadHOwned[r+1]);
      	if((roadHOwned[r]==true) || (outPostsOwned[r]==true) || (roadVOwned[r+5]==true) || (roadHOwned[r+1]==true)){ return true;}
      }else if(r < 11){
      	// road is in the second row
@@ -622,6 +628,20 @@ $(document).ready(function(){
 			});
 		}
 	});
+	var out;
+	for(var i = 1; i<16;i++){
+		out = "#out"+i;
+		$(out).click(function() {
+			var o = $(this).attr("id");
+			o = o.substring(3);
+			if(outPostsOwned[o]==true){
+			$("#tradingContent").fadeOut(400,function(){
+				$("#upgradeContent").fadeIn(400);
+				$("#upgradeContent").append("<div>"+o+"</div>");
+			});
+		}
+		});
+	}
 });
 
 
