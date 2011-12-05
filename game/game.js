@@ -97,11 +97,6 @@ setInterval(updateResources, 5000);
  	var road4;
  	var left, right;
  	s = parseInt(s);
-
- 	console.log(roadHOwned[s]);
- 	console.log(roadHOwned[s+1]);
- 	console.log(roadVOwned[s]);
- 	console.log(roadVOwned[s+5]);
  	if(s<6){
  		left = 0;
  		right = 1;
@@ -120,23 +115,16 @@ setInterval(updateResources, 5000);
  	(road3 == true) ? road3 : road3=false;
  	road4 = roadVOwned[s+5];
  	(road4 == true) ? road4 : road4=false;
- 	console.log(road1);
- 	console.log(road2);
- 	console.log(road3);
- 	console.log(road4);
+
  	if(road1 || road2 || road3 || road4){
- 		console.log("Im returning true");
+ 	
  	return true;
  	}
- 	console.log("Im returning false");
  	return false;
  }	
  
  function canPurchaseHRoad(r){
- 	console.log(r);
- 	console.log("Horizontal road purchase check");
  	//check h road -1 and +1
- 	console.log((roadHOwned[r-1]));
  	if((roadHOwned[r-1]==true)){ return true;}
  	if(r != 6 && r!=12 && r!=12){
  		if((roadHOwned[r+1]==true)){ return true;}
@@ -175,16 +163,9 @@ setInterval(updateResources, 5000);
  }
  // just a copy paste of canPurchaseHRoad right now. working on that now
  function canPurchaseVRoad(r){
- 	console.log(r);
- 	console.log("Vertical road purchase check");
  	r = parseInt(r);
      if(r<6){
        // road is in the first row
-       console.log("r < 6");
-        console.log(roadHOwned[r]);
-        console.log(outPostsOwned[r]);
-        console.log(roadVOwned[r+5]);
-        console.log(roadHOwned[r+1]);
      	if((roadHOwned[r]==true) || (outPostsOwned[r]==true) || (roadVOwned[r+5]==true) || (roadHOwned[r+1]==true)){ return true;}
      }else if(r < 11){
      	// road is in the second row
@@ -199,6 +180,30 @@ setInterval(updateResources, 5000);
  		if((roadHOwned[r-3]==true) || (outPostsOwned[r-5]==true) || (roadVOwned[r-5]==true) || (roadHOwned[r-2]==true)){ return true;}
  	}
  }
+////////////////////////////////////////////////////////////
+setInterval(checkVictory,1000)
+
+function checkVictory(){
+	var resourcesTotal = 0;
+	for(var i = 0; i<resources.length;i++){
+		resourcesTotal+=resources[resources[i]];
+	}
+	console.log(resourcesTotal);
+	if(resourcesTotal>700){
+		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
+	}
+	var totalOutposts = 0;
+	for(var i = 0; i<outPostsOwned.length;i++){
+		if((outPostsOwned[i]==true)){totalOutposts++}
+	}	
+	if(totalOutposts>7){
+		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
+		 }
+} 
+
+function someoneWon(fromClientID, un){
+	//Write the alert for victory here. 
+}
 ////////////////////////////////////////////////////////////
 /* Orbiter Micro Code */
 //==============================================================================
@@ -606,6 +611,7 @@ function statusMessage(s) {
   			msgManager.addMessageListener("CHAT_MESSAGE", chatMessageListener, this, [roomID]);
   			msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   			msgManager.addMessageListener("GAME_ACTION", gameActionListener, this, [roomID]);
+  			msgManager.addMessageListener("VICTORY", someoneWon, this, [roomID]);
   			// Connect to chat
   			orbiter.connect("tsar190.grid.csun.edu", 9100);
   			displayChatMessage("Connecting to chat server...");
@@ -614,7 +620,7 @@ function statusMessage(s) {
             init();
             $("#chat").css({"margin-top":(window.innerHeight-180)+"px"});
         }
-        
+       
 
 $(document).ready(function(){
 	$('#upgradeTab, #tradingTab').click(function(){
