@@ -137,24 +137,60 @@ setInterval(updateResources, 5000);
  	console.log("Horizontal road purchase check");
  	//check h road -1 and +1
  	console.log((roadHOwned[r-1]));
- 	if((roadHOwned[r-1]==true) || (roadHOwned[r+1]==true)){ return true;}
+ 	if((roadHOwned[r-1]==true)){ return true;}
+ 	if(r != 6 && r!=12 && r!=12){
+ 		if((roadHOwned[r+1]==true)){ return true;}
+ 	}
     //check v and outposts roads. 
      if(r<7){
-     	console.log(outPostsOwned[r-1]);
-     	console.log(roadVOwned[r+4]);
-     	console.log(roadVOwned[r+5]);
-     	if((outPostsOwned[r-1]==true) || (outPostsOwned[r+1]==true)){ return true;}
-     	if((roadVOwned[r] == true) || (roadVOwned[r+6]== true)){ return true;}
-     	if(r==6 && ((roadVOwned[r+5]== true) || (roadVOwned[r+4]== true))){ return true;}
      	// road is in first road
+     	if((outPostsOwned[r-1]==true) ){ return true;}
+     	if((roadVOwned[r-1] == true) || (roadVOwned[r+4]== true)){ return true;}
+     	if(r!=6){
+     		if((roadVOwned[r]== true) || (roadVOwned[r+5]== true) || (outPostsOwned[r]==true)){ return true;}
+     	}
      }else if(r < 13){
-     	if((outPostsOwned[r-1]==true) || (outPostsOwned[r-2]==true)){ return true;}
-     	if((roadVOwned[r-1] == true) || (roadVOwned[r+2]== true) || (roadVOwned[r+3]== true) || (roadVOwned[r+4]== true)){ return true;}
      	// road is in the second row
+     	if((outPostsOwned[r-2]==true) ){ return true;}
+     	if((roadVOwned[r-2] == true) || (roadVOwned[r+3]== true)){ return true;}
+     	if(r!=12 && ((roadVOwned[r-1]== true) || (roadVOwned[r+4]== true)) || (outPostsOwned[r-1]==true)){ return true;}
+     	
      }else{
-     		if((outPostsOwned[r-3]==true) || (outPostsOwned[r-2]==true)){ return true;}
-     		if((roadVOwned[r-3] == true) || (roadVOwned[r-2]== true) || (roadVOwned[r+3]== true) || (roadVOwned[r+2]== true)){ return true;}
- 	// road is in the third row.
+ 	// road is in the third row.     	
+     	if((outPostsOwned[r-3]==true) ){ return true;}
+     	if((roadVOwned[r-3] == true) || (roadVOwned[r+2]== true)){ return true;}
+     	if(r!=18 && ((roadVOwned[r-2]== true) || (roadVOwned[r+3]== true)) || (outPostsOwned[r-2]==true)){ return true;}
+ 	}
+ }
+ // just a copy paste of canPurchaseHRoad right now. working on that now
+ function canPurchaseVRoad(r){
+ 	console.log(r);
+ 	console.log("Vertical road purchase check");
+ 	//check h road -1 and +1
+ 	console.log((roadHOwned[r-1]));
+ 	if((roadHOwned[r-1]==true)){ return true;}
+ 	if(r != 6 && r!=12 && r!=12){
+ 		if((roadHOwned[r+1]==true)){ return true;}
+ 	}
+    //check v and outposts roads. 
+     if(r<7){
+     	// road is in first road
+     	if((outPostsOwned[r-1]==true) ){ return true;}
+     	if((roadVOwned[r-1] == true) || (roadVOwned[r+4]== true)){ return true;}
+     	if(r!=6){
+     		if((roadVOwned[r]== true) || (roadVOwned[r+5]== true) || (outPostsOwned[r]==true)){ return true;}
+     	}
+     }else if(r < 13){
+     	// road is in the second row
+     	if((outPostsOwned[r-2]==true) ){ return true;}
+     	if((roadVOwned[r-2] == true) || (roadVOwned[r+3]== true)){ return true;}
+     	if(r!=12 && ((roadVOwned[r-1]== true) || (roadVOwned[r+4]== true)) || (outPostsOwned[r-1]==true)){ return true;}
+     	
+     }else{
+ 	// road is in the third row.     	
+     	if((outPostsOwned[r-3]==true) ){ return true;}
+     	if((roadVOwned[r-3] == true) || (roadVOwned[r+2]== true)){ return true;}
+     	if(r!=18 && ((roadVOwned[r-2]== true) || (roadVOwned[r+3]== true)) || (outPostsOwned[r-2]==true)){ return true;}
  	}
  }
 ////////////////////////////////////////////////////////////

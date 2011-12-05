@@ -467,6 +467,8 @@ function returnPlayersListener(fromClientID, players){
   	var players = players.split( ";" );
   	var i = 0;
   	var person;
+	console.log(players);
+  	if(players.length > 4){ $("#start_match").css({"background-color":"green"});}
   	while(players[i]){
   		person = players[i];
   		if(person.substring(0,9) == "undefined"){ person = person.substring(9);}
