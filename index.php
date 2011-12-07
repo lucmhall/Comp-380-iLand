@@ -83,10 +83,19 @@ if(isset($_SESSION['username'])){
 		    <div id="game1">
                 <p id="open_lobby">Click to Enter Lobby</p>
 				<div id="lobby_shown">
-					<div id="lobby_Players"></div>
-					<div id='exit_lobby'>Exit Lobby</div>
+                    <div id="lobby_top">Player:</div>
+					<div id="lobby_status">
+                        <div id="one">1</div>
+                        <div id="two">2</div>
+                        <div id="three">3</div>
+                        <div id="four">4</div>
+                    
+                    </div>
+                    <div id="lobby_Players"></div>
+					
+                    <div id='exit_lobby'>Exit Lobby</div>
 					<div id="start_match">Start the Match</div>
-					<a id="got4" href="#">Got 4 PPL</a>
+					<!--<a id="got4" href="#">Got 4 PPL</a>-->
 				</div>
             </div>
 			

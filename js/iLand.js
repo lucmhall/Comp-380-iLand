@@ -9,6 +9,7 @@ var UPC = net.user1.orbiter.UPC;
 var roomID = "iLand";
 var sPic = 0;
 var element = function(id) { return document.getElementById(id); }
+var players_global;
 //==============================================================================
 // INITIALIZATION
 //==============================================================================
@@ -400,7 +401,9 @@ $('#open_lobby').click(function () {
 
     //Exit Lobby Animation and Function
     $('#exit_lobby').click(function () {
+        
     	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
+        //changeStatus(players);
         //window.alert(old_height);
         //Change Visibility 
         $('#open_lobby').show();
@@ -419,7 +422,14 @@ $('#open_lobby').click(function () {
 	//Start Match JS
 	document.getElementById("start_match").onclick = function()
 	{
-		window.location = "./game";
+		if($("#start_match").css("background-color") == 'rgb(0, 128, 0)')
+        {
+            window.location = "./game";
+        }
+        else
+        {
+            
+        }
 	};
 	
 	//get 4 people
@@ -446,12 +456,20 @@ $('#open_lobby').click(function () {
 
 	
 function lobbyEnterListener(fromClientID, usa){
+    
 	if(usa.substring(0,4)=="left"){
-		var leftUN = "#lobbyEnter"+usa.substring(4);
+		//mike
+        players_global = players_global-1;
+        changeStatusExit(players_global);
+        //end mike
+        
+        
+        var leftUN = "#lobbyEnter"+usa.substring(4);
 		$(leftUN).remove();
+        
 	}else{
 		var addUN = "lobbyEnter"+usa;
-		$("#lobby_Players").append("<div id="+addUN+">"+usa+"</div>");
+		$("#lobby_Players").append("<div class='lobby_play' id="+addUN+">"+usa+"</div>");
 		/*Update all users in the game*/
 		var playersDivs = element("lobby_Players").getElementsByTagName('div');
 		var i = 0;
@@ -468,7 +486,14 @@ function returnPlayersListener(fromClientID, players){
   	var i = 0;
   	var person;
 	console.log(players);
-  	if(players.length > 4){ $("#start_match").css({"background-color":"green"});}
+    changeStatus(players);
+    players_global = players.length;
+  	if(players.length > 4)
+    { 
+        $("#start_match").css({"background-color":"green"});
+    }
+    
+    
   	while(players[i]){
   		person = players[i];
   		if(person.substring(0,9) == "undefined"){ person = person.substring(9);}
@@ -480,7 +505,79 @@ function returnPlayersListener(fromClientID, players){
   			i++;
   		}
   	}
-  	
+
+
+
+
+
+function changeStatus(players){
+  	var i = 0;
+  	var person;
+	console.log(players);
+  	if(players.length > 4)
+    { 
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"green"});
+        $("#three").css({"background-color":"green"});
+        $("#four").css({"background-color":"green"});
+    }
+    else if(players.length > 3) 
+    {
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"green"});
+        $("#three").css({"background-color":"green"});
+        $("#four").css({"background-color":"red"});
+    }
+    else if(players.length > 2) 
+    {
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"green"});
+        $("#three").css({"background-color":"red"});
+        $("#four").css({"background-color":"red"});
+    }
+    else 
+    {
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"red"});
+        $("#three").css({"background-color":"red"});
+        $("#four").css({"background-color":"red"});
+    }    
+}
+
+function changeStatusExit(players){
+  	var i = 0;
+  	var person;
+	console.log(players);
+  	if(players > 4)
+    { 
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"green"});
+        $("#three").css({"background-color":"green"});
+        $("#four").css({"background-color":"green"});
+    }
+    else if(players > 3) 
+    {
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"green"});
+        $("#three").css({"background-color":"green"});
+        $("#four").css({"background-color":"red"});
+    }
+    else if(players > 2) 
+    {
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"green"});
+        $("#three").css({"background-color":"red"});
+        $("#four").css({"background-color":"red"});
+    }
+    else 
+    {
+        $("#one").css({"background-color":"green"});
+        $("#two").css({"background-color":"red"});
+        $("#three").css({"background-color":"red"});
+        $("#four").css({"background-color":"red"});
+    }    
+}
+
   	
 //*****************************//
 //* User information on top */
