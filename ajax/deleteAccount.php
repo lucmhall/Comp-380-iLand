@@ -19,7 +19,8 @@ if(mysqli_num_rows(mysqli_query($dbc,$selectUser)) >= 1 )
 	if ($num == 1)
     {
         //Delete Query, to delete the account
-        $deleteAccount = "DELETE FROM users WHERE username='".$un."'";
+        //echo "<script>alert('.$un')</script>"
+        $deleteAccount = "DELETE FROM users WHERE username='$username'";
                      
         $sr = mysqli_query($dbc,$deleteAccount);
         

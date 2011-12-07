@@ -133,7 +133,8 @@ $(document).ready(function()
                 if (data == 1) 
                 {
                     window.alert("Account Deleted!");
-                    window.location = '../';
+                    $.post('ajax/logout.php', function () {window.location = '../';});
+                    
                 } 
                 else if (data == 2) 
                 {                        
