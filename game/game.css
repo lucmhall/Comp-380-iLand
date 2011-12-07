@@ -36,27 +36,25 @@ body{
 
 
  div#myResources{
-	left:29px;
-	top:44px;
+	margin-left:48px;
+	margin-top:38px;
 	position:absolute;
  }
 div#myResources ul{
 	font-family: Helvetica;
-	right:0;
+	margin-right:0;
 	text-decoration:none;
 	list-style-type: none;
 
 }
 div#myResources ul li div{
+	
 	display:inline;
 	color:#25292F;
 }
 div#myResources ul li{
 	display: inline;
 	color: #18325B;
-	border-style:solid;
-border-width: 0 2px 0 0;
-	border-color: #0C1728;
 	padding-right: 3px;
 
 }
@@ -528,8 +526,8 @@ div.moving {
 /* Chat */
 #chat{
 	position:absolute;
-	right:5px;
-	bottom: 20px;
+	margin-left:1010px;
+	top: 0px;
 
 	}
 #chatPane {
@@ -538,12 +536,12 @@ div.moving {
     -webkit-border-radius:5px;
     opacity:.7;
     height: 150px;
-    width: 400px;
+    width: 390px;
     overflow: auto;
     padding: 5px;
     margin:0 0  5px 5px;
     z-index:1;
-    min-width: 415px;
+    min-width: 390px;
     min-height:150px;
   
 }
@@ -552,10 +550,10 @@ div.moving {
 
 #upgradeBuy{
 	position:absolute;
-	width:260px;
+	width:390px;
 	height:350px;
 	top:125px;
-	right:140px;
+	margin-left:1012px;
 	background-color:#656B73;
 	
 }
@@ -563,9 +561,9 @@ div.moving {
 	background-color:#25292F;
 	position:absolute;
 	height:30px;
-	width:260px;
+	width:390px;
 }
-#upgradeTab, #tradingTab{
+#upgradeTab, #combatTab, #tradingTab{
 	border-radius:4px 4px 0 0 ;
 	background-color:#959BA3;
 	color:#8A611A;
@@ -580,26 +578,69 @@ div.moving {
 #upgradeTab{
 	left: 15px;	
 }
+#combatTab{
+	left: 140px;	
+}
 #tradingTab{
 	right: 15px;
 }
 
-#upgradeTab:hover, #tradingTab:hover{
+#upgradeTab:hover, #tradingTab:hover, #combatTab:hover{
 background-color:#B5BBC3;	
 color:white;
 }
 #upgradeContent{
 	position:absolute;
 	top:30px;
-	width:260px;
+	width:390px;
 	height:320px;
-	background-color:red;
+	//background-color:red;
 	display:none;
 }
 #tradingContent{
 	position:absolute;
 	top:30px;
-	width:260px;
+	width:390px;
 	height:320px;
-	background-color:blue;
+	//background-color:blue;
+}
+#tradingContent{
+	position:absolute;
+	top:30px;
+	width:390px;
+	height:320px;
+	//background-color:pink;
+}
+
+
+
+
+/*//////////////////*/
+#upgradeArmy{
+	position:absolute;
+	margin-top:-146px;
+	margin-left:10px;
+	background-repeat:no-repeat;
+	background-image:url(images/armyUpgrade.png);
+	width:65px;
+	height:55px
+}
+#upgradeArmy:hover{
+	box-shadow:0 0 15px #ffffff; 
+}
+#upgradeArmy:active{
+	box-shadow:0 0 15px #111111; 
+}
+#meatCostArmy{
+	//position:absolute;
+	margin-left:118px;
+	margin-top:40px;
+}
+#furCostArmy{
+	margin-left:118px;
+	//margin-top:60px;
+}
+#farmCostArmy{
+	margin-left:118px;
+	//margin-top:80px;
 }

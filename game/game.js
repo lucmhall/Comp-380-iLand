@@ -46,6 +46,18 @@ var outPost13 = new Array("fur","wood","farm","metal");
 var outPost14 = new Array("meat","wood","farm","metal");
 var outPost15 = new Array("meat","wood","farm","meat");
 
+var outPostArmy = new Array();
+i = 0;
+while(i<15){
+	outPostArmy[i]= 1;
+	i++;
+}
+var outPostIncrement = new Array();
+i = 0;
+while(i<15){
+	outPostIncrement[i]= 1;
+	i++;
+}
 // Update Resources every 5 seconds.
 setInterval(updateResources, 5000);  
  
@@ -631,16 +643,20 @@ function statusMessage(s) {
        
 
 $(document).ready(function(){
-	$('#upgradeTab, #tradingTab').click(function(){
-		if($(this).attr("id") == "upgradeTab"){
-			$("#tradingContent").fadeOut(400,function(){
-				$("#upgradeContent").fadeIn(400);
-			});
-		}else{
-			$("#upgradeContent").fadeOut(400,function(){
-				$("#tradingContent").fadeIn(400);
-			});
-		}
+	$('#upgradeTab, #tradingTab, #combatTab').click(function(){
+		var tab;
+				$("#upgradeContent").hide();
+				$("#combatContent").hide();
+				$("#tradeContent").hide();
+				if($(this).attr("id") == "tradingTab"){
+					tab = "#tradingContent";
+				}else if($(this).attr("id") == "combatTab"){
+					tab = "#combatContent";
+				}else {
+					tab = "#upgradeContent";
+				}
+				$(tab).fadeIn(400);
+		
 	});
 	var out;
 	for(var i = 1; i<16;i++){
@@ -650,8 +666,17 @@ $(document).ready(function(){
 			o = o.substring(3);
 			if(outPostsOwned[o]==true){
 			$("#tradingContent").fadeOut(400,function(){
-				$("#upgradeContent").fadeIn(400);
-				$("#upgradeContent").append("<div>"+o+"</div>");
+				$("#upgradeContent").empty();
+				$("#upgradeContent").fadeIn(100);
+				$("#upgradeContent").append("<h3>Upgrade Outpost "+o+"</h3>");
+				
+				$("#upgradeContent").append("<div style='position:absolute;margin-left:118px;'> Current Army Value:  "+outPostArmy[o]+"</div>");
+				$("#upgradeContent").append("<div id='meatCostArmy'><div>Upgrade Cost: </div> 15 x <img src='images/meatLogo.png'/></div>");
+				$("#upgradeContent").append("<div id='furCostArmy'>15 x <img src='images/furLogo.png'/></div>");
+				$("#upgradeContent").append("<div id='farmCostArmy'>15 x <img src='images/farmLogo.png'/></div>");
+				$("#upgradeContent").append("<div id='upgradeArmy'></div>");
+				$("#upgradeContent").append("<div>Current Resource Increment:  "+outPostIncrement[o]+"</div>");
+				
 			});
 		}
 		});

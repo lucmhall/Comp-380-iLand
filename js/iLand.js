@@ -230,7 +230,9 @@ $(document).ready(function () {
         } else if (curr == "stats") {
             $("#navContent").append("<p>Number of Games Played</p> <p> x </p> <p>\n</p> <p>Win/Loss Ratio</p> <p>y / z</p> <p>\n</p>");
         } else {
-            $("#navContent").append("<p><b>How to play iLand:</b></p><p>At the start of the game, you get 20 of each resource and one(1) free Outpost.</p>");
+        	var first = "<p><b>How to play iLand:</b></p><p>At the start of the game, you get 20 of each resource and one(1) free Outpost.</p>"
+        	var second = "<p></p>";
+            $("#navContent").append();
         }
 
         if ($('#navContent').is(':visible')) {
@@ -491,7 +493,7 @@ function showInfoTop(user)
 	//This is cool. -Luc
 	$("#userInfo").append("<div id="+user+"top"+">Logged in as: "+user+"</div>");
 	$("#"+user+"top").css({
-		"color": "2B78E3",
+		"color": "#2B78E3",
 		"font-size" : "20px"
 	});
 }

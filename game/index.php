@@ -37,8 +37,8 @@ if(isset($_SESSION['username'])){
 		    
 		    </div>
     <div id="outGoing">
-      <input type="text" id="outgoing" style="width:340px" onkeydown="if (event.keyCode == 13) sendMessage()"/>
-      <input type="submit" value="Send" style="width:60px" onclick="sendMessage()"/>
+      <input type="text" id="outgoing" style="width:330px" onkeydown="if (event.keyCode == 13) sendMessage()"/>
+      <input type="submit" value="Send" style="width:55px" onclick="sendMessage()"/>
     </div><!-- OutGoing -->
 	    </div><!-- Chat -->
 		<div id="resourceInfo">
@@ -46,12 +46,12 @@ if(isset($_SESSION['username'])){
             </div>
 	<div id="myResources">
 		<ul>
-			<li id="Farm">Farm: <div> 20</div></li>
-			<li id="Fur">Fur: <div> 20</div></li>
-			<li id="Metal">Metal: <div> 20</div></li>
-			<li id="Wood">Wood: <div> 20</div></li> 
-			<li id="Stone">Stone: <div> 20</div></li>
-			<li id="Meat">Meat: <div> 20</div></li>
+			<li id="Farm"><img src="images/farmLogo.png" alt='Farm'/> <div> 20</div></li>
+			<li id="Fur"><img src="images/furLogo.png"/> <div> 20</div></li>
+			<li id="Metal"><img src="images/metalLogo.png"/> <div> 20</div></li>
+			<li id="Wood"><img src="images/woodLogo.png"/> <div> 20</div></li> 
+			<li id="Stone"><img src="images/stoneLogo.png"/> <div> 20</div></li>
+			<li id="Meat"><img src="images/meatLogo.png"/> <div> 20</div></li>
 		</ul>
 	<!--<div id = "FarmInfo"> a </div>-->
 	<!--<div id = "FurInfo"> b </div>-->
@@ -148,6 +148,7 @@ if(isset($_SESSION['username'])){
 		
 	<div id="upgradeBuy">
 		<div id="UBColoring"></div>
+		<div id="combatTab">Combat</div>
 		<div id="upgradeTab">Upgrade</div>
 		<div id="tradingTab">Trading</div>
 		<div id="upgradeContent"></div>
