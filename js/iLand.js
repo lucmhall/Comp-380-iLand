@@ -402,7 +402,7 @@ $('#open_lobby').click(function () {
     //Exit Lobby Animation and Function
     $('#exit_lobby').click(function () {
         
-    	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
+        msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Lobby_Enter", roomID, "true", "", "left"+username);
         //changeStatus(players);
         //window.alert(old_height);
         //Change Visibility 
@@ -561,6 +561,7 @@ function changeStatusExit(players){
         $("#two").css({"background-color":"green"});
         $("#three").css({"background-color":"green"});
         $("#four").css({"background-color":"red"});
+        $("#start_match").css({"background-color":"grey"});
     }
     else if(players > 2) 
     {
@@ -568,6 +569,7 @@ function changeStatusExit(players){
         $("#two").css({"background-color":"green"});
         $("#three").css({"background-color":"red"});
         $("#four").css({"background-color":"red"});
+        $("#start_match").css({"background-color":"grey"});
     }
     else 
     {
@@ -575,6 +577,7 @@ function changeStatusExit(players){
         $("#two").css({"background-color":"red"});
         $("#three").css({"background-color":"red"});
         $("#four").css({"background-color":"red"});
+        $("#start_match").css({"background-color":"grey"});
     }    
 }
 
