@@ -21,6 +21,7 @@ if(isset($_SESSION['username'])){
        iLand-In Game
     </title>
     <link rel="stylesheet" type="text/css" href="game.css" />
+    <script src="../js/jQueryUI/jQueryUI.js"></script>	
     <script src="../js/OrbiterMicro_1.1.0.514_Release.js" type="text/javascript"></script>
 <script src="jquery.js" type="text/javascript"></script>
 <script src="../js/jQueryUI/jQueryUI.js" type="text/javascript"></script>
@@ -162,6 +163,5 @@ if(isset($_SESSION['username'])){
   
     
 </div>
-
 </body>
 </html>

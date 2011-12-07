@@ -17,13 +17,15 @@ body{
 }
 #columns{
 	position:absolute;
-	top: 125px;
-	right:0;
+	margin-top:-80px;
+	width:500px;
+	
 }
 #columns div {
- margin-left:10px;
- color:white;
- text-align:left;
+ display:inline;
+ float:left;
+ margin-left:40px;
+ 
 }
 
 #columns footer {
@@ -34,7 +36,8 @@ body{
 
 
  div#myResources{
-	right:10px;
+	left:29px;
+	top:44px;
 	position:absolute;
  }
 div#myResources ul{

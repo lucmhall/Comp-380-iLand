@@ -230,7 +230,7 @@ $(document).ready(function () {
         } else if (curr == "stats") {
             $("#navContent").append("<p>Number of Games Played</p> <p> x </p> <p>\n</p> <p>Win/Loss Ratio</p> <p>y / z</p> <p>\n</p>");
         } else {
-            $("#navContent").append("<p>Friends List...or something</p>");
+            $("#navContent").append("<p><b>How to play iLand:</b></p><p>At the start of the game, you get 20 of each resource and one(1) free Outpost.</p>");
         }
 
         if ($('#navContent').is(':visible')) {

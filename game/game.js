@@ -442,7 +442,7 @@ function statusMessage(s) {
       		"margin-top": function(index, value) {
     		    return parseFloat(value) -20;
     			  }});
-          $(this).css("background-image","url(images/outposttmb.png)");
+          $(this).css("background-image","url(images/outposttmbOwned.png)");
           var outPostBought = $(this).attr('id').substring(3);
           outPostsOwned[outPostBought] = true;
           statusMessage("Successfully purchased Outpost!");
@@ -477,7 +477,7 @@ function statusMessage(s) {
             draggingElement = undefined;
 			for(var i = 0; i<21; i++){
 			var bgImg = $("#roadV"+i).css("background-image");
-			if( !(bgImg == "url(https://iland.grid.csun.edu/game/images/roadVtmb.png)")){
+			if( bgImg == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
         	$("#roadV"+i).css({"display":"none"});
 				}
 			}
@@ -485,8 +485,12 @@ function statusMessage(s) {
 		}
 		function handleRoadVDrop(e){
 	if (typeof(e)=='string'){
+			if(roadVOwned[e.substring(5)]==true){
+				$(element(e)).css("background-image","url(images/roadVtmbOwned.png)");
+			}else{
 			$(element(e)).css("background-image","url(images/roadVtmb.png)");
 			$(element(e)).fadeIn();
+			}
 		}else if(resources["wood"]>=10 && resources["metal"]>=1 && resources["stone"]>=5){
 			if($(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
 				var roadVBought = $(this).attr('id').substring(5);
@@ -497,7 +501,7 @@ function statusMessage(s) {
 				resources["stone"] = resources["stone"]-5;
 				showResourceIncrement();
 				sendGameMessage($(this).attr("id"));
-				$(this).css("background-image","url(images/roadVtmb.png)");
+				$(this).css("background-image","url(images/roadVtmbOwned.png)");
         		statusMessage("Successfully purchased Road!");
          	 }else{
          	 	statusMessage("You can't purchase this road yet");
@@ -525,16 +529,20 @@ function statusMessage(s) {
             draggingElement = undefined;
 			for(var i = 0; i<19; i++){
 			var bgImg = $("#roadH"+i).css("background-image");
-			if( !(bgImg == "url(https://iland.grid.csun.edu/game/images/roadHtmb.png)")){
-        	$("#roadH"+i).css({"display":"none"});
+			if( bgImg == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){   
+	     	$("#roadH"+i).css({"display":"none"});
 				}
 			}
 			
 		}
 		function handleRoadHDrop(e){
 		if (typeof(e)=='string'){
+			if(roadHOwned[e.substring(5)]==true){
+				$(element(e)).css("background-image","url(images/roadHtmbOwned.png)");
+			}else{
 			$(element(e)).css("background-image","url(images/roadHtmb.png)");
 			$(element(e)).fadeIn();
+			}
 		}else if(resources["wood"]>=10 && resources["metal"]>=1 && resources["stone"]>=5){
 			if($(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
 				var roadHBought = $(this).attr('id').substring(5);
@@ -546,7 +554,7 @@ function statusMessage(s) {
 				resources["stone"] = resources["stone"]-5;
 				showResourceIncrement();
 				sendGameMessage($(this).attr("id"));
-				$(this).css("background-image","url(images/roadHtmb.png)");
+				$(this).css("background-image","url(images/roadHtmbOwned.png)");
         		statusMessage("Successfully purchased Road!");
          	 }else{
          	 	statusMessage("You can't purchase this road yet");

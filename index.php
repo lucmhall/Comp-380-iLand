@@ -74,7 +74,7 @@ if(isset($_SESSION['username'])){
     -->
 
 
-    <img src="images/iLand.png" width="100%" height="100%" style="position:absolute;"/>
+    <img src="images/iLand.jpg" width="100%" height="100%" style="position:absolute;"/>
 	
 	
 	    <div id="container">
