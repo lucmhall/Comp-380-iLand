@@ -66,6 +66,65 @@ body{
 }
 #lobby_shown{
 	display:none;
+    text-align:left;
+    margin: 20px;
+    
+}
+#lobby_status
+{ 
+    text-align:center;
+    float:left;
+    width:20px;
+    margin-top:20px;
+}
+#one
+{
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    /*BACKGROUND STYLES*/
+    background-color:red;
+    margin:1px;
+}
+#two
+{
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    /*BACKGROUND STYLES*/
+    background-color:red;
+    margin:1px;
+}
+#three
+{
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    /*BACKGROUND STYLES*/
+    background-color:red;
+    margin:1px;
+}
+#four
+{
+    width:20px;
+    height:20px;
+    border-radius:10px;
+    /*BACKGROUND STYLES*/
+    background-color:red;
+    margin:1px;
+}
+
+#lobby_players
+{
+    width:300px;
+    float:left;
+    //border:2px solid;
+    margin:20px;
+}
+.lobby_play
+{
+    border:1px solid;
+    border-color:grey;
 }
 
 #exit_lobby
