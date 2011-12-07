@@ -36,6 +36,7 @@ function init () {
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   msgManager.addMessageListener("Lobby_Enter", lobbyEnterListener, this, [roomID]);
   msgManager.addMessageListener("Return_Players", returnPlayersListener, this, [roomID]);
+  msgManager.addMessageListener("Start_Game_all", startGame, this, [roomID]);
 
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
@@ -209,16 +210,17 @@ $(document).ready(function () {
 			});
 		});
         var curr = $(this).attr('id');
-        if (curr == "logOut") {
-            $("#navContent").append("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='confirmLogOut' type='submit' value='Yes'/> </form>");
-            $("#logMeOut").submit(function () {
-                $.post('ajax/logout.php', function () {
-                    window.location = '../';
-                });
-
+        if (curr == "logOut") 
+        {
+            $("#navContent").append("<p id='youSure'> Are you sure you want to log out?</p> <form id='logMeOut' action='javascript:;' method='post'> <input id='userButton' type='submit' value='Yes'/> </form>");
+            $("#logMeOut").submit(function () 
+            {
+                $.post('ajax/logout.php', function () {window.location = '../';});
             });
-        } else if (curr == "account") {
-            $("#navContent").append("<p id='youSure'>Username: "+username+"</p> <p id='youSure'>Bug Report</p>" /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
+        } 
+        else if (curr == "account") 
+        {
+            $("#navContent").append("<p id='youSure'>Username: "+username+"</p>" /*<p id='youSure'>Bug Report</p>"*/ /*<form id='changePassword' action='javascript:;' method='post'> <input id='changePassword' type='submit' value='Yes'/> </form>"*/);
 			/*$("#userName").submit(function () {
 				$.post('ajax/userInfo.php', function(data)
 				};
@@ -228,9 +230,22 @@ $(document).ready(function () {
 				//.....
 				};
 			};*/
-        } else if (curr == "stats") {
+            
+            $("#navContent").append("<form id='editAccount' action='javascript:;' method='post'> <input id='userButton2' type='submit' value='Edit Account'/> </form>");
+            $("#editAccount").submit(function () 
+            {
+                window.location = '../edit.php';
+            });
+            
+            
+            
+        } 
+        else if (curr == "stats") 
+        {
             $("#navContent").append("<p>Number of Games Played</p> <p> x </p> <p>\n</p> <p>Win/Loss Ratio</p> <p>y / z</p> <p>\n</p>");
-        } else {
+        } 
+        else 
+        {
         	var first = "<p><b>How to play iLand:</b></p><p>At the start of the game, you get 20 of each resource and one(1) free Outpost.</p>"
         	var second = "<p></p>";
             $("#navContent").append();
@@ -424,14 +439,14 @@ $('#open_lobby').click(function () {
 	//Start Match JS
 	document.getElementById("start_match").onclick = function()
 	{
+        var l = "";
 		if($("#start_match").css("background-color") == 'rgb(0, 128, 0)')
-        {
+        {   
+            $.post("Ajax/gameCheck.php");
+            msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Start_Game_all", roomID, "true", "", l);
             window.location = "./game";
         }
-        else
-        {
-            
-        }
+        
 	};
 	
 	//get 4 people
@@ -596,6 +611,14 @@ function showInfoTop(user)
 		"color": "#2B78E3",
 		"font-size" : "20px"
 	});
+}
+
+//Function to start the game
+
+function startGame()
+{   
+    $.post("ajax/gameCheck.php");
+    window.location = "./game";
 }
 
 

@@ -421,9 +421,19 @@ div#login input#submit:hover{
     margin-top:-337px;
 }
 
-#confirmLogOut{
+#userButton{
     margin-top:7px;
     width:80px;
+    height:30px;
+    border:0;
+    background-color:#ff6633;
+    -webkit-border-radius:2px;
+    margin-left:110px;
+}
+
+#userButton2{
+    margin-top:7px;
+    width:120px;
     height:30px;
     border:0;
     background-color:#ff6633;
