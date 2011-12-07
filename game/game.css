@@ -1,5 +1,7 @@
 body{
 	background-color:#959BA3;
+		background-image:url('images/bodyBackground.png');
+
 }
 #statusMessage{
 	color:white;
@@ -7,7 +9,7 @@ body{
 	position:absolute;
 }
 #gameMap{
-	-webkit-border-radius:20px;
+	
 	width:1000px;
 	height:700px;
 	background-size: 1000px 700px;
@@ -526,8 +528,8 @@ div.moving {
 /* Chat */
 #chat{
 	position:absolute;
-	margin-left:1010px;
-	top: 0px;
+	margin-left:1003px;
+	margin-top: 389px;
 
 	}
 #chatPane {
@@ -535,36 +537,41 @@ div.moving {
     color:#8A611A;
     -webkit-border-radius:5px;
     opacity:.7;
-    height: 150px;
+    height: 238px;
     width: 390px;
     overflow: auto;
     padding: 5px;
     margin:0 0  5px 5px;
     z-index:1;
-    min-width: 390px;
-    min-height:150px;
+   
   
 }
 
 /*Upgrade and Buy panel */
 
 #upgradeBuy{
+	text-transform:capitalize;
+	font-family: Arial, Helvetica, sans-serif;
 	position:absolute;
 	width:390px;
 	height:350px;
-	top:125px;
+	top:40px;
 	margin-left:1012px;
 	background-color:#656B73;
+	background-image:url('images/tabBackground.png');
+	background-repeat:no-repeat;
+	background-size:390px 350px;
 	
 }
 #UBColoring{
-	background-color:#25292F;
+	
+	//background-color:#25292F;
 	position:absolute;
 	height:30px;
 	width:390px;
 }
 #upgradeTab, #combatTab, #tradingTab{
-	border-radius:4px 4px 0 0 ;
+	border-radius:4px 4px 4px 4px ;
 	background-color:#959BA3;
 	color:#8A611A;
 	display:inline;
@@ -576,13 +583,16 @@ div.moving {
 	padding-top:3px;
 }
 #upgradeTab{
-	left: 15px;	
+	top:20px;
+	left: 17px;	
 }
 #combatTab{
+	top:20px;
 	left: 140px;	
 }
 #tradingTab{
-	right: 15px;
+	top:20px;
+	right: 17px;
 }
 
 #upgradeTab:hover, #tradingTab:hover, #combatTab:hover{
@@ -626,21 +636,48 @@ color:white;
 	height:55px
 }
 #upgradeArmy:hover{
-	box-shadow:0 0 15px #ffffff; 
+	box-shadow:0 0 15px #1C0DAD; 
+	
 }
 #upgradeArmy:active{
 	box-shadow:0 0 15px #111111; 
+	width:69px;
+	height:59px;
+	background-size: 69px 59px;
+	margin-top:-144px;
+	margin-left:8px;
 }
 #meatCostArmy{
-	//position:absolute;
 	margin-left:118px;
 	margin-top:40px;
 }
 #furCostArmy{
 	margin-left:118px;
-	//margin-top:60px;
 }
 #farmCostArmy{
 	margin-left:118px;
-	//margin-top:80px;
+}
+#upgradeIncrement{
+	position:absolute;
+	margin-top:5px;
+	margin-left:10px;
+	background-repeat:no-repeat;
+	background-image:url(images/resourceInc.png);
+	width:68px;
+	height:67px
+}
+#upgradeIncrement:hover{
+	box-shadow:0 0 15px #1C0DAD; 
+}
+#upgradeIncrement:active{
+	box-shadow:0 0 15px #111111; 
+	width:73px;
+	height:67px;
+	background-size: 73px 71px;
+	margin-top:3px;
+	margin-left:7px;
+}
+#resourceIncrementCost{
+	margin-top:20px;
+	margin-left:118px;
 }

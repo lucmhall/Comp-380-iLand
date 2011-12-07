@@ -37,7 +37,7 @@ if(isset($_SESSION['username'])){
 		    
 		    </div>
     <div id="outGoing">
-      <input type="text" id="outgoing" style="width:330px" onkeydown="if (event.keyCode == 13) sendMessage()"/>
+      <input type="text" id="outgoing" style="margin-left:6px;width:335px" onkeydown="if (event.keyCode == 13) sendMessage()"/>
       <input type="submit" value="Send" style="width:55px" onclick="sendMessage()"/>
     </div><!-- OutGoing -->
 	    </div><!-- Chat -->
@@ -52,6 +52,7 @@ if(isset($_SESSION['username'])){
 			<li id="Wood"><img src="images/woodLogo.png"/> <div> 20</div></li> 
 			<li id="Stone"><img src="images/stoneLogo.png"/> <div> 20</div></li>
 			<li id="Meat"><img src="images/meatLogo.png"/> <div> 20</div></li>
+			<li id="Gold"><img src="images/goldLogo.png"/> <div> 1</div></li>
 		</ul>
 	<!--<div id = "FarmInfo"> a </div>-->
 	<!--<div id = "FurInfo"> b </div>-->
@@ -151,8 +152,10 @@ if(isset($_SESSION['username'])){
 		<div id="combatTab">Combat</div>
 		<div id="upgradeTab">Upgrade</div>
 		<div id="tradingTab">Trading</div>
+		<div style="margin:20px 0 0 40px">
 		<div id="upgradeContent"></div>
 		<div id="tradingContent"></div>
+		</div>
 	</div>
 	
  <div id="columns">

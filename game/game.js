@@ -1,12 +1,13 @@
 var firstoutPost = 1;
-var resources = new Array("meat","farm","metal","fur","stone","wood");
+var resources = new Array("meat","farm","metal","fur","stone","wood","gold");
 resources["meat"] = 100;
 resources["farm"] = 100;
 resources["metal"] = 100;
 resources["fur"] = 100;
 resources["stone"] = 100;
 resources["wood"] = 100;
-
+resources["gold"] = 1;
+showResourceIncrement()
 //Declare purchase state of each outpost
 var outPostsOwned = new Array();
 var i = 0;
@@ -53,8 +54,8 @@ while(i<15){
 	i++;
 }
 var outPostIncrement = new Array();
-i = 0;
-while(i<15){
+i = 1;
+while(i<16){
 	outPostIncrement[i]= 1;
 	i++;
 }
@@ -83,7 +84,7 @@ setInterval(updateResources, 5000);
 			case 15: var owned = outPost15;break;
 			}
  			for(var j = 0;j<4;j++){
- 				resources[owned[j]]++;
+ 				resources[owned[j]] = resources[owned[j]]+outPostIncrement[i];
  			}
  		}
  		i++;
@@ -99,6 +100,7 @@ setInterval(updateResources, 5000);
  	$("#Fur div").empty(); $("#Fur div").append(resources["fur"]);
  	$("#Meat div").empty(); $("#Meat div").append(resources["meat"]);
  	$("#Wood div").empty(); $("#Wood div").append(resources["wood"]);
+ 	$("#Gold div").empty(); $("#Gold div").append(resources["gold"]);
  }
 
  function canPurchaseOutpost(s){
@@ -638,7 +640,7 @@ function statusMessage(s) {
 		}   
             window.onload = function() {
             init();
-            $("#chat").css({"margin-top":(window.innerHeight-180)+"px"});
+           // $("#chat").css({"margin-top":(window.innerHeight-180)+"px"});
         }
        
 
@@ -670,12 +672,20 @@ $(document).ready(function(){
 				$("#upgradeContent").fadeIn(100);
 				$("#upgradeContent").append("<h3>Upgrade Outpost "+o+"</h3>");
 				
-				$("#upgradeContent").append("<div style='position:absolute;margin-left:118px;'> Current Army Value:  "+outPostArmy[o]+"</div>");
+				$("#upgradeContent").append("<div id='armyValueWrapper' style='position:absolute;margin-left:118px;'> Current Army Value:  <div id='armyValue' style='display:inline'>"+outPostArmy[o]+"</div></div>");
 				$("#upgradeContent").append("<div id='meatCostArmy'><div>Upgrade Cost: </div> 15 x <img src='images/meatLogo.png'/></div>");
 				$("#upgradeContent").append("<div id='furCostArmy'>15 x <img src='images/furLogo.png'/></div>");
 				$("#upgradeContent").append("<div id='farmCostArmy'>15 x <img src='images/farmLogo.png'/></div>");
 				$("#upgradeContent").append("<div id='upgradeArmy'></div>");
-				$("#upgradeContent").append("<div>Current Resource Increment:  "+outPostIncrement[o]+"</div>");
+				$("#upgradeContent").append("<div id='upgradeIncrement'></div>");
+				$("#upgradeContent").append("<div style='position:absolute;margin-left:118px;'><div>Current Resource Increment:  <div id='resourceValue' style='display:inline'>"+outPostIncrement[o]+"</div></div>");
+				$("#upgradeContent").append("<div id='resourceIncrementCost'><div>Upgrade Cost: </div> 1 x <img src='images/goldLogo.png'/></div>");
+				$("#upgradeArmy").click(function() {
+					upgradeArmy(o);
+				});
+				$("#upgradeIncrement").click(function() {
+					upgradeIncrement(o);
+				});
 				
 			});
 		}
@@ -683,4 +693,40 @@ $(document).ready(function(){
 	}
 });
 
-
+function upgradeArmy(op){
+	op = parseInt(op);
+	var farmTot = resources["farm"];
+	var furTot = resources["fur"];
+	var meatTot = resources["meat"];
+	if((farmTot>14) && (furTot>14) && (meatTot>14)){
+		statusMessage("Army Successfully Upgraded.");
+		resources["farm"] = resources["farm"]-15;
+		resources["fur"] = resources["fur"]-15;
+		resources["meat"] = resources["meat"]-15;
+		showResourceIncrement();
+		outPostArmy[op]++;
+		$("#armyValue").empty();
+		$("#armyValue").append(outPostArmy[op]);
+		
+		
+	}else{
+		statusMessage("Insuffient resources to upgrade your Army.");
+	}
+}
+function upgradeIncrement(op){
+	op = parseInt(op);
+	var farmTot = resources["gold"];
+	
+	if(farmTot>=1){
+		statusMessage("Resource Increment Successfully Upgraded.");
+		resources["gold"] = resources["gold"]-1;
+		showResourceIncrement();
+		outPostIncrement[op]++;
+		$("#resourceValue").empty();
+		$("#resourceValue").append(outPostIncrement[op]);
+		
+		
+	}else{
+		statusMessage("Insuffient gold to upgrade your increment.");
+	}
+}
