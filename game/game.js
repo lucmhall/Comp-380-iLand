@@ -214,7 +214,181 @@ function checkVictory(){
 		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
 		 }
 } 
+function showBuyableOutpost(){
+	var i = 0;
+	while(i<16){
+	 	var left, right;
+	 	
+	 	if(i<6){
+	 		left = 0;
+	 		right = 1;
+	 	}else if(i<11){
+	 		left=1;
+	 		right=2;
+	 	}else{
+	 		left=2;
+	 		right=3;
+	 	}
+	 	if(roadHOwned[i+left]==true){
+	 			$("#out"+i).css({"display":"block"});
+	 		}else if(roadHOwned[i+right]==true){
+	 			$("#out"+i).css({"display":"block"});
+	 			}else if(roadVOwned[i]==true){
+	 				$("#out"+i).css({"display":"block"});
+	 				}else if(roadVOwned[i+5]==true){
+	 					$("#out"+i).css({"display":"block"});
+					}
+		i++;					
+	}
+}
+function showPurchasableHRoad(){
+	var r  = 0;
+ 	var top;
+ 	var bottom;
+ 	var op;
+ 	var left;
+ 	var right;
+ 	while(r<19){ 
+ 		
+	     if(r<7){
+	       //first row
+	    	op = r;
+ 			if(outPostsOwned[op]==true){
+ 				if(r==6){
+ 					$("#roadH7").css({"display":"block"});
+ 					$("#roadH8").css({"display":"block"});
+ 				}else{
+	     		$("#roadH"+op).css({"display":"block"});
+	     		$("#roadH"+(op+1)).css({"display":"block"});
+	     	}
+	     }
+	       top = r;
+	       bottom = r+5;
+	    	if(roadVOwned[top]==true || roadVOwned[bottom]==true){
+	    		if(r==6){
+ 					//$("#roadH"+(op-1)).css({"display":"block"});
+ 				}else{
+	     		$("#roadH"+top).css({"display":"block"});
+	     		$("#roadH"+(top+1)).css({"display":"block"});
+	     		}
+	     	}
+	     	
+	    	if(roadHOwned[r]==true){
+	    		if(r==6){
+	     		$("#roadH"+(r-1)).css({"display":"block"});
+	     		}else{
+	     		$("#roadH"+(r+1)).css({"display":"block"});
+	     		$("#roadH"+(r-1)).css({"display":"block"});
+	     		}
+	     	}
+	     }
+	     else if(r < 13){
+	     	op = r-1;
+	     	if(r==12){
+	     		if(outPostsOwned[10]==true){
+	     			$("#roadH11").css({"display":"block"});
+ 					$("#roadH12").css({"display":"block"});
+	     		}
+ 			}else if(outPostsOwned[op]==true){
+ 				$("#roadH"+r).css({"display":"block"});
+	     		$("#roadH"+(r+1)).css({"display":"block"});
+	    	 }
+	       top = r-1;
+	       bottom = r+4;
+	    	if(roadVOwned[top]==true || roadVOwned[bottom]==true){
+	     		$("#roadH"+r).css({"display":"block"});
+	     		$("#roadH"+(r+1)).css({"display":"block"});
+	     	}
+	     	
+	    	if(roadHOwned[r]==true){
+	    		if(r==12){
+	     			$("#roadH"+(r-1)).css({"display":"block"});
+	     		}else if(r==7){
+	     			$("#roadH"+(r+1)).css({"display":"block"});
+	     		}else{
+	     			$("#roadH"+(r+1)).css({"display":"block"});
+	     			$("#roadH"+(r-1)).css({"display":"block"});
+	     		}
+	     	}
+	     	}
+	     else{
+	 		//first row
+	    	op = r-2;
+	    	if(r==18){
+	    		if(outPostsOwned[15]){
+	    			$("#roadH17").css({"display":"block"});
+ 					$("#roadH18").css({"display":"block"});
+ 					}
+	    	}else if(outPostsOwned[op]==true){
+	     		$("#roadH"+(op+2)).css({"display":"block"});
+	     		$("#roadH"+(op+3)).css({"display":"block"});
+	     	}
+	       top = r-2;
+	       bottom = r-3;
+	    	if(roadVOwned[top]==true || roadVOwned[bottom]==true){
+	    		if(r==18){
+ 					//$("#roadH"+(op-1)).css({"display":"block"});
+ 				}else{
+	     		$("#roadH"+r).css({"display":"block"});
+	     		//$("#roadH"+(r+1)).css({"display":"block"});
+	     		}
+	     	}
+	    	if(roadHOwned[r]==true){
+	    		if(r==18){
+	     		$("#roadH"+(r-1)).css({"display":"block"});
+	     		}else{
+	     		$("#roadH"+(r+1)).css({"display":"block"});
+	     		$("#roadH"+(r-1)).css({"display":"block"});
+	     		}
+	     	}
+	 	 }
+	 	r++;
+ }	
+}
 
+function showPurchasableVRoad(){
+	// the "a" infront of aleft, aright etc means ABOVE
+
+ 	var r  = 0
+ 	var left;
+ 	var right;
+ 	var op;
+ 	while(r<19){ 
+ 		op = r;
+ 		if(outPostsOwned[op]==true){
+	     		$("#roadV"+op).css({"display":"block"});
+	     		op= op+5;
+	     		$("#roadV"+op).css({"display":"block"});
+	     	}
+	     if(r<6){
+	       //first row
+	       left = r;
+	       right = r+1
+	    	if(roadHOwned[left]==true || roadHOwned[right]==true){
+	     		$("#roadV"+r).css({"display":"block"});
+	     		bottom = r+5;
+	     		$("#roadV"+bottom).css({"display":"block"});
+	     	}
+	     }else if(r < 11){
+	     	left = r+1;
+	       	right = r+2;
+	    	if(roadHOwned[left]==true || roadHOwned[right]==true){
+	     		$("#roadV"+r).css({"display":"block"});
+	     		bottom = r+5;
+	     		$("#roadV"+bottom).css({"display":"block"});
+	     	}
+	     }else if(r < 16){
+	 		left = r+2;
+	       	right = r+3;
+	    	if(roadHOwned[left]==true || roadHOwned[right]==true){
+	     		$("#roadV"+r).css({"display":"block"});
+	     		bottom = r+5;
+	     		$("#roadV"+bottom).css({"display":"block"});
+	     	}
+	 	 }
+	 	r++;
+ 	}
+ }
 function someoneWon(fromClientID, un){
 	//Write the alert for victory here. 
 }
@@ -228,7 +402,7 @@ function someoneWon(fromClientID, un){
 var orbiter;
 var msgManager;
 var UPC = net.user1.orbiter.UPC;
-var roomID = "iLandGame";
+//var roomID = "iLandGame";
 
 //==============================================================================
 // INITIALIZATION
@@ -389,9 +563,15 @@ function statusMessage(s) {
         function handleOutpostDragStart(e) {
         e.dataTransfer.setDragImage(element('outpostPic'), 49, 48);
         	statusMessage("Place an Outpost in a Drop Zone to purchase");
+        	
+        	if(firstoutPost==1){
         	for(var i = 0; i<16; i++){
         	$("#out"+i).css({"display":"block"});
-        }
+        		}
+        	}else{
+        		showBuyableOutpost();
+        	}
+        
         	
             
             draggingElement = this;
@@ -474,9 +654,8 @@ function statusMessage(s) {
 		function handleRoadVDragStart(e){
 		e.dataTransfer.setDragImage(element('roadVPic'), 49, 48);
 			statusMessage("Place a Road in a Drop Zone to purchase");
-			for(var i = 0; i<21; i++){
-        	$("#roadV"+i).css({"display":"block"});
-        }
+			showPurchasableVRoad();
+        
         	
             
             draggingElement = this;
@@ -530,9 +709,7 @@ function statusMessage(s) {
 		function handleRoadHDragStart(e){
 		e.dataTransfer.setDragImage(element('roadHPic'), 49, 48);
 			statusMessage("Place a Road in a Drop Zone to purchase");
-			for(var i = 0; i<19; i++){
-        	$("#roadH"+i).css({"display":"block"});
-        }
+			showPurchasableHRoad();
             draggingElement = this;
             draggingElement.className = 'moving';
             draggingElement.style.opacity = '0.4';
@@ -649,7 +826,7 @@ $(document).ready(function(){
 		var tab;
 				$("#upgradeContent").hide();
 				$("#combatContent").hide();
-				$("#tradeContent").hide();
+				$("#tradingContent").hide();
 				if($(this).attr("id") == "tradingTab"){
 					tab = "#tradingContent";
 				}else if($(this).attr("id") == "combatTab"){

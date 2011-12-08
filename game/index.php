@@ -4,10 +4,12 @@ if(isset($_SESSION['username'])){
 
 	$username = $_SESSION['username'];
 	$userpic = $_SESSION['pic'];
+	$roomID = $_GET['roomID'];
 ?>
 <script>var loggedIn= true; 
         var username ="<?php echo $username ?>";
 		var userpic ="<?php echo $userpic ?>";
+		var roomID = "<?php echo $roomID ?>";
 		//window.alert(userpic);
 </script>
 <?php
@@ -149,12 +151,13 @@ if(isset($_SESSION['username'])){
 		
 	<div id="upgradeBuy">
 		<div id="UBColoring"></div>
-		<div id="combatTab">Combat</div>
-		<div id="upgradeTab">Upgrade</div>
-		<div id="tradingTab">Trading</div>
+		<div id="combatTab"></div>
+		<div id="upgradeTab"></div>
+		<div id="tradingTab"></div>
 		<div style="margin:20px 0 0 40px">
-		<div id="upgradeContent"></div>
-		<div id="tradingContent"></div>
+		<div id="upgradeContent"><br/>Please Click on an Outpost that <br/>you own to begin upgrading.</div>
+		<div id="tradingContent"><br/><br/> Trading </div>
+		<div id="combatContent"><br/><br/>Please Click on an enemy Outpost  <br/> to begin upgrading.</div>
 		</div>
 	</div>
 	

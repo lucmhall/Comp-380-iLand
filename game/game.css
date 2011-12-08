@@ -572,36 +572,45 @@ div.moving {
 }
 #upgradeTab, #combatTab, #tradingTab{
 	border-radius:4px 4px 4px 4px ;
-	background-color:#959BA3;
-	color:#8A611A;
+	
+	
 	display:inline;
 	position:absolute;
 	top:5px;
-	height:22px;
-	width: 80px;
+	height:47px;
+	width: 37px;
 	padding-left: 30px;
 	padding-top:3px;
+	background-size: 66px 50px;
+	
 }
 #upgradeTab{
 	top:20px;
-	left: 17px;	
+	left: 70px;	
+	background-image:url('images/upgradeLogo.png');
+	background-repeat:no-repeat;
 }
 #combatTab{
 	top:20px;
-	left: 140px;	
+	left: 160px;
+	background-image:url('images/combatLogo.png');
+	background-repeat:no-repeat;	
 }
 #tradingTab{
 	top:20px;
-	right: 17px;
+	right: 70px;
+	background-image:url('images/marketLogo.png');
+	background-repeat:no-repeat;
 }
 
 #upgradeTab:hover, #tradingTab:hover, #combatTab:hover{
-background-color:#B5BBC3;	
-color:white;
+	box-shadow:0 0 15px #1C0DAD; 
+	cursor:pointer;
+	color:white;
 }
 #upgradeContent{
 	position:absolute;
-	top:30px;
+	top:55px;
 	width:390px;
 	height:320px;
 	//background-color:red;
@@ -614,12 +623,13 @@ color:white;
 	height:320px;
 	//background-color:blue;
 }
-#tradingContent{
+#combatContent{
 	position:absolute;
 	top:30px;
 	width:390px;
 	height:320px;
 	//background-color:pink;
+	display:none;
 }
 
 

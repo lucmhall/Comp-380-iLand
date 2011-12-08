@@ -36,7 +36,7 @@ function init () {
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   msgManager.addMessageListener("Lobby_Enter", lobbyEnterListener, this, [roomID]);
   msgManager.addMessageListener("Return_Players", returnPlayersListener, this, [roomID]);
-
+  msgManager.addMessageListener("beginGame", startGame, this, [roomID]);
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
@@ -426,7 +426,13 @@ $('#open_lobby').click(function () {
 	{
 		if($("#start_match").css("background-color") == 'rgb(0, 128, 0)')
         {
-            window.location = "./game";
+        	var text = "";
+    		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    	    for( var i=0; i < 42; i++ ){
+        	text += possible.charAt(Math.floor(Math.random() * possible.length));
+        	}
+        	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "beginGame", roomID, "true", "", text);
+            window.location = "./game?roomID="+text;
         }
         else
         {
@@ -598,6 +604,8 @@ function showInfoTop(user)
 	});
 }
 
-
+function startGame(fromClientID, text){
+	window.location = "./game?roomID="+text;
+}
 
 
