@@ -10,9 +10,9 @@ $q= "select  picture, id, username from users where username='$un' AND password=
 
         
        
-     $r = mysqli_query($dbc,$q);
+    $r = mysqli_query($dbc,$q);
 	
-      $num = mysqli_num_rows($r);
+    $num = mysqli_num_rows($r);
 	if ($num == 1) {
 		session_start();
 		$_SESSION['username'] = $un;
