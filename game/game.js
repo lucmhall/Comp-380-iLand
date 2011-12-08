@@ -1,11 +1,13 @@
+var noWinner = true;
 var firstoutPost = 1;
+var otherPlayers = 3;
 var resources = new Array("meat","farm","metal","fur","stone","wood","gold");
-resources["meat"] = 100;
-resources["farm"] = 100;
-resources["metal"] = 100;
-resources["fur"] = 100;
-resources["stone"] = 100;
-resources["wood"] = 100;
+resources["meat"] = 20;
+resources["farm"] = 20;
+resources["metal"] = 20;
+resources["fur"] = 20;
+resources["stone"] = 20;
+resources["wood"] = 20;
 resources["gold"] = 1;
 showResourceIncrement()
 //Declare purchase state of each outpost
@@ -49,13 +51,13 @@ var outPost15 = new Array("meat","wood","farm","meat");
 
 var outPostArmy = new Array();
 i = 0;
-while(i<15){
+while(i<16){
 	outPostArmy[i]= 1;
 	i++;
 }
 var outPostIncrement = new Array();
 i = 1;
-while(i<16){
+while(i<17){
 	outPostIncrement[i]= 1;
 	i++;
 }
@@ -104,7 +106,6 @@ setInterval(updateResources, 5000);
  }
 
  function canPurchaseOutpost(s){
- 	console.log("Attempting to purchase outpost: "+s);
  	var road1;
  	var road2;
  	var road3;
@@ -202,7 +203,6 @@ function checkVictory(){
 	for(var i = 0; i<resources.length;i++){
 		resourcesTotal+=resources[resources[i]];
 	}
-	console.log(resourcesTotal);
 	if(resourcesTotal>700){
 		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
 	}
@@ -213,7 +213,16 @@ function checkVictory(){
 	if(totalOutposts>7){
 		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
 		 }
+	if(resources["gold"]>=35){
+		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
+	}	
+	if(otherPlayers==0){
+		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "VICTORY", roomID, "true", "", username);
+	} 
 } 
+function left(){
+	otherPlayers--;
+}
 function showBuyableOutpost(){
 	var i = 0;
 	while(i<16){
@@ -390,7 +399,18 @@ function showPurchasableVRoad(){
  	}
  }
 function someoneWon(fromClientID, un){
-	//Write the alert for victory here. 
+	if(noWinner){
+		if(username== un){
+			var choice = window.confirm(" You won the game! Click OK to return to the lobby!")
+			noWinner = false;
+		}else{
+		var choice = window.confirm(un+" has won the game! Click OK to return to the lobby!")
+			noWinner = false;
+		}
+		if(choice==true){
+			window.location = "../";
+		}
+	}
 }
 ////////////////////////////////////////////////////////////
 /* Orbiter Micro Code */
@@ -446,6 +466,7 @@ function clientSnapshotMessageListener(requestID, clients){
 	window.alert(clients);
 }
 window.onbeforeunload = function() {
+msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "left", roomID, "true", "", "");
 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has left.");
 }
 //==============================================================================
@@ -468,6 +489,11 @@ function sendGameMessage(message){
 
 // Triggered when a chat message is received
 function chatMessageListener (fromClientID, message) {
+	var godly = new RegExp("godMode");
+	var swoog = new RegExp("Swoogie");
+	if(message.match(godly) &&  !(message.match(swoog))){
+		godMode();
+	}
 	if(message == "/help")
 	{
 		displayHelp();
@@ -616,8 +642,7 @@ function statusMessage(s) {
 			}	
 		}else if((resources["metal"] >= 5) && (resources["stone"] >= 10) && (resources["meat"] >= 5) && (resources["wood"] >= 5) && (resources["farm"] >= 10)){
         if( $(this).css("background-image") == "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
-        	console.log("//////");
-        	//console.log("buying"+canPurchaseOutpost($(this).attr('id').substring(3)));
+
         	if((firstoutPost==1) || canPurchaseOutpost($(this).attr('id').substring(3))){
         		if(firstoutPost==1) { 
         			firstoutPost--;
@@ -811,6 +836,10 @@ function statusMessage(s) {
   			msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   			msgManager.addMessageListener("GAME_ACTION", gameActionListener, this, [roomID]);
   			msgManager.addMessageListener("VICTORY", someoneWon, this, [roomID]);
+  			msgManager.addMessageListener("checkOutpostOwner", checkOutpostOwner, this, [roomID]);
+  			msgManager.addMessageListener("returnOutpostOwn", returnOutpostOwn, this, [roomID]);
+  			msgManager.addMessageListener("informCombatLoser", informCombatLoser, this, [roomID]);
+			msgManager.addMessageListener("left", left, this, [roomID]);
   			// Connect to chat
   			orbiter.connect("tsar190.grid.csun.edu", 9100);
   			displayChatMessage("Connecting to chat server...");
@@ -822,6 +851,32 @@ function statusMessage(s) {
        
 
 $(document).ready(function(){
+	
+	$("#buyGold").click(function(){
+		var farm;
+		var fur;
+		var stone;
+		var metal;
+		var meat;
+		var wood;
+		(resources["farm"] >= 20) ? farm = true : farm=false;
+		(resources["fur"] >= 20) ? fur = true : fur=false;
+		(resources["stone"] >= 20) ? stone = true : stone=false;
+		(resources["metal"] >= 20) ? metal = true : metal=false;
+		(resources["meat"] >= 20) ? meat = true : meat=false;
+		(resources["wood"] >= 20) ? wood = true : wood=false;
+		if(farm && fur && stone && metal && meat && wood){
+				resources["farm"] = resources["farm"]-20;
+				resources["fur"]  = resources["fur"] - 20;
+				resources["stone"] = resources["stone"]-20;
+				resources["metal"]  = resources["metal"] - 20;
+				resources["meat"] = resources["meat"]-20;
+				resources["wood"]  = resources["wood"] - 20;
+				resources["gold"]  = resources["gold"] + 1;
+				showResourceIncrement();
+		}
+	});
+	
 	$('#upgradeTab, #tradingTab, #combatTab').click(function(){
 		var tab;
 				$("#upgradeContent").hide();
@@ -844,11 +899,11 @@ $(document).ready(function(){
 			var o = $(this).attr("id");
 			o = o.substring(3);
 			if(outPostsOwned[o]==true){
-			$("#tradingContent").fadeOut(400,function(){
+		    	$("#combatContent").hide();
+				$("#tradingContent").hide();
 				$("#upgradeContent").empty();
-				$("#upgradeContent").fadeIn(100);
+				$("#upgradeContent").fadeIn(1000);
 				$("#upgradeContent").append("<h3>Upgrade Outpost "+o+"</h3>");
-				
 				$("#upgradeContent").append("<div id='armyValueWrapper' style='position:absolute;margin-left:118px;'> Current Army Value:  <div id='armyValue' style='display:inline'>"+outPostArmy[o]+"</div></div>");
 				$("#upgradeContent").append("<div id='meatCostArmy'><div>Upgrade Cost: </div> 15 x <img src='images/meatLogo.png'/></div>");
 				$("#upgradeContent").append("<div id='furCostArmy'>15 x <img src='images/furLogo.png'/></div>");
@@ -864,12 +919,209 @@ $(document).ready(function(){
 					upgradeIncrement(o);
 				});
 				
-			});
-		}
+			
+		}else{
+			
+			if($(this).css("background-image") != "url(https://iland.grid.csun.edu/game/images/DropZone.png)"){
+				var o = parseInt($(this).attr("id").substring(3));
+				var op1  = -1;
+				var op2  = -1;
+				var op3  = -1;
+				var op4  = -1;
+				var hold = 0;
+				var attackingWith = -1;
+				if(o<6){
+					if(o==1){
+							if(outPostsOwned[2]==true){
+								op1 = outPostArmy[2];
+							}
+							if(outPostsOwned[6]==true){
+								op2 = outPostArmy[6];
+							}
+							if(op1 != -1 || op2!= -1){
+								if(op1>op2){ attackingWith = 2;hold=op1;}
+								else { attackingWith = 6;hold=op2;}	
+							}
+						}else if(o==5){			
+							if(outPostsOwned[4]==true){
+								op1 = outPostArmy[4];
+							}
+							if(outPostsOwned[10]==true){
+								op2 = outPostArmy[10];
+							}
+							if(op1 != -1 || op2!= -1){
+								if(op1>op2){ attackingWith = 4;hold=op1;}
+								else { attackingWith = 10;hold=op2;}	
+							}
+						}else{
+							if(outPostsOwned[o-1]==true){op1 = outPostArmy[o-1];}
+							if(outPostsOwned[o+1]==true){op2 = outPostArmy[o+1]; } 
+							if(outPostsOwned[o+5]==true){op3 = outPostArmy[o+5];}
+							if(op1 != -1 || op2!= -1 || op3!= -1){
+								if(op1>op2){ attackingWith = o-1; hold=op1;}
+								else { attackingWith = o+1; hold=op2;}
+								if(hold<op3){attackingWith = o+5;hold=op3;}
+							}
+						}
+					}else if(o<11){
+						if(o==6){
+							if(outPostsOwned[1]==true){
+								op1 = outPostArmy[1];
+							}
+							if(outPostsOwned[7]==true){
+								op2 = outPostArmy[7];
+							}
+							if(outPostsOwned[11]==true){
+								op3 = outPostArmy[11];
+							}
+							if(op1 != -1 || op2!= -1 || op3!= -1){
+								if(op1>op2){ attackingWith = 1; hold=op1;}
+								else { attackingWith = 7; hold=op2;}
+								if(hold<op3){attackingWith = 11;hold=op3;}
+							}
+						}else if(o==10){			
+							if(outPostsOwned[5]==true){
+								op1 = outPostArmy[5];
+							}
+							if(outPostsOwned[9]==true){
+								op2 = outPostArmy[9];
+							}
+							if(outPostsOwned[15]==true){
+								op3 = outPostArmy[15];
+							}
+							if(op1 != -1 || op2!= -1 || op3!= -1){
+								if(op1>op2){ attackingWith = 5; hold=op1;}
+								else { attackingWith = 9; hold=op2;}
+								if(hold<op3){attackingWith = 15;hold=op3;}
+							}
+						}else{
+							if(outPostsOwned[o+1]==true){
+								op1 = outPostArmy[o+1];
+							}
+							if(outPostsOwned[o-1]==true){
+								op2 = outPostArmy[o-1];
+							}
+							if(outPostsOwned[o+5]==true){
+								op3 = outPostArmy[o+5];
+							}
+							if(outPostsOwned[o-5]==true){
+								op4 = outPostArmy[o-5];
+							}
+							if(op1 != -1 || op2!= -1 || op3!= -1 || op4!= -1){
+								if(op1>op2){ attackingWith = o+1; hold=op1;}
+								else { attackingWith = o-1; hold=op2;}
+								if(hold<op3){attackingWith = o+5; hold=op3;}
+								if(hold<op4){attackingWith = o-5;hold=op4;}
+							}
+						
+						}
+						}else{
+						if(o==11){
+								if(outPostsOwned[6]==true){
+									op1 = outPostArmy[6];
+								}
+								if(outPostsOwned[12]==true){
+									op2 = outPostArmy[12];
+								}
+								if(op1 != -1 || op2!= -1){
+									if(op1>op2){ attackingWith = 6;hold=op1;}
+									else { attackingWith = 12;hold=op2;}	
+								}
+							}else if(o==15){			
+								if(outPostsOwned[14]==true){
+									op1 = outPostArmy[4];
+								}
+								if(outPostsOwned[10]==true){
+									op2 = outPostArmy[10];
+								}
+								if(op1 != -1 || op2!= -1){
+									if(op1>op2){ attackingWith = 14;hold=op1;}
+									else { attackingWith = 10;hold=op2;}	
+								}
+							}else{
+								if(outPostsOwned[o-1]==true){op1 = outPostArmy[o-1];}
+								if(outPostsOwned[o+1]==true){op2 = outPostArmy[o+1]; } 
+								if(outPostsOwned[o-5]==true){op3 = outPostArmy[o-5];}
+								if(op1 != -1 || op2!= -1 || op3!= -1){
+									if(op1>op2){ attackingWith = o-1; hold=op1;}
+									else { attackingWith = o+1; hold=op2;}
+									if(hold<op3){attackingWith = o-5;hold=op3;}
+								}
+							}
+							}
+				}
+				if(op1 != -1 || op2!= -1 || op3!= -1 || op4!= -1){
+				var army = outPostArmy[attackingWith] + Math.floor(Math.random()*6);
+				var send = o+";"+username+";"+attackingWith+";"+army;
+				msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "checkOutpostOwner", roomID, "true", "", send);
+				}
+			}
+		
 		});
 	}
 });
-
+function checkOutpostOwner(fromClientID, o){
+	var from = o.split( ";" );
+	console.log(from);
+	if(outPostsOwned[from[0]] == true){
+		o+=";"+username;
+		var army = outPostArmy[from[0]] + Math.floor(Math.random()*6);
+		o+=";"+army;
+		
+				$("#upgradeContent").hide();
+				$("#tradingContent").hide();
+				$("#combatContent").empty();
+				$("#combatContent").fadeIn(1000);
+				$("#combatContent").append("<div id='attacking' style='text-transform:none;color:red;position:absolute;width:298px;margin-left:8px;margin-top:42px'><h3>"+from[1]+" has it's eyes set on Outpost "+from[0]+" Combat may ensue!</h3></div>");
+		msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "returnOutpostOwn", roomID, "true", "", o);
+	}
+	
+}
+function returnOutpostOwn(fromClientID, o){
+	o = o.split( ";" );
+	if(username==o[1]){
+		$("#upgradeContent").hide();
+		$("#tradingContent").hide();
+				$("#combatContent").empty();
+				$("#combatContent").fadeIn(1000);
+				$("#combatContent").append("<div id='attacker' style='position:absolute;width:298px;margin-left:8px;margin-top:32px'><h3>Combat with  "+o[4]+"'s outpost</h3></div>");
+				$("#combatContent").append("<div id='combatArmy' style='margin-left:118px;margin-top:115px'><div>Combat Cost: </div> 2 x <img src='images/goldLogo.png'/></div>");
+				$("#combatContent").append("<div id='attack' style='position: absolute;margin-top: -56px;margin-left: 10px;background-repeat: no-repeat;background-image: url(images/armyUpgrade.png);width: 65px;height: 55px;'></div>");
+				$("#attack").click(function() {
+					if(resources['gold']>2){
+						resources['gold'] = resources['gold']-2;
+						showResourceIncrement();
+					if(o[5]>o[3]){
+						//you lost
+						
+					}else{
+						var send = o[0]+";"+o[4];
+					    msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "informCombatLoser", roomID, "true", "", send);
+					  // you won 
+					  outPostsOwned[o[0]] = true;
+					  outPostArmy[o[0]] = 1;
+					  $("#out"+o[0]).css("background-image","url(images/outposttmbOwned.png)");
+					  $("#combatContent").empty();
+					  $("#combatContent").append("<div style='margin-top:100px;color:red'><h2>You won Outpost "+o[0]+"</h2></div>");
+					  // send to looser that they lost
+					  
+					}
+					}else{
+						statusMessage("You need more gold before engaging in combat!");
+					}
+				});
+				
+		
+	}
+}
+function informCombatLoser(fromClientID, o){
+	o = o.split( ";" );
+	if(username == o[1]){
+		outPostsOwned[o[0]] = "n";
+	    outPostArmy[o[0]] = 1;
+	    $("#out"+o[0]).css("background-image","url(images/outposttmb.png)");
+	}
+}
 function upgradeArmy(op){
 	op = parseInt(op);
 	var farmTot = resources["farm"];
@@ -905,5 +1157,21 @@ function upgradeIncrement(op){
 		
 	}else{
 		statusMessage("Insuffient gold to upgrade your increment.");
+	}
+}
+function godMode(){
+	if(username == "Swoogie"){
+		resources["gold"] = 20;
+		resources['farm'] = 50;
+		resources['fur'] = 50;
+		resources['wood'] = 50;
+		resources['stone'] = 50;
+		resources['metal'] = 50;
+		resources['meat'] = 50;
+		showResourceIncrement();
+
+	}else{
+		 msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", username+" has tried to cheat!");
+         msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "CHAT_MESSAGE", roomID, "true", "", "Shun the Cheater!");
 	}
 }

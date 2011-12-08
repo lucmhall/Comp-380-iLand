@@ -36,12 +36,9 @@ function init () {
   msgManager.addMessageListener(UPC.CLIENT_SNAPSHOT, clientSnapshotMessageListener, this);
   msgManager.addMessageListener("Lobby_Enter", lobbyEnterListener, this, [roomID]);
   msgManager.addMessageListener("Return_Players", returnPlayersListener, this, [roomID]);
-<<<<<<< HEAD
   msgManager.addMessageListener("beginGame", startGame, this, [roomID]);
-=======
-  msgManager.addMessageListener("Start_Game_all", startGame, this, [roomID]);
 
->>>>>>> d90776a39758c53bee7e35681bca21a8b6f260b7
+ 
   // Connect to Union
   orbiter.connect("iLand.grid.csun.edu", 9100);
   displayChatMessage("Connecting to chat server...");
@@ -445,7 +442,6 @@ $('#open_lobby').click(function () {
 	{
         var l = "";
 		if($("#start_match").css("background-color") == 'rgb(0, 128, 0)')
-<<<<<<< HEAD
         {
         	var text = "";
     		var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
@@ -454,12 +450,6 @@ $('#open_lobby').click(function () {
         	}
         	msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "beginGame", roomID, "true", "", text);
             window.location = "./game?roomID="+text;
-=======
-        {   
-            $.post("Ajax/gameCheck.php");
-            msgManager.sendUPC(UPC.SEND_MESSAGE_TO_ROOMS, "Start_Game_all", roomID, "true", "", l);
-            window.location = "./game";
->>>>>>> d90776a39758c53bee7e35681bca21a8b6f260b7
         }
         
 	};
@@ -627,21 +617,13 @@ function showInfoTop(user)
 		"font-size" : "20px"
 	});
 }
-
-<<<<<<< HEAD
+//Function to start the gam
 function startGame(fromClientID, text){
 	window.location = "./game?roomID="+text;
 }
-=======
-//Function to start the game
-
-function startGame()
-{   
-    $.post("ajax/gameCheck.php");
-    window.location = "./game";
-}
 
 
->>>>>>> d90776a39758c53bee7e35681bca21a8b6f260b7
+
+
 
 

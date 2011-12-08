@@ -156,7 +156,11 @@ if(isset($_SESSION['username'])){
 		<div id="tradingTab"></div>
 		<div style="margin:20px 0 0 40px">
 		<div id="upgradeContent"><br/>Please Click on an Outpost that <br/>you own to begin upgrading.</div>
-		<div id="tradingContent"><br/><br/> Trading </div>
+		<div id="tradingContent"><br/><br/>
+								<h3>Buy Gold Bars </h3>
+								<div id="buyGold"></div>
+								<div id="goldCost"> Cost: <br/></br>20 x each resource</div>
+								</div>
 		<div id="combatContent"><br/><br/>Please Click on an enemy Outpost  <br/> to begin upgrading.</div>
 		</div>
 	</div>

@@ -645,11 +645,11 @@ div.moving {
 	width:65px;
 	height:55px
 }
-#upgradeArmy:hover{
+#upgradeArmy:hover, #attack:hover,#buyGold:hover{
 	box-shadow:0 0 15px #1C0DAD; 
 	
 }
-#upgradeArmy:active{
+#upgradeArmy:active, #attack:active,#buyGold:attack{
 	box-shadow:0 0 15px #111111; 
 	width:69px;
 	height:59px;
@@ -691,3 +691,19 @@ div.moving {
 	margin-top:20px;
 	margin-left:118px;
 }
+#buyGold{
+	position:absolute;
+
+	margin-left:10px;
+	background-repeat:no-repeat;
+	background-image:url(images/goldLogo.png);
+	width:65px;
+	height:55px;
+	background-size: 65px 55px;
+	
+}
+#goldCost{
+	margin-top: 22px;
+	margin-left: 103px;	
+}
+
